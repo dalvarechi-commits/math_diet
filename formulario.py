@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 def pedirDatosBiometricos():
     with st.form("formulario_datosBiometricos"):
         peso = st.slider('Peso (kg)', 30, 200)
@@ -77,13 +78,55 @@ def pedirPreferenciasAlimentarias(preferencias_labels):
 def pedirObjetivosNutricionales():
     with st.form("formulario_objetivosNutricionales"):
         objetivo = st.selectbox("Selecciona tu objetivo nutricional", ["Perder peso", "Ganar músculo", "Mantener peso"])
-        calorias_diarias = st.number_input("Calorías diarias", min_value=0)
         enviado = st.form_submit_button("Enviar")
 
         if enviado:
             return {
                 "objetivo": objetivo,
-                "calorias_diarias": calorias_diarias
             }
         else:
             return None
+        
+
+
+def pedirGustos(alimentos):
+ # listado de sliders para cada alimento, con un rango de 1 a 5, y un botón de enviar
+    with st.form("formulario_gustos"):
+        st.markdown("Valora tu gusto por cada alimento en una escala del 1 al 5, donde 1 es 'No me gusta nada' y 5 es 'Me encanta'.")
+        gustos = {}
+       
+
+       # Organizar por categorías para que la interfaz quede limpia y profesional
+       # Extraemos las categorías únicas del JSON
+        categorias = set(info["categoria"] for info in st.session_state.alimentos.values())
+
+    # 3. Crear los sliders dinámicamente
+        for cat in sorted(categorias):
+    # Creamos un contenedor colapsable por cada categoría (ej: "Frutas", "Carnes")
+           with st.expander(f"📂 {cat}"):
+           
+            for id_bedca, info in st.session_state.alimentos.items():
+                 if info["categoria"] == cat:
+                
+                    # Creamos el slider para el alimento específico
+                    nueva_valoracion = st.slider(
+                    label=f"{info['nombre_bedca']}",
+                    min_value=1,
+                    max_value=5,
+                    value=3,          # Valor por defecto solicitado
+                    step=1,           # Incrementos de 1 en 1
+                    key=f"slider_{id_bedca}" # Clave única obligatoria para Streamlit
+                    )
+                    # Asignamos el valor en tiempo real directamente al objeto
+                    st.session_state.alimentos[id_bedca]["valoracion_usuario"] = nueva_valoracion
+                    gustos[id_bedca] = nueva_valoracion
+                    
+                
+                
+        enviado = st.form_submit_button("Enviar Gustos")
+        if enviado:
+            return gustos
+        else:
+            return None
+        
+
