@@ -131,6 +131,6 @@ if st.button("Guardar y Actualizar Grafo", type="primary"):
         
     st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
     
-    # Mostramos un fragmento de cómo queda tu objeto para el Backend
+    # Mostramos un fragmento de cómo queda tu objeto para el Backend (descomenta la línea siguiente para mostrarlo en Streamlit)
     st.json(st.session_state.alimentos)
 
