@@ -99,7 +99,6 @@ def pedirGustos(alimentos):
        # Organizar por categorías para que la interfaz quede limpia y profesional
        # Extraemos las categorías únicas del JSON
         categorias = set(info["categoria"] for info in st.session_state.alimentos.values())
-
     # 3. Crear los sliders dinámicamente
         for cat in sorted(categorias):
     # Creamos un contenedor colapsable por cada categoría (ej: "Frutas", "Carnes")
