@@ -3,6 +3,10 @@ import streamlit as st
 import formulario
 import json
 from pathlib import Path
+import matplotlib.pyplot as plt
+import grafo
+
+st.set_page_config(page_title="Math Diet", layout="wide")
 
 if "alimentos" not in st.session_state:
     # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/alimentos.json)
@@ -60,6 +64,13 @@ if "objetivos" not in st.session_state:
 
 if "gustos" not in st.session_state:
     st.session_state.gustos = None
+
+if "grafo_base" not in st.session_state:
+    st.session_state.grafo_base = None
+if "grafo_personalizado" not in st.session_state:
+    st.session_state.grafo_personalizado = None
+    
+
 
 tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Preferencias Alimentarias", "Objetivos Nutricionales", "Gustos Alimentarios"])
 
@@ -123,14 +134,22 @@ with tab4:
         #Quitar el print para la versión final, lo dejo para que se vea cómo queda el objeto en el Backend
         st.write("Gustos alimentarios registrados:", gustos)
     # 4. Botón opcional para procesar o guardar los datos en el archivo
-st.divider()
-if st.button("Guardar y Actualizar Grafo", type="primary"):
+    st.divider()
+    if st.button("Guardar y Actualizar Grafo", type="primary"):
     # Aquí puedes guardar los cambios de vuelta al fichero original si lo deseas
-    with open("alimentos_bedca.json", "w", encoding="utf-8") as f:
-        json.dump(st.session_state.alimentos, f, ensure_ascii=False, indent=2)
+        with open("alimentos_user.json", "w", encoding="utf-8") as f:
+            json.dump(st.session_state.alimentos, f, ensure_ascii=False, indent=2)
         
     st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
     
     # Mostramos un fragmento de cómo queda tu objeto para el Backend (descomenta la línea siguiente para mostrarlo en Streamlit)
     st.json(st.session_state.alimentos)
+    fig = grafo.pintarGrafo()
+    if fig is not None:
+        st.pyplot(fig, use_container_width=True)
+    else:
+        st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
+
+    
+
 
