@@ -10,20 +10,28 @@ st.set_page_config(page_title="Math Diet", layout="wide")
 
 if "alimentos" not in st.session_state:
     # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/alimentos.json)
-    datos_path = Path(__file__).resolve().parent / "datos" / "alimentos.json"
+    datos_path_default = Path(__file__).resolve().parent / "datos" / "alimentos.json"
+    datos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.get('datos', {}).get('nombre', 'default')}.json"
+       
     try:
-        with datos_path.open("r", encoding="utf-8") as f:
+        with datos_path_user.open("r", encoding="utf-8") as f:
             st.session_state.alimentos = json.load(f)
+            st.write(f"✅ Cargado el fichero de alimentos: {datos_path_user}")
+           
     except FileNotFoundError:
-        st.error(f"No se encontró el fichero de alimentos: {datos_path}")
+        #st.error(f"No se encontró el fichero de alimentos: {datos_path_user}. Se cargará el fichero por defecto: {datos_path_default}.")
+        with datos_path_default.open("r", encoding="utf-8") as f:
+            st.session_state.alimentos = json.load(f)
+            st.write(f"✅ Cargado el fichero de alimentos: {datos_path_default}")
         # Simulación por si aún no creas el archivo
+           
+    except Exception as e:
+        st.error(f"Error cargando {datos_path_default}: {e}")
         st.session_state.alimentos = {
             "251111": {"nombre_bedca": "Huevo de gallina entero", "categoria": "Huevos y derivados", "valoracion_usuario": 4.5},
             "295000": {"nombre_bedca": "Merluza fresca", "categoria": "Pescados y derivados", "valoracion_usuario": 4.0}
         }
-    except Exception as e:
-        st.error(f"Error cargando {datos_path}: {e}")
-        st.session_state.alimentos = {}
+        
 
 
 st.header("Bienvenido a Math Diet")
@@ -137,8 +145,11 @@ with tab4:
     st.divider()
     if st.button("Guardar y Actualizar Grafo", type="primary"):
     # Aquí puedes guardar los cambios de vuelta al fichero original si lo deseas
-        with open("alimentos_user.json", "w", encoding="utf-8") as f:
+        with open(f"alimentos_{st.session_state.datos['nombre']}.json", "w", encoding="utf-8") as f:
             json.dump(st.session_state.alimentos, f, ensure_ascii=False, indent=2)
+            #st.session_state.alimentos = json.load(f)
+            st.write(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['nombre']}.json")
+            
         
     st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
     
