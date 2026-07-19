@@ -14,3 +14,7 @@ Estrategias dietético- nutricionales específicas para la ganancia y pérdida d
 ‌
 Pérez-Heras, A. M., Romano Andrioni, B., & Montserrat, C. (2020, December). Componentes de la Alimentación saludable. Clínic Barcelona. https://www.clinicbarcelona.org/asistencia/vida-saludable/alimentacion-saludable/componentes-de-la-alimentacion-saludable
 ‌
+Estilos de vida saludable - Distribución diaria. (2020). Sanidad.Gob.Es. https://estilosdevidasaludable.sanidad.gob.es/alimentacionSaludable/queSabemos/enLaPractica/distribuir/diario/home.htm
+‌
+Estilos de vida saludable - Planificación de alimentos. (2020). Sanidad.Gob.Es. https://estilosdevidasaludable.sanidad.gob.es/alimentacionSaludable/queSabemos/enLaPractica/tablaPlanificacion/planificaciones/home.htm
+‌

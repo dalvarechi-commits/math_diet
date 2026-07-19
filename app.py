@@ -80,7 +80,7 @@ if "grafo_personalizado" not in st.session_state:
     
 
 
-tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Preferencias Alimentarias", "Objetivos Nutricionales", "Gustos Alimentarios"])
+tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Alergias y Restricciones", "Objetivos Nutricionales", "Gustos Alimentarios"])
 
 with tab1:
     datos = formulario.pedirDatosBiometricos()
@@ -111,16 +111,12 @@ with tab2:
             st.write("Alergias alimentarias seleccionadas:")
             for alergia in preferencias["alergias"]:
                 st.write("- ", preferencias_labels[alergia])
-            st.write("Vegano:", "Sí" if preferencias["vegano"] else "No")
-            st.write("Celiaco:", "Sí" if preferencias["celiaco"] else "No")
         elif st.session_state.preferencias:
             st.write("Alergias alimentarias seleccionadas:")
             for alergia in st.session_state.preferencias["alergias"]:
                 st.write("- ", alergia)
-            st.write("Vegano:", "Sí" if st.session_state.preferencias["vegano"] else "No")
-            st.write("Celiaco:", "Sí" if st.session_state.preferencias["celiaco"] else "No")
         else:
-            st.write("Completa el formulario de preferencias para ver los resultados.")
+            st.write("Completa el formulario de alergias y restricciones alimentarias para ver los resultados.")
 
 
 

@@ -3,9 +3,9 @@ import streamlit as st
 
 def pedirDatosBiometricos():
     with st.form("formulario_datosBiometricos"):
+        nombre = st.text_input("Nombre")
         peso = st.slider('Peso (kg)', 30, 200)
         altura = st.slider('Altura (cm)', 100, 220)
-        nombre = st.text_input("Nombre")
         edad = st.number_input("Edad", min_value=0, max_value=100)
         sexo = st.selectbox("Sexo", ["Hombre", "Mujer"])
         actividad_diaria = st.selectbox("Actividad diaria", ["Sedentario", "Poca actividad", "Actividad moderada", "Muy activo", "Actividad a nivel profesional"])
@@ -30,9 +30,9 @@ def pedirDatosBiometricos():
                 imc = 0
                 tmb = 0
             return {
+                "nombre": nombre,
                 "peso": peso,
                 "altura": altura,
-                "nombre": nombre,
                 "edad": edad,
                 "imc": imc,
                 "sexo": sexo,
@@ -50,27 +50,23 @@ def pedirPreferenciasAlimentarias(preferencias_labels):
 
     with st.form("formulario_preferenciasAlimentarias"):
         st.markdown(
-            "Selecciona las alergias alimentarias y condiciones dietéticas que se aplican a ti. "
+            "Selecciona las alergias alimentarias y restriccio0nes nutricionales que se aplican a ti. "
            # "Los valores guardados son claves internas para tu menú personalizado."
         )
 
         alergias = st.multiselect(
-            "Alergias alimentarias",
+            "Alergias y restricciones alimentarias",
             #options=list(preferencias_labels.values()),
             options=list(preferencias_labels.keys()),
             format_func=lambda value: preferencias_labels[value],
             help="Selecciona una o varias opciones. El formulario guardará las claves internas.")
 
-        vegano = st.checkbox(preferencias_labels["vegano"])
-        celiaco = st.checkbox(preferencias_labels["celiaco"])
 
         enviado = st.form_submit_button("Enviar")
 
         if enviado:
             return {
                 "alergias": alergias,
-                "vegano": vegano,
-                "celiaco": celiaco
             }
         else:
             return None
