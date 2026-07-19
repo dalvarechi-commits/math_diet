@@ -95,33 +95,58 @@ def pedirGustos(alimentos):
        # Organizar por categorías para que la interfaz quede limpia y profesional
        # Extraemos las categorías únicas del JSON
         categorias = set(info["categoria"] for info in st.session_state.alimentos.values())
-    # 3. Crear los sliders dinámicamente
-        for cat in sorted(categorias):
-    # Creamos un contenedor colapsable por cada categoría (ej: "Frutas", "Carnes")
-           with st.expander(f"📂 {cat}"):
-           
-            for id_bedca, info in st.session_state.alimentos.items():
-                 if info["categoria"] == cat:
-                
-                    # Creamos el slider para el alimento específico
-                    nueva_valoracion = st.slider(
-                    label=f"{info['nombre_bedca']}",
-                    min_value=1,
-                    max_value=5,
-                    value=3,          # Valor por defecto solicitado
-                    step=1,           # Incrementos de 1 en 1
-                    key=f"slider_{id_bedca}" # Clave única obligatoria para Streamlit
-                    )
-                    # Asignamos el valor en tiempo real directamente al objeto
-                    st.session_state.alimentos[id_bedca]["valoracion_usuario"] = nueva_valoracion
-                    gustos[id_bedca] = nueva_valoracion
-                    
-                
-                
-        enviado = st.form_submit_button("Enviar Gustos")
-        if enviado:
-            return gustos
-        else:
-            return None
-        
+    def pedirDatosBiometricos(defaults=None):
+        """Mostrar formulario de datos biométricos.
+
+        defaults: dict opcional con valores por defecto (p. ej. cargados desde fichero).
+        Devuelve dict con los datos si se envía el formulario, o None si no.
+        """
+        defaults = defaults or {}
+        with st.form("formulario_datosBiometricos"):
+            peso = st.slider('Peso (kg)', 30, 200, value=int(defaults.get('peso', 70)))
+            altura = st.slider('Altura (cm)', 100, 220, value=int(defaults.get('altura', 170)))
+            nombre = st.text_input("Nombre", value=defaults.get('nombre', ''))
+            edad = st.number_input("Edad", min_value=0, max_value=100, value=int(defaults.get('edad', 30)))
+            sexo_default = defaults.get('sexo', 'Hombre')
+            sexo_index = 0 if sexo_default == 'Hombre' else 1
+            sexo = st.selectbox("Sexo", ["Hombre", "Mujer"], index=sexo_index)
+            actividad_diaria = st.selectbox(
+                "Actividad diaria",
+                ["Sedentario", "Poca actividad", "Actividad moderada", "Muy activo", "Actividad a nivel profesional"],
+                index=(0 if defaults.get('actividad_diaria') is None else ["Sedentario", "Poca actividad", "Actividad moderada", "Muy activo", "Actividad a nivel profesional"].index(defaults.get('actividad_diaria')) if defaults.get('actividad_diaria') in ["Sedentario", "Poca actividad", "Actividad moderada", "Muy activo", "Actividad a nivel profesional"] else 0)
+            )
+            enviado = st.form_submit_button("Enviar")
+
+            if enviado:
+                if altura > 0:
+                    imc = peso / (altura / 100) ** 2
+                    tmb = 10 * peso + 6.25 * altura - 5 * edad + (5 if sexo == "Hombre" else -161)
+                    energia_total = 0
+                    if actividad_diaria == "Sedentario":
+                        energia_total = tmb * 1.2
+                    elif actividad_diaria == "Poca actividad":
+                        energia_total = tmb * 1.4
+                    elif actividad_diaria == "Actividad moderada":
+                        energia_total = tmb * 1.55
+                    elif actividad_diaria == "Muy activo":
+                        energia_total = tmb * 1.75
+                    elif actividad_diaria == "Actividad a nivel profesional":
+                        energia_total = tmb * 2.0
+                else:
+                    imc = 0
+                    tmb = 0
+                return {
+                    "peso": peso,
+                    "altura": altura,
+                    "nombre": nombre,
+                    "edad": edad,
+                    "imc": imc,
+                    "sexo": sexo,
+                    "tmb": tmb,
+                    "energia_total": energia_total,
+                    "actividad_diaria": actividad_diaria,
+                }
+            else:
+                return None
+
 

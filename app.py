@@ -83,7 +83,21 @@ if "grafo_personalizado" not in st.session_state:
 tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Alergias y Restricciones", "Objetivos Nutricionales", "Gustos Alimentarios"])
 
 with tab1:
-    datos = formulario.pedirDatosBiometricos()
+    # permitir cargar datos guardados por nombre
+    cargar_nombre = st.text_input("Cargar datos por nombre (si ya existen)")
+    if st.button("Cargar datos") and cargar_nombre.strip():
+        datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{cargar_nombre.strip()}.json"
+        if datos_path.exists():
+            with open(datos_path, 'r', encoding='utf-8') as f:
+                datos_cargados = json.load(f)
+            st.session_state.datos = datos_cargados
+            st.success(f"✅ Datos cargados para: {cargar_nombre}")
+        else:
+            st.error("No se encontró datos guardados con ese nombre.")
+
+    # pasar valores por defecto si ya estaban en sesión
+    defaults = st.session_state.get('datos')
+    datos = formulario.pedirDatosBiometricos(defaults=defaults)
     if datos:
         st.session_state.datos_completados = True
         st.session_state.datos = datos
@@ -97,6 +111,13 @@ with tab1:
         st.write("TMB:", datos["tmb"], "calorías/día")
         st.write("Energía Total:", datos["energia_total"], "calorías/día")
         st.write("¡Gracias por proporcionar tus datos! Ahora puedes pasar a la siguiente sección para ingresar tus preferencias alimentarias.")
+
+        # guardar datos por nombre para recuperarlos después
+        nombre_usuario = datos.get('nombre', '').strip()
+        if nombre_usuario:
+            datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{nombre_usuario}.json"
+            with open(datos_path, 'w', encoding='utf-8') as f:
+                json.dump(datos, f, ensure_ascii=False, indent=2)
     else:
         st.write("Por favor, completa el formulario para continuar.")
 
