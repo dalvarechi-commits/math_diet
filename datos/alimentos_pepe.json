@@ -3,7 +3,7 @@
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 5,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 165.0,
@@ -12,11 +12,11 @@
       "lipidos_totales_g": 3.6
     }
   },
-  "huevo": {
+  "Huevos": {
     "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
     "categoria": "Huevos",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 3,
     "alergenos": [
       "HUE"
     ],
@@ -61,7 +61,7 @@
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 131.0,
@@ -85,7 +85,7 @@
       "lipidos_totales_g": 9.4
     }
   },
-  "boquerones": {
+  "Boquerones": {
     "id_bedca": "2920",
     "nombre_bedca": "Boquerón",
     "categoria": "Pescado y marisco",
@@ -119,7 +119,7 @@
     "id_bedca": "2755",
     "nombre_bedca": "Pavo, pechuga",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 4,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 105.0,
@@ -132,7 +132,7 @@
     "id_bedca": "2650",
     "nombre_bedca": "Carne de cerdo magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 156.0,
@@ -180,7 +180,7 @@
       "lipidos_totales_g": 6.0
     }
   },
-  "alubia_blanca": {
+  "Alubias": {
     "id_bedca": "2355",
     "nombre_bedca": "Alubia blanca",
     "categoria": "Legumbres",
@@ -308,7 +308,7 @@
   },
   "cereales": {
     "id_bedca": "2130",
-    "nombre_bedca": "Cereales de desayuno",
+    "nombre_bedca": "Cereales",
     "categoria": "Fuente de carbohidratos",
     "valoracion_usuario": 3,
     "alergenos": [
@@ -392,7 +392,7 @@
       "lipidos_totales_g": 0.6
     }
   },
-  "pimiento_rojo": {
+  "Pimientos": {
     "id_bedca": "2275",
     "nombre_bedca": "Pimiento rojo",
     "categoria": "Verduras y hortalizas",
@@ -444,7 +444,7 @@
       "lipidos_totales_g": 0.2
     }
   },
-  "judia_verde": {
+  "Judias Verdes": {
     "id_bedca": "2263",
     "nombre_bedca": "Judía verde",
     "categoria": "Verduras y hortalizas",
@@ -483,7 +483,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "esparrago": {
+  "Espárragos": {
     "id_bedca": "2258",
     "nombre_bedca": "Espárrago verde",
     "categoria": "Verduras y hortalizas",
@@ -509,7 +509,7 @@
       "lipidos_totales_g": 12.0
     }
   },
-  "nuez": {
+  "Nueces": {
     "id_bedca": "2335",
     "nombre_bedca": "Nuez",
     "categoria": "Frutos secos",
@@ -610,7 +610,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "platano": {
+  "Plátano": {
     "id_bedca": "2238",
     "nombre_bedca": "Plátano",
     "categoria": "Frutas y derivados",
@@ -662,7 +662,7 @@
       "lipidos_totales_g": 0.5
     }
   },
-  "uva": {
+  "Uvas": {
     "id_bedca": "2245",
     "nombre_bedca": "Uva blanca",
     "categoria": "Frutas y derivados",

@@ -7,26 +7,47 @@ import matplotlib.pyplot as plt
 import grafo
 
 st.set_page_config(page_title="Math Diet", layout="wide")
+alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos.json"        
+alimentos_path_default = Path(__file__).resolve().parent / "datos" / "alimentos.json"
+
+datos_path_user = Path(__file__).resolve().parent / "datos" / f"datosuser.json"
+
+
+if "user" not in st.session_state:
+    st.session_state.user = None
 
 if "alimentos" not in st.session_state:
     # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/alimentos.json)
-    datos_path_default = Path(__file__).resolve().parent / "datos" / "alimentos.json"
-    datos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.get('datos', {}).get('nombre', 'default')}.json"
-       
+        
+    if "user" in st.session_state:
+        alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.get('datos', {}).get('nombre', 'default')}.json"
+        try:
+            with alimentos_path_user.open("r", encoding="utf-8") as f:
+                st.session_state.alimentos = json.load(f)
+                st.write(f"✅ Cargado el fichero de alimentos: {alimentos_path_user}")
+        except FileNotFoundError:
+            #st.error(f"No se encontró el fichero de alimentos: {alimentos_path_user}. Se cargará el fichero por defecto: {alimentos_path_default}.")
+            with alimentos_path_default.open("r", encoding="utf-8") as f:
+                st.session_state.alimentos = json.load(f)
+                st.write(f"✅ Cargado el fichero de alimentos: {alimentos_path_default}")
+            # Simulación por si aún no creas el archivo
+        except Exception as e:
+            st.error(f"Error cargando {alimentos_path_default}: {e}")
+            st.session_state.alimentos = {
+                "251111": {"nombre_bedca": "Huevo de gallina entero", "categoria": "Huevos y derivados", "valoracion_usuario": 4.5},
+                "295000": {"nombre_bedca": "Merluza fresca", "categoria": "Pescados y derivados", "valoracion_usuario": 4.0}
+            }
+    else:
+        alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos.json"        
+else:   
     try:
-        with datos_path_user.open("r", encoding="utf-8") as f:
+        with alimentos_path_user.open("r", encoding="utf-8") as f:
             st.session_state.alimentos = json.load(f)
-            st.write(f"✅ Cargado el fichero de alimentos: {datos_path_user}")
-           
-    except FileNotFoundError:
-        #st.error(f"No se encontró el fichero de alimentos: {datos_path_user}. Se cargará el fichero por defecto: {datos_path_default}.")
-        with datos_path_default.open("r", encoding="utf-8") as f:
-            st.session_state.alimentos = json.load(f)
-            st.write(f"✅ Cargado el fichero de alimentos: {datos_path_default}")
-        # Simulación por si aún no creas el archivo
-           
+            st.write(f"✅ Cargado el fichero de alimentos: {alimentos_path_user}")
+        
+        
     except Exception as e:
-        st.error(f"Error cargando {datos_path_default}: {e}")
+        st.error(f"Error cargando {alimentos_path_default}: {e}")
         st.session_state.alimentos = {
             "251111": {"nombre_bedca": "Huevo de gallina entero", "categoria": "Huevos y derivados", "valoracion_usuario": 4.5},
             "295000": {"nombre_bedca": "Merluza fresca", "categoria": "Pescados y derivados", "valoracion_usuario": 4.0}
@@ -77,7 +98,24 @@ if "grafo_base" not in st.session_state:
     st.session_state.grafo_base = None
 if "grafo_personalizado" not in st.session_state:
     st.session_state.grafo_personalizado = None
-    
+
+
+def _guardar_datos_usuario():
+    datos_usuario = st.session_state.get("datos")
+    if not datos_usuario or not datos_usuario.get("nombre"):
+        return
+    nombre_usuario = datos_usuario["nombre"].strip()
+    if not nombre_usuario:
+        return
+    datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{nombre_usuario}.json"
+    user_data = {
+        **datos_usuario,
+        "preferencias": st.session_state.get("preferencias"),
+        "objetivos": st.session_state.get("objetivos"),
+        "gustos": st.session_state.get("gustos"),
+    }
+    with open(datos_path, "w", encoding="utf-8") as f:
+        json.dump(user_data, f, ensure_ascii=False, indent=2)
 
 
 tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Alergias y Restricciones", "Objetivos Nutricionales", "Gustos Alimentarios"])
@@ -91,12 +129,25 @@ with tab1:
             with open(datos_path, 'r', encoding='utf-8') as f:
                 datos_cargados = json.load(f)
             st.session_state.datos = datos_cargados
+            st.session_state.preferencias = datos_cargados.get('preferencias')
+            st.session_state.objetivos = datos_cargados.get('objetivos')
+            st.session_state.gustos = datos_cargados.get('gustos')
+            st.session_state.datos_completados = True
             st.success(f"✅ Datos cargados para: {cargar_nombre}")
         else:
             st.error("No se encontró datos guardados con ese nombre.")
+        
+        if alimentos_path_user.exists():
+            with open(alimentos_path_user, 'r', encoding='utf-8') as f:
+              
+                st.session_state.alimentos = json.load(f)
+
+            st.success(f"✅ Fichero de alimentos cargado para: {cargar_nombre}")
+        else:
+            st.error("No se encontró el fichero de alimentos.")
 
     # pasar valores por defecto si ya estaban en sesión
-    defaults = st.session_state.get('datos')
+    defaults = st.session_state.get('datos', {})
     datos = formulario.pedirDatosBiometricos(defaults=defaults)
     if datos:
         st.session_state.datos_completados = True
@@ -113,11 +164,8 @@ with tab1:
         st.write("¡Gracias por proporcionar tus datos! Ahora puedes pasar a la siguiente sección para ingresar tus preferencias alimentarias.")
 
         # guardar datos por nombre para recuperarlos después
-        nombre_usuario = datos.get('nombre', '').strip()
-        if nombre_usuario:
-            datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{nombre_usuario}.json"
-            with open(datos_path, 'w', encoding='utf-8') as f:
-                json.dump(datos, f, ensure_ascii=False, indent=2)
+        st.session_state.datos = datos
+        _guardar_datos_usuario()
     else:
         st.write("Por favor, completa el formulario para continuar.")
 
@@ -125,13 +173,14 @@ with tab2:
     if not st.session_state.datos_completados:
         st.error("❌ Debes completar los datos biométricos primero")
     else:
-        preferencias = formulario.pedirPreferenciasAlimentarias(preferencias_labels)
+        preferencias = formulario.pedirPreferenciasAlimentarias(preferencias_labels, defaults=st.session_state.get('preferencias', {}))
         if preferencias:
             st.session_state.preferencias = preferencias
             st.success("✅ Preferencias alimentarias completadas")
             st.write("Alergias alimentarias seleccionadas:")
             for alergia in preferencias["alergias"]:
                 st.write("- ", preferencias_labels[alergia])
+            _guardar_datos_usuario()
         elif st.session_state.preferencias:
             st.write("Alergias alimentarias seleccionadas:")
             for alergia in st.session_state.preferencias["alergias"]:
@@ -143,33 +192,36 @@ with tab2:
 
 with tab3:
     st.write("Aquí podrás establecer tus objetivos nutricionales y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
-    objetivo = formulario.pedirObjetivosNutricionales()
+    defaults_obj = st.session_state.get('objetivos', {})
+    objetivo = formulario.pedirObjetivosNutricionales(defaults=defaults_obj)
     if objetivo:
         st.session_state.objetivos = objetivo
         st.success("✅ Objetivo nutricional completado")
         st.write("Objetivo seleccionado:", objetivo["objetivo"])
-
+        _guardar_datos_usuario()
 
 with tab4:
     st.write("Aquí podrás calificar tus gustos alimentarios para mejorar las recomendaciones de tu menú personalizado. ¡Próximamente!")
-    gustos = formulario.pedirGustos(st.session_state.alimentos)
+    defaults_gustos = st.session_state.get('gustos', {})
+    gustos = formulario.pedirGustos(st.session_state.alimentos, defaults=defaults_gustos)
     if gustos:
         st.session_state.gustos = gustos
         st.success("✅ Gustos alimentarios completados")
         #Quitar el print para la versión final, lo dejo para que se vea cómo queda el objeto en el Backend
         st.write("Gustos alimentarios registrados:", gustos)
+        _guardar_datos_usuario()
     # 4. Botón opcional para procesar o guardar los datos en el archivo
     st.divider()
     if st.button("Guardar y Actualizar Grafo", type="primary"):
-    # Aquí puedes guardar los cambios de vuelta al fichero original si lo deseas
-        with open(f"alimentos_{st.session_state.datos['nombre']}.json", "w", encoding="utf-8") as f:
+        # Aquí puedes guardar los cambios de vuelta al fichero original si lo deseas
+       # alimentos_path = Path(__file__).resolve().parent / "datos" / f"alimentos_{cargar_nombre.strip()}.json"
+        with open(Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.datos['nombre']}.json", "w", encoding="utf-8") as f:
             json.dump(st.session_state.alimentos, f, ensure_ascii=False, indent=2)
             #st.session_state.alimentos = json.load(f)
             st.write(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['nombre']}.json")
-            
-        
+
     st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
-    
+
     # Mostramos un fragmento de cómo queda tu objeto para el Backend (descomenta la línea siguiente para mostrarlo en Streamlit)
     st.json(st.session_state.alimentos)
     fig = grafo.pintarGrafo()

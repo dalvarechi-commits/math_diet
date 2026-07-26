@@ -3,7 +3,7 @@
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 4.7,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 165.0,
@@ -16,7 +16,7 @@
      "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
     "categoria": "Huevos",
-    "valoracion_usuario": 4.5,
+    "valoracion_usuario": 3,
     "alergenos": ["HUE"],
     "nutricion_por_100g": {
       "energia_kcal": 150.0,
@@ -29,7 +29,7 @@
     "id_bedca": "2950",
     "nombre_bedca": "Merluza fresca",
     "categoria": "Pescado y marisco",
-    "valoracion_usuario": 4.0,
+    "valoracion_usuario": 3.0,
     "alergenos": ["PES"],
     "nutricion_por_100g": {
       "energia_kcal": 89.0,
@@ -42,7 +42,7 @@
     "id_bedca": "2956",
     "nombre_bedca": "Salmón fresco",
     "categoria": "Pescado y marisco",
-    "valoracion_usuario": 4.8,
+    "valoracion_usuario": 3.0,
     "alergenos": ["PES"],
     "nutricion_por_100g": {
       "energia_kcal": 182.0,
@@ -55,7 +55,7 @@
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 131.0,
@@ -68,7 +68,7 @@
     "id_bedca": "2958",
     "nombre_bedca": "Sardina",
     "categoria": "Pescado y marisco",
-    "valoracion_usuario": 4.2,
+    "valoracion_usuario": 3.0,
     "alergenos": ["PES"],
     "nutricion_por_100g": {
       "energia_kcal": 153.0,
@@ -81,7 +81,7 @@
     "id_bedca": "2920",
     "nombre_bedca": "Boquerón",
     "categoria": "Pescado y marisco",
-    "valoracion_usuario": 4.3,
+    "valoracion_usuario": 3.0,
     "alergenos": ["PES"],
     "nutricion_por_100g": {
       "energia_kcal": 142.0,
@@ -94,7 +94,7 @@
     "id_bedca": "2916",
     "nombre_bedca": "Bacalao fresco",
     "categoria": "Pescado y marisco",
-    "valoracion_usuario": 3.9,
+    "valoracion_usuario": 3.0,
     "alergenos": ["PES"],
     "nutricion_por_100g": {
       "energia_kcal": 74.0,
@@ -107,7 +107,7 @@
     "id_bedca": "2755",
     "nombre_bedca": "Pavo, pechuga",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 4.4,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 105.0,
@@ -120,7 +120,7 @@
     "id_bedca": "2650",
     "nombre_bedca": "Carne de cerdo magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 4.3,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 156.0,
@@ -133,7 +133,7 @@
     "id_bedca": "2362",
     "nombre_bedca": "Guisante",
     "categoria": "Legumbres",
-    "valoracion_usuario": 3.8,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 81.0,
@@ -146,7 +146,7 @@
     "id_bedca": "2363",
     "nombre_bedca": "Lenteja",
     "categoria": "Legumbres",
-    "valoracion_usuario": 4.5,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 351.0,
@@ -159,7 +159,7 @@
     "id_bedca": "2360",
     "nombre_bedca": "Garbanzo",
     "categoria": "Legumbres",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 373.0,
@@ -172,7 +172,7 @@
     "id_bedca": "2355",
     "nombre_bedca": "Alubia blanca",
     "categoria": "Legumbres",
-    "valoracion_usuario": 4.1,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 330.0,
@@ -185,7 +185,7 @@
     "id_bedca": "2170",
     "nombre_bedca": "Pan blanco de barra",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.7,
+    "valoracion_usuario": 3.0,
     "alergenos": ["GLU"],
     "nutricion_por_100g": {
       "energia_kcal": 261.0,
@@ -198,7 +198,7 @@
     "id_bedca": "2110",
     "nombre_bedca": "Arroz",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 364.0,
@@ -211,7 +211,7 @@
     "id_bedca": "2150",
     "nombre_bedca": "Pasta alimenticia",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.8,
+    "valoracion_usuario": 3.0,
     "alergenos": ["GLU"],
     "nutricion_por_100g": {
       "energia_kcal": 359.0,
@@ -224,7 +224,7 @@
     "id_bedca": "2410",
     "nombre_bedca": "Patata",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.7,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 73.0,
@@ -237,7 +237,7 @@
     "id_bedca": "2165",
     "nombre_bedca": "Quinoa",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 3.9,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 368.0,
@@ -250,7 +250,7 @@
     "id_bedca": "2405",
     "nombre_bedca": "Boniato",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.2,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 101.0,
@@ -263,7 +263,7 @@
     "id_bedca": "2120",
     "nombre_bedca": "Avena en copos",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.3,
+    "valoracion_usuario": 3.0,
     "alergenos": ["GLU"],
     "nutricion_por_100g": {
       "energia_kcal": 367.0,
@@ -276,7 +276,7 @@
     "id_bedca": "2140",
     "nombre_bedca": "Galletas de tipo maría",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.5,
+    "valoracion_usuario": 3.0,
     "alergenos": ["GLU", "LAC"],
     "nutricion_por_100g": {
       "energia_kcal": 440.0,
@@ -287,9 +287,9 @@
   },
   "cereales": {
     "id_bedca": "2130",
-    "nombre_bedca": "Cereales de desayuno",
+    "nombre_bedca": "Cereales",
     "categoria": "Fuente de carbohidratos",
-    "valoracion_usuario": 4.1,
+    "valoracion_usuario": 3.0,
     "alergenos": ["GLU"],
     "nutricion_por_100g": {
       "energia_kcal": 378.0,
@@ -302,7 +302,7 @@
     "id_bedca": "2493",
     "nombre_bedca": "Leche de vaca entera",
     "categoria": "Lácteos y derivados",
-    "valoracion_usuario": 4.4,
+    "valoracion_usuario": 3.0,
     "alergenos": ["LAC"],
     "nutricion_por_100g": {
       "energia_kcal": 65.0,
@@ -315,7 +315,7 @@
     "id_bedca": "2501",
     "nombre_bedca": "Yogur entero natural",
     "categoria": "Lácteos y derivados",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": ["LAC"],
     "nutricion_por_100g": {
       "energia_kcal": 61.0,
@@ -328,7 +328,7 @@
     "id_bedca": "2460",
     "nombre_bedca": "Queso semicurado",
     "categoria": "Lácteos y derivados",
-    "valoracion_usuario": 4.8,
+    "valoracion_usuario": 3.0,
     "alergenos": ["LAC"],
     "nutricion_por_100g": {
       "energia_kcal": 381.0,
@@ -341,7 +341,7 @@
     "id_bedca": "2280",
     "nombre_bedca": "Tomate",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 19.0,
@@ -354,7 +354,7 @@
     "id_bedca": "2265",
     "nombre_bedca": "Lechuga",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 3.7,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 16.0,
@@ -367,7 +367,7 @@
     "id_bedca": "2275",
     "nombre_bedca": "Pimiento rojo",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 4.3,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 29.0,
@@ -380,7 +380,7 @@
     "id_bedca": "2253",
     "nombre_bedca": "Calabacín",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 4.0,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 17.0,
@@ -393,7 +393,7 @@
     "id_bedca": "2255",
     "nombre_bedca": "Repollo blanco",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 3.5,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 28.0,
@@ -406,7 +406,7 @@
     "id_bedca": "2295",
     "nombre_bedca": "Zanahoria",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 4.4,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 37.0,
@@ -419,7 +419,7 @@
     "id_bedca": "2263",
     "nombre_bedca": "Judía verde",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 3.9,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 30.0,
@@ -432,7 +432,7 @@
     "id_bedca": "2251",
     "nombre_bedca": "Berenjena",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 3.8,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 23.0,
@@ -445,7 +445,7 @@
     "id_bedca": "2278",
     "nombre_bedca": "Puerro",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 4.0,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 42.0,
@@ -458,7 +458,7 @@
     "id_bedca": "2258",
     "nombre_bedca": "Espárrago verde",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 4.2,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 24.0,
@@ -471,7 +471,7 @@
     "id_bedca": "2202",
     "nombre_bedca": "Aguacate",
     "categoria": "Verduras y hortalizas",
-    "valoracion_usuario": 4.8,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 141.0,
@@ -484,7 +484,7 @@
     "id_bedca": "2335",
     "nombre_bedca": "Nuez",
     "categoria": "Frutos secos",
-    "valoracion_usuario": 4.7,
+    "valoracion_usuario": 3.0,
     "alergenos": ["FRU"],
     "nutricion_por_100g": {
       "energia_kcal": 611.0,
@@ -497,7 +497,7 @@
     "id_bedca": "2331",
     "nombre_bedca": "Almendra",
     "categoria": "Frutos secos",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": ["FRU"],
     "nutricion_por_100g": {
       "energia_kcal": 604.0,
@@ -510,7 +510,7 @@
     "id_bedca": "2337",
     "nombre_bedca": "Pistacho",
     "categoria": "Frutos secos",
-    "valoracion_usuario": 4.7,
+    "valoracion_usuario": 3.0,
     "alergenos": ["FRU"],
     "nutricion_por_100g": {
       "energia_kcal": 594.0,
@@ -523,7 +523,7 @@
     "id_bedca": "2351",
     "nombre_bedca": "Cacahuete",
     "categoria": "Frutos secos",
-    "valoracion_usuario": 4.4,
+    "valoracion_usuario": 3.0,
     "alergenos": ["CAC"],
     "nutricion_por_100g": {
       "energia_kcal": 571.0,
@@ -536,7 +536,7 @@
     "id_bedca": "2332",
     "nombre_bedca": "Anacardo",
     "categoria": "Frutos secos",
-    "valoracion_usuario": 4.5,
+    "valoracion_usuario": 3.0,
     "alergenos": ["FRU"],
     "nutricion_por_100g": {
       "energia_kcal": 574.0,
@@ -549,7 +549,7 @@
     "id_bedca": "2340",
     "nombre_bedca": "Pipas de girasol",
     "categoria": "Frutos secos",
-    "valoracion_usuario": 4.2,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 580.0,
@@ -562,7 +562,7 @@
     "id_bedca": "2235",
     "nombre_bedca": "Naranja",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.7,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 42.0,
@@ -575,7 +575,7 @@
     "id_bedca": "2238",
     "nombre_bedca": "Plátano",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.8,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 94.0,
@@ -588,7 +588,7 @@
     "id_bedca": "2230",
     "nombre_bedca": "Manzana",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.5,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 50.0,
@@ -601,7 +601,7 @@
     "id_bedca": "2240",
     "nombre_bedca": "Pera",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.3,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 45.0,
@@ -614,7 +614,7 @@
     "id_bedca": "2225",
     "nombre_bedca": "Fresa",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.8,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 36.0,
@@ -627,7 +627,7 @@
     "id_bedca": "2245",
     "nombre_bedca": "Uva blanca",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 69.0,
@@ -640,7 +640,7 @@
     "id_bedca": "2228",
     "nombre_bedca": "Sandía",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.7,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 28.0,
@@ -653,7 +653,7 @@
     "id_bedca": "2220",
     "nombre_bedca": "Melón",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.4,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 27.0,
@@ -666,7 +666,7 @@
     "id_bedca": "2233",
     "nombre_bedca": "Mandarina",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 4.6,
+    "valoracion_usuario": 3.0,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 40.0,

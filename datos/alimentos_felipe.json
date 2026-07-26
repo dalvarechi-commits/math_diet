@@ -3,7 +3,7 @@
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 165.0,
@@ -308,7 +308,7 @@
   },
   "cereales": {
     "id_bedca": "2130",
-    "nombre_bedca": "Cereales de desayuno",
+    "nombre_bedca": "Cereales",
     "categoria": "Fuente de carbohidratos",
     "valoracion_usuario": 3,
     "alergenos": [

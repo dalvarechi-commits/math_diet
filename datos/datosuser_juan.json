@@ -1,0 +1,11 @@
+{
+  "peso": 76,
+  "altura": 183,
+  "nombre": "juan",
+  "edad": 36,
+  "imc": 22.694018931589476,
+  "sexo": "Hombre",
+  "tmb": 1728.75,
+  "energia_total": 3457.5,
+  "actividad_diaria": "Actividad a nivel profesional"
+}
