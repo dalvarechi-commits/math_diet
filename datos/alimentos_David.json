@@ -1,8 +1,21 @@
 {
-  "huevo": {
+  "pollo": {
+    "id_bedca": "2700",
+    "nombre_bedca": "Carne de pollo magra",
+    "categoria": "Carne blanca",
+    "valoracion_usuario": 3,
+    "alergenos": [],
+    "nutricion_por_100g": {
+      "energia_kcal": 165.0,
+      "proteinas_g": 31.0,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 3.6
+    }
+  },
+  "Huevos": {
     "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
-    "categoria": "Proteína animal",
+    "categoria": "Huevos",
     "valoracion_usuario": 3,
     "alergenos": [
       "HUE"
@@ -17,7 +30,7 @@
   "merluza": {
     "id_bedca": "2950",
     "nombre_bedca": "Merluza fresca",
-    "categoria": "Proteína animal",
+    "categoria": "Pescado y marisco",
     "valoracion_usuario": 3,
     "alergenos": [
       "PES"
@@ -32,7 +45,7 @@
   "salmon": {
     "id_bedca": "2956",
     "nombre_bedca": "Salmón fresco",
-    "categoria": "Proteína animal",
+    "categoria": "Pescado y marisco",
     "valoracion_usuario": 3,
     "alergenos": [
       "PES"
@@ -47,7 +60,7 @@
   "ternera": {
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
-    "categoria": "Proteína animal",
+    "categoria": "Carne roja",
     "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
@@ -60,7 +73,7 @@
   "sardina": {
     "id_bedca": "2958",
     "nombre_bedca": "Sardina",
-    "categoria": "Proteína animal",
+    "categoria": "Pescado y marisco",
     "valoracion_usuario": 3,
     "alergenos": [
       "PES"
@@ -72,10 +85,10 @@
       "lipidos_totales_g": 9.4
     }
   },
-  "boqueron": {
+  "Boquerones": {
     "id_bedca": "2920",
     "nombre_bedca": "Boquerón",
-    "categoria": "Proteína animal",
+    "categoria": "Pescado y marisco",
     "valoracion_usuario": 3,
     "alergenos": [
       "PES"
@@ -90,7 +103,7 @@
   "bacalao": {
     "id_bedca": "2916",
     "nombre_bedca": "Bacalao fresco",
-    "categoria": "Proteína animal",
+    "categoria": "Pescado y marisco",
     "valoracion_usuario": 3,
     "alergenos": [
       "PES"
@@ -105,7 +118,7 @@
   "pavo": {
     "id_bedca": "2755",
     "nombre_bedca": "Pavo, pechuga",
-    "categoria": "Proteína animal",
+    "categoria": "Carne blanca",
     "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
@@ -118,7 +131,7 @@
   "cerdo": {
     "id_bedca": "2650",
     "nombre_bedca": "Carne de cerdo magra",
-    "categoria": "Proteína animal",
+    "categoria": "Carne roja",
     "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
@@ -167,7 +180,7 @@
       "lipidos_totales_g": 6.0
     }
   },
-  "alubia_blanca": {
+  "Alubias": {
     "id_bedca": "2355",
     "nombre_bedca": "Alubia blanca",
     "categoria": "Legumbres",
@@ -379,7 +392,7 @@
       "lipidos_totales_g": 0.6
     }
   },
-  "pimiento_rojo": {
+  "Pimientos": {
     "id_bedca": "2275",
     "nombre_bedca": "Pimiento rojo",
     "categoria": "Verduras y hortalizas",
@@ -431,7 +444,7 @@
       "lipidos_totales_g": 0.2
     }
   },
-  "judia_verde": {
+  "Judias Verdes": {
     "id_bedca": "2263",
     "nombre_bedca": "Judía verde",
     "categoria": "Verduras y hortalizas",
@@ -470,7 +483,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "esparrago": {
+  "Espárragos": {
     "id_bedca": "2258",
     "nombre_bedca": "Espárrago verde",
     "categoria": "Verduras y hortalizas",
@@ -496,7 +509,7 @@
       "lipidos_totales_g": 12.0
     }
   },
-  "nuez": {
+  "Nueces": {
     "id_bedca": "2335",
     "nombre_bedca": "Nuez",
     "categoria": "Frutos secos",
@@ -588,7 +601,7 @@
     "id_bedca": "2235",
     "nombre_bedca": "Naranja",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 2,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 42.0,
@@ -597,7 +610,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "platano": {
+  "Plátano": {
     "id_bedca": "2238",
     "nombre_bedca": "Plátano",
     "categoria": "Frutas y derivados",
@@ -649,7 +662,7 @@
       "lipidos_totales_g": 0.5
     }
   },
-  "uva": {
+  "Uvas": {
     "id_bedca": "2245",
     "nombre_bedca": "Uva blanca",
     "categoria": "Frutas y derivados",

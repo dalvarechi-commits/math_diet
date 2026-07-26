@@ -1,0 +1,43 @@
+{
+    "Carne roja":
+        {
+            "color": "red"
+        },
+    "Carne blanca":
+        {
+            "color": "lightcoral"
+        },
+    "Huevos":
+        {
+            "color": "khaki"
+        },
+    "Pescado y marisco":
+        {
+            "color": "deeppink"
+        },
+    "Legumbres":
+        {
+            "color": "pink"
+        },
+    "Lácteos y derivados":
+        {
+            "color": "lightskyblue"
+        },
+    "Fuente de carbohidratos": 
+    
+        {
+            "color": "gold"
+        },
+    "Verduras y hortalizas":
+        {
+            "color": "light green"
+        },
+    "Frutos secos":
+        {
+            "color": "orange"
+        },
+    "Frutas y derivados":
+        {
+            "color": "light purple"
+        }    
+}

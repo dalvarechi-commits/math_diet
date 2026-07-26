@@ -10,3 +10,11 @@ Hagberg, A., Gov) -Los, Schult, D., & Swart, P. (2008). Exploring Network Struct
 ‌
 Aric A. Hagberg, Daniel A. Schult and Pieter J. Swart, “Exploring network structure, dynamics, and function using NetworkX”, in Proceedings of the 7th Python in Science Conference (SciPy2008), Gäel Varoquaux, Travis Vaught, and Jarrod Millman (Eds), (Pasadena, CA USA), pp. 11–15, Aug 2008
 
+Estrategias dietético- nutricionales específicas para la ganancia y pérdida del peso corporal PID_00252110. (n.d.). Retrieved July 5, 2026, from https://openaccess.uoc.edu/server/api/core/bitstreams/f27cde61-dafc-4855-8a63-7780cb98bf45/content
+‌
+Pérez-Heras, A. M., Romano Andrioni, B., & Montserrat, C. (2020, December). Componentes de la Alimentación saludable. Clínic Barcelona. https://www.clinicbarcelona.org/asistencia/vida-saludable/alimentacion-saludable/componentes-de-la-alimentacion-saludable
+‌
+Estilos de vida saludable - Distribución diaria. (2020). Sanidad.Gob.Es. https://estilosdevidasaludable.sanidad.gob.es/alimentacionSaludable/queSabemos/enLaPractica/distribuir/diario/home.htm
+‌
+Estilos de vida saludable - Planificación de alimentos. (2020). Sanidad.Gob.Es. https://estilosdevidasaludable.sanidad.gob.es/alimentacionSaludable/queSabemos/enLaPractica/tablaPlanificacion/planificaciones/home.htm
+‌

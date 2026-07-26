@@ -1,0 +1,18 @@
+{
+    "n Comidas": 5,
+    "Carne roja": 1,
+    "Carne blanca": 4,
+    "Huevos": 4,
+    "Pescado y marisco": 3,
+    "Legumbres": 3,
+    "Lácteos y derivados": 21,
+    "Fuente de carbohidratos": 14,
+    "Verduras y hortalizas": 14,
+    "Frutos secos": 3,
+    "Frutas y derivados": 21,
+    "pcdesayuno": 0.2,
+    "pcalmuerzo": 0.1,
+    "pccomida": 0.3,
+    "pcmerienda": 0.1,
+    "pccena": 0.3
+}
