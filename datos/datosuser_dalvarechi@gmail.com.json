@@ -1,23 +1,22 @@
 {
-  "nombre": "felipe",
-  "peso": 91,
-  "altura": 188,
-  "edad": 30,
-  "imc": 25.746944318696244,
+  "email": "dalvarechi@gmail.com",
+  "nombre": "david",
+  "peso": 56,
+  "altura": 170,
+  "edad": 17,
+  "imc": 19.377162629757787,
   "sexo": "Hombre",
-  "tmb": 1940.0,
-  "energia_total": 2328.0,
-  "actividad_diaria": "Sedentario",
+  "tmb": 1542.5,
+  "energia_total": 2390.875,
+  "actividad_diaria": "Actividad moderada",
   "preferencias": {
-    "alergias": [
-      "moluscos"
-    ]
+    "alergias": []
   },
   "objetivos": {
-    "objetivo": "Perder peso"
+    "objetivo": "Ganar músculo"
   },
   "gustos": {
-    "pollo": 5,
+    "pollo": 3,
     "pavo": 3,
     "ternera": 3,
     "cerdo": 3,

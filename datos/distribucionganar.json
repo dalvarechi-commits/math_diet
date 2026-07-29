@@ -14,5 +14,7 @@
     "pcalmuerzo": 0.1,
     "pccomida": 0.3,
     "pcmerienda": 0.1,
-    "pccena": 0.3
+    "pccena": 0.3,
+    "pcal_hc/d" : 0.7 
+
 }

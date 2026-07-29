@@ -20,7 +20,7 @@ if "alimentos" not in st.session_state:
     # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/alimentos.json)
         
     if "user" in st.session_state:
-        alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.get('datos', {}).get('nombre', 'default')}.json"
+        alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.get('datos', {}).get('email', 'default')}.json"
         try:
             with alimentos_path_user.open("r", encoding="utf-8") as f:
                 st.session_state.alimentos = json.load(f)
@@ -102,12 +102,12 @@ if "grafo_personalizado" not in st.session_state:
 
 def _guardar_datos_usuario():
     datos_usuario = st.session_state.get("datos")
-    if not datos_usuario or not datos_usuario.get("nombre"):
+    if not datos_usuario or not datos_usuario.get("email"):
         return
-    nombre_usuario = datos_usuario["nombre"].strip()
-    if not nombre_usuario:
+    email = datos_usuario["email"].strip()
+    if not email:
         return
-    datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{nombre_usuario}.json"
+    datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{email}.json"
     user_data = {
         **datos_usuario,
         "preferencias": st.session_state.get("preferencias"),
@@ -121,10 +121,11 @@ def _guardar_datos_usuario():
 tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Alergias y Restricciones", "Objetivos Nutricionales", "Gustos Alimentarios"])
 
 with tab1:
-    # permitir cargar datos guardados por nombre
-    cargar_nombre = st.text_input("Cargar datos por nombre (si ya existen)")
-    if st.button("Cargar datos") and cargar_nombre.strip():
-        datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{cargar_nombre.strip()}.json"
+    # permitir cargar datos guardados por email
+    cargar_email = st.text_input("Cargar datos por email (si ya existen)")
+    if st.button("Cargar datos") and cargar_email.strip():
+        datos_path = Path(__file__).resolve().parent / "datos" / f"datosuser_{cargar_email.strip()}.json"
+        alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{cargar_email.strip()}.json"
         if datos_path.exists():
             with open(datos_path, 'r', encoding='utf-8') as f:
                 datos_cargados = json.load(f)
@@ -133,16 +134,16 @@ with tab1:
             st.session_state.objetivos = datos_cargados.get('objetivos')
             st.session_state.gustos = datos_cargados.get('gustos')
             st.session_state.datos_completados = True
-            st.success(f"✅ Datos cargados para: {cargar_nombre}")
+            st.success(f"✅ Datos cargados para: {cargar_email}")
         else:
-            st.error("No se encontró datos guardados con ese nombre.")
+            st.error("No se encontró datos guardados con ese email.")
         
         if alimentos_path_user.exists():
             with open(alimentos_path_user, 'r', encoding='utf-8') as f:
               
                 st.session_state.alimentos = json.load(f)
 
-            st.success(f"✅ Fichero de alimentos cargado para: {cargar_nombre}")
+            st.success(f"✅ Fichero de alimentos cargado para: {cargar_email}")
         else:
             st.error("No se encontró el fichero de alimentos.")
 
@@ -153,6 +154,7 @@ with tab1:
         st.session_state.datos_completados = True
         st.session_state.datos = datos
         st.success("✅ Datos biométricos completados")
+        st.write("email:", datos["email"])
         st.write("Nombre:", datos["nombre"])
         st.write("Peso:", datos["peso"], "kg")
         st.write("Altura:", datos["altura"], "cm")
@@ -163,7 +165,7 @@ with tab1:
         st.write("Energía Total:", datos["energia_total"], "calorías/día")
         st.write("¡Gracias por proporcionar tus datos! Ahora puedes pasar a la siguiente sección para ingresar tus preferencias alimentarias.")
 
-        # guardar datos por nombre para recuperarlos después
+        # guardar datos por email para recuperarlos después
         st.session_state.datos = datos
         _guardar_datos_usuario()
     else:
@@ -215,10 +217,10 @@ with tab4:
     if st.button("Guardar y Actualizar Grafo", type="primary"):
         # Aquí puedes guardar los cambios de vuelta al fichero original si lo deseas
        # alimentos_path = Path(__file__).resolve().parent / "datos" / f"alimentos_{cargar_nombre.strip()}.json"
-        with open(Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.datos['nombre']}.json", "w", encoding="utf-8") as f:
+        with open(Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.datos['email']}.json", "w", encoding="utf-8") as f:
             json.dump(st.session_state.alimentos, f, ensure_ascii=False, indent=2)
             #st.session_state.alimentos = json.load(f)
-            st.write(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['nombre']}.json")
+            st.write(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['email']}.json")
 
     st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
 

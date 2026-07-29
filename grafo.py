@@ -36,6 +36,39 @@ if "categorias" not in st.session_state:
     with open(categorias_path, 'r', encoding='utf-8') as f:
         categorias = json.load(f)
 
+
+def cargar_alimentos(ruta=None, nombre_usuario=None):
+    """Carga los alimentos desde datos/alimentos.json o desde un archivo de usuario."""
+    if ruta:
+        alimentos_path = Path(ruta)
+    elif nombre_usuario:
+        alimentos_path = Path(__file__).resolve().parent / "datos" / f"alimentos_{nombre_usuario}.json"
+        if not alimentos_path.exists():
+            alimentos_path = Path(__file__).resolve().parent / "datos" / "alimentos.json"
+    else:
+        alimentos_path = Path(__file__).resolve().parent / "datos" / "alimentos.json"
+
+    with open(alimentos_path, 'r', encoding='utf-8') as f:
+        datos = json.load(f)
+
+    if isinstance(datos, dict):
+        if "alimentos" in datos and isinstance(datos["alimentos"], dict):
+            return datos["alimentos"]
+        return datos
+
+    raise ValueError(f"Formato no soportado en {alimentos_path}")
+
+
+def obtener_alimentos(alimentos=None, nombre_usuario=None, ruta=None):
+    if alimentos is not None:
+        return alimentos
+
+    if "alimentos" in st.session_state and st.session_state.alimentos:
+        return st.session_state.alimentos
+
+    return cargar_alimentos(ruta=ruta, nombre_usuario=nombre_usuario)
+
+
 # crear un grafo desde una lista de adyacencia
 def crear_grafo(adyacencia):
     G = nx.DiGraph()
@@ -66,29 +99,52 @@ def _normalizar_color(color):
 
 
 # dibujar el grafo
-def dibujar_grafo(G):
+def dibujar_grafo(G, alimentos=None):
+    alimentos_data = obtener_alimentos(alimentos=alimentos)
     fig, ax = plt.subplots(figsize=(25, 25))
-    pos = nx.spring_layout(G, weight='weight', seed=50, k=1.8)
-    edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
-    edge_widths = [1 * w for w in edge_weights]
-    # dibujamos los nodos con los colores de las categorías
-    color_map = []
+
+    # Orden de capas según categorías
+    categorias_orden = list(categorias.keys())
+    categoria_a_capa = {categoria: idx for idx, categoria in enumerate(categorias_orden)}
+
+    # Determinar la categoría de cada nodo
+    categoria_por_nodo = {}
     for nodo in G.nodes():
         categoria = None
-        # 1) buscar por el nombre exacto
-        if nodo in st.session_state.alimentos:
-            categoria = st.session_state.alimentos[nodo].get('categoria')
+        if nodo in alimentos_data:
+            categoria = alimentos_data[nodo].get('categoria')
         else:
-            # 2) buscar por coincidencia flexible (sin acentos, minúsculas)
             nodo_norm = ''.join(ch.lower() for ch in nodo if ch.isalnum())
-            for alimento_id, alimento in st.session_state.alimentos.items():
+            for alimento_id, alimento in alimentos_data.items():
                 nombre_norm = ''.join(ch.lower() for ch in alimento.get('nombre_bedca', '') if ch.isalnum())
                 if nodo_norm in nombre_norm or nombre_norm in nodo_norm:
                     categoria = alimento.get('categoria')
                     break
+        categoria_por_nodo[nodo] = categoria
 
+    # Posiciones por capas: y fija según categoría, x distribuida por nodo
+    nodos = list(G.nodes())
+    nodos_por_capa = {}
+    for nodo in nodos:
+        categoria = categoria_por_nodo.get(nodo)
+        capa = categoria_a_capa.get(categoria, len(categorias_orden))
+        nodos_por_capa.setdefault(capa, []).append(nodo)
+
+    pos = {}
+    max_x = max(len(v) for v in nodos_por_capa.values()) if nodos_por_capa else 1
+    for capa, nodos_capa in nodos_por_capa.items():
+        for i, nodo in enumerate(nodos_capa):
+            pos[nodo] = (i / max(max_x - 1, 1), 1 - (capa / max(len(categorias_orden), 1)))
+
+    edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
+    edge_widths = [1 * w for w in edge_weights]
+
+    color_map = []
+    for nodo in G.nodes():
+        categoria = categoria_por_nodo.get(nodo)
         color = _normalizar_color(categorias.get(categoria, {}).get('color', 'lightgray'))
         color_map.append(color)
+
     nx.draw_networkx_nodes(G, pos, ax=ax, node_color=color_map, node_size=2000)
     nx.draw_networkx_labels(G, pos, ax=ax, font_size=8, font_weight='bold')
     nx.draw_networkx_edges(
@@ -139,12 +195,13 @@ def cargar_adyacencia_desde_csv(m_adyacencia):
     return adyacencia
 
 
-def pintarGrafo(m_adyacencia='m_adyacencia.csv'):
+def pintarGrafo(m_adyacencia='m_adyacencia.csv', alimentos=None, nombre_usuario=None, ruta=None):
     adyacencia = cargar_adyacencia_desde_csv(m_adyacencia)
     G = crear_grafo(adyacencia)
     if len(G) == 0:
         return None
-    return dibujar_grafo(G)
+    alimentos_data = obtener_alimentos(alimentos=alimentos, nombre_usuario=nombre_usuario, ruta=ruta)
+    return dibujar_grafo(G, alimentos=alimentos_data)
 
 
 def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
