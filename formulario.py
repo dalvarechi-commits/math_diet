@@ -9,6 +9,7 @@ def pedirDatosBiometricos(defaults=None):
     """
     defaults = defaults or {}
     with st.form("formulario_datosBiometricos"):
+        email = st.text_input("email", value=defaults.get('email', ''))
         nombre = st.text_input("Nombre", value=defaults.get('nombre', ''))
         peso = st.slider('Peso (kg)', 30, 200, value=int(defaults.get('peso', 70)))
         altura = st.slider('Altura (cm)', 100, 220, value=int(defaults.get('altura', 170)))
@@ -43,6 +44,7 @@ def pedirDatosBiometricos(defaults=None):
                 imc = 0
                 tmb = 0
             return {
+                "email": email,
                 "nombre": nombre,
                 "peso": peso,
                 "altura": altura,
@@ -125,17 +127,17 @@ def pedirGustos(alimentos, defaults=None):
                     st.write(f"Valoración actual dgrhjdfg: {default_gustos.get(alimento_key)}")
                     st.write(f"Valoración actual info: {info.get('valoracion_usuario', 'No disponible')}")
                     # Primero intenta cargar del defaults del usuario (puede esta bajo alimento_key), luego la valoracion actual, si no, 3
-                    default_val = default_gustos.get(alimento_key)
+                    default_val = info.get('valoracion_usuario')
                     st.write(f"Valoración actual default_val: {default_val}")
                     if default_val is None:
                         st.write(f"Valoración actual none")
-                        default_val = info.get("valoracion_usuario", 3)
-                    
+                        default_val = info.get("valoracion_usuario", 4)
+                    st.write(("meto valoracion_usuario", default_val))
                     nueva_valoracion = st.slider(
                         label=f"{info.get('nombre_bedca', alimento_key)}",
                         min_value=1,
                         max_value=5,
-                        value=int(default_val),
+                        value=int(info.get("valoracion_usuario", 1)),
                         step=1,
                         key=f"slider_{alimento_key}"
                     )
