@@ -103,12 +103,24 @@ def dibujar_grafo(G, alimentos=None):
     alimentos_data = obtener_alimentos(alimentos=alimentos)
     fig, ax = plt.subplots(figsize=(25, 25))
 
-    # Orden de capas según categorías
-    categorias_orden = list(categorias.keys())
-    categoria_a_capa = {categoria: idx for idx, categoria in enumerate(categorias_orden)}
+    # Orden de capas según macroprincipal de cada categoría
+    macroprincipales = []
+    categoria_a_macro = {}
+    for categoria, meta in categorias.items():
+        macro = meta.get('macroprincipal')
+        categoria_a_macro[categoria] = macro
+        if macro is not None and macro not in macroprincipales:
+            macroprincipales.append(macro)
 
-    # Determinar la categoría de cada nodo
+    # Garantizar que las categorías sin macroprincipal queden al final
+    if None not in macroprincipales:
+        macroprincipales.append(None)
+    macro_a_capa = {macro: idx for idx, macro in enumerate(macroprincipales)}
+
+    # Determinar la categoría y macroprincipal de cada nodo
     categoria_por_nodo = {}
+    macro_por_nodo = {}
+    capa_por_nodo = {}
     for nodo in G.nodes():
         categoria = None
         if nodo in alimentos_data:
@@ -121,20 +133,23 @@ def dibujar_grafo(G, alimentos=None):
                     categoria = alimento.get('categoria')
                     break
         categoria_por_nodo[nodo] = categoria
+        macro_por_nodo[nodo] = categoria_a_macro.get(categoria)
+        capa_por_nodo[nodo] = categorias.get(categoria, {}).get('capa')
 
-    # Posiciones por capas: y fija según categoría, x distribuida por nodo
+    # Posiciones por capas: y fija según macroprincipal, x distribuida por nodo
     nodos = list(G.nodes())
     nodos_por_capa = {}
     for nodo in nodos:
         categoria = categoria_por_nodo.get(nodo)
-        capa = categoria_a_capa.get(categoria, len(categorias_orden))
+        macro = macro_por_nodo.get(nodo)
+        capa = capa_por_nodo.get(nodo)
         nodos_por_capa.setdefault(capa, []).append(nodo)
 
     pos = {}
     max_x = max(len(v) for v in nodos_por_capa.values()) if nodos_por_capa else 1
     for capa, nodos_capa in nodos_por_capa.items():
         for i, nodo in enumerate(nodos_capa):
-            pos[nodo] = (i / max(max_x - 1, 1), 1 - (capa / max(len(categorias_orden), 1)))
+            pos[nodo] = (i / max(max_x - 1, 1), 1 - (capa / max(len(macroprincipales), 1)))
 
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
     edge_widths = [1 * w for w in edge_weights]
@@ -157,8 +172,8 @@ def dibujar_grafo(G, alimentos=None):
         width=edge_widths,
         edge_color='black',
         connectionstyle='arc3,rad=0',
-        min_source_margin=20,
-        min_target_margin=20,
+        min_source_margin=10,
+        min_target_margin=10,
     )
     ax.set_axis_off()
     return fig

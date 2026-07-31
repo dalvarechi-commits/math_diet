@@ -1,4 +1,112 @@
 {
+  "L_Desayuno": {
+    "categoria": "Comidas"
+  },
+  "L_Almuerzo": {
+    "categoria": "Comidas"
+  },
+  "L_Comida": {
+    "categoria": "Comidas"
+  },
+  "L_Merienda": {
+    "categoria": "Comidas"
+  },
+  "L_Cena": {
+    "categoria": "Comidas"
+  },  
+  "M_Desayuno": {
+    "categoria": "Comidas"
+  },
+  "M_Almuerzo": {
+    "categoria": "Comidas"
+  },
+  "M_Comida": {
+    "categoria": "Comidas"
+  },
+  "M_Merienda": {
+    "categoria": "Comidas"
+  },
+  "M_Cena": {
+    "categoria": "Comidas"
+  },  
+  "X_Desayuno": {
+    "categoria": "Comidas"
+  },
+  "X_Almuerzo": {
+    "categoria": "Comidas"
+  },
+  "X_Comida": {
+    "categoria": "Comidas"
+  },
+  "X_Merienda": {
+    "categoria": "Comidas"
+  },
+  "X_Cena": {
+    "categoria": "Comidas"
+  },  
+  "J_Desayuno": {
+    "categoria": "Comidas"
+  },
+  "J_Almuerzo": {
+    "categoria": "Comidas"
+  },
+  "J_Comida": {
+    "categoria": "Comidas"
+  },
+  "J_Merienda": {
+    "categoria": "Comidas"
+  },
+  "J_Cena": {
+    "categoria": "Comidas"
+  },  
+  "V_Desayuno": {
+    "categoria": "Comidas"
+  },
+  "V_Almuerzo": {
+    "categoria": "Comidas"
+  },
+  "V_Comida": {
+    "categoria": "Comidas"
+  },
+  "V_Merienda": {
+    "categoria": "Comidas"
+  },
+  "V_Cena": {
+    "categoria": "Comidas"
+  },
+    "S_Desayuno": {
+    "categoria": "Comidas"
+  },
+  "S_Almuerzo": {
+    "categoria": "Comidas"
+  },
+  "S_Comida": {
+    "categoria": "Comidas"
+  },
+  "S_Merienda": {
+    "categoria": "Comidas"
+  },
+  "S_Cena": {
+    "categoria": "Comidas"
+  },  
+  "D_Desayuno": {
+    "categoria": "Comidas"
+  },
+  "D_Almuerzo": {
+    "categoria": "Comidas"
+  },
+  "D_Comida": {
+    "categoria": "Comidas"
+  },
+  "D_Merienda": {
+    "categoria": "Comidas"
+  },
+  "D_Cena": {
+    "categoria": "Comidas"
+  },
+  "Usuario": {
+    "categoria": "Usuario"
+  },
   "pollo": {
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
