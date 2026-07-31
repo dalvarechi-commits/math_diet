@@ -1,43 +1,76 @@
 {
+    "Comidas":
+        {
+            "color": "lightgrey",
+            "macroprincipal": "0",
+            "capa": 0
+        },
+        "Usuario":
+        {
+            "color": "lightgrey",
+            "macroprincipal": "0",
+            "capa": 6
+        },
     "Carne roja":
         {
-            "color": "red"
+            "color": "red",     
+            "macroprincipal": "proteína",
+            "capa": 1
         },
     "Carne blanca":
         {
-            "color": "lightcoral"
+            "color": "lightcoral",
+            "macroprincipal": "proteína",
+            "capa": 1
         },
     "Huevos":
         {
-            "color": "khaki"
+            "color": "khaki",
+            "macroprincipal": "proteína",
+            "capa": 1
         },
     "Pescado y marisco":
         {
-            "color": "deeppink"
+            "color": "deeppink",
+            "macroprincipal": "proteína",
+            "capa": 1
         },
     "Legumbres":
         {
-            "color": "pink"
+            "color": "pink",
+            "macroprincipal": "proteína",
+            "capa": 1
         },
     "Lácteos y derivados":
         {
-            "color": "lightskyblue"
+            "color": "lightskyblue",
+            "macroprincipal": "proteína",
+            "capa": 1
         },
     "Fuente de carbohidratos": 
     
         {
-            "color": "gold"
+            "color": "gold",
+            "macroprincipal": "carbohidrato",
+            "capa": 2
         },
     "Verduras y hortalizas":
         {
-            "color": "light green"
+            "color": "light green",
+            "macroprincipal": "fibra",
+            "capa": 3
         },
     "Frutos secos":
         {
-            "color": "orange"
+            "color": "orange",
+            "macroprincipal": "grasa saludable",
+            "capa": 4
         },
     "Frutas y derivados":
         {
-            "color": "light purple"
-        }    
+            "color": "light purple",
+            "macroprincipal": "vitamina",
+            "capa": 5
+        }   
+     
 }
