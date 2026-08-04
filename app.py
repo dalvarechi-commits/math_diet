@@ -248,7 +248,7 @@ with tab4:
     fig = grafo.pintarGrafo()
     if fig is not None:
         st.pyplot(fig, use_container_width=True)
-        #menu_aleatorio=grafo.generar_menu_aleatorio(st.session_state.grafo_personalizado, nodo_final="Usuario")
+        menu_aleatorio=grafo.generar_menu_aleatorio(st.session_state.grafo_personalizado, nodo_final="USARIO")
     else:
         st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
 

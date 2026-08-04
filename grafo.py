@@ -161,14 +161,14 @@ def dibujar_grafo(G, alimentos=None):
         categoria = None
         if nodo in alimentos_data:
             categoria = alimentos_data[nodo].get('categoria')
-          #  G.nodes[nodo]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
+            G.nodes[nodo]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
         else:
             nodo_norm = ''.join(ch.lower() for ch in nodo if ch.isalnum())
             for alimento_id, alimento in alimentos_data.items():
                 nombre_norm = ''.join(ch.lower() for ch in alimento.get('nombre_bedca', '') if ch.isalnum())
                 if nodo_norm in nombre_norm or nombre_norm in nodo_norm:
                     categoria = alimento.get('categoria')
-                   # G.nodes[nodo_norm]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
+                    G.nodes[nodo_norm]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
                     break
         categoria_por_nodo[nodo] = categoria
         macro_por_nodo[nodo] = categoria_a_macro.get(categoria)
@@ -278,8 +278,9 @@ def generar_random_walk(G, nodo_inicio, pasos_maximos=20, nodos_terminales=None)
 def generar_menu_aleatorio(G, nodo_final):
     nodos = list(G.nodes())
     for nodo in nodos:
-        categoria = nodo.get('categoria')
-        if categoria == "Comida":
+        categoria = G.nodes[nodo]['categoria']
+        #categoria = nodo.get('categoria')
+        if categoria == "Comidas":
             st.write(f"Nodo inicial: {nodo}")
             menu_aleatorio =generar_random_walk(
                 G=G, 
