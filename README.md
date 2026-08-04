@@ -22,3 +22,7 @@ Estilos de vida saludable - Planificación de alimentos. (2020). Sanidad.Gob.Es.
 ‌
 Distribución de energía en porcentajes de los macronutrientes en una comida normal
 Kleiner, J. (n.d.). EFSA’s work on Dietary Reference Values and related activities EFSA 12 th Stakeholder Consultative Platform Meeting, 13-14 April 2010, Brussels. https://www.efsa.europa.eu/sites/default/files/event/documentset/stakeholders100413-p05.pdf
+
+Documentacion algoritmos paseos aleatorios nx
+random_walk — NetworkX 3.7rc0.dev0 documentation. (2026). Networkx.Org. https://networkx.org/documentation/latest/reference/algorithms/generated/networkx.algorithms.walks.random_walk.html#networkx.algorithms.walks.random_walk
+‌

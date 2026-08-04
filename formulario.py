@@ -116,13 +116,19 @@ def pedirGustos(alimentos, defaults=None):
         default_gustos = defaults if isinstance(defaults, dict) else {}
 
         # Organizar por categorías para que la interfaz quede limpia y profesional
-        categorias = sorted({info.get("categoria", "Sin categoría") for info in alimentos.values()})
+        categorias = sorted({info.get("categoria", "Sin categoría") for info in alimentos.values() if info.get("categoria") != "Comidas" and info.get("categoria") != "USUARIO"})
 
         for cat in categorias:
             with st.expander(f"📂 {cat}"):
                 for alimento_key, info in alimentos.items():
                     if info.get("categoria") != cat:
                         continue
+                    '''if info.get("categoria") == "Comidas":
+                        continue
+                    if str(alimento_key).lower() in {"usuario", "user"}:
+                        continue
+                    if str(info.get("nombre_bedca", "")).lower() in {"usuario", "user"}:
+                        continue'''
                     # Obtener el id_bedca del alimento
                     st.write(f"Valoración actual dgrhjdfg: {default_gustos.get(alimento_key)}")
                     st.write(f"Valoración actual info: {info.get('valoracion_usuario', 'No disponible')}")
@@ -131,15 +137,15 @@ def pedirGustos(alimentos, defaults=None):
                     st.write(f"Valoración actual default_val: {default_val}")
                     if default_val is None:
                         st.write(f"Valoración actual none")
-                        default_val = info.get("valoracion_usuario", 4)
+                        default_val = info.get("valoracion_usuario", 3)
                     st.write(("meto valoracion_usuario", default_val))
                     nueva_valoracion = st.slider(
                         label=f"{info.get('nombre_bedca', alimento_key)}",
                         min_value=1,
                         max_value=5,
-                        value=int(info.get("valoracion_usuario", 1)),
+                        value=int(info.get("valoracion_usuario", 3)),
                         step=1,
-                        key=f"slider_{alimento_key}"
+                       
                     )
                     # Asignamos el valor en tiempo real directamente al objeto en session_state si existe
                     try:

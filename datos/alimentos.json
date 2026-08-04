@@ -104,10 +104,10 @@
   "D_Cena": {
     "categoria": "Comidas"
   },
-  "Usuario": {
-    "categoria": "Usuario"
+  "USUARIO": {
+    "categoria": "USUARIO"
   },
-  "pollo": {
+  "Pollo": {
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
@@ -133,7 +133,7 @@
       "lipidos_totales_g": 11.1
     }
   },
-  "merluza": {
+  "Merluza": {
     "id_bedca": "2950",
     "nombre_bedca": "Merluza fresca",
     "categoria": "Pescado y marisco",
@@ -146,7 +146,7 @@
       "lipidos_totales_g": 2.8
     }
   },
-  "salmon": {
+  "Salmón": {
     "id_bedca": "2956",
     "nombre_bedca": "Salmón fresco",
     "categoria": "Pescado y marisco",
@@ -159,7 +159,7 @@
       "lipidos_totales_g": 12.0
     }
   },
-  "ternera": {
+  "Ternera": {
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
     "categoria": "Carne roja",
@@ -172,7 +172,7 @@
       "lipidos_totales_g": 5.4
     }
   },
-  "sardina": {
+  "Sardina": {
     "id_bedca": "2958",
     "nombre_bedca": "Sardina",
     "categoria": "Pescado y marisco",
@@ -198,7 +198,7 @@
       "lipidos_totales_g": 8.0
     }
   },
-  "bacalao": {
+  "Bacalao": {
     "id_bedca": "2916",
     "nombre_bedca": "Bacalao fresco",
     "categoria": "Pescado y marisco",
@@ -211,7 +211,7 @@
       "lipidos_totales_g": 0.4
     }
   },
-  "pavo": {
+  "Pavo": {
     "id_bedca": "2755",
     "nombre_bedca": "Pavo, pechuga",
     "categoria": "Carne blanca",
@@ -224,7 +224,7 @@
       "lipidos_totales_g": 1.0
     }
   },
-  "cerdo": {
+  "Cerdo": {
     "id_bedca": "2650",
     "nombre_bedca": "Carne de cerdo magra",
     "categoria": "Carne roja",
@@ -237,7 +237,7 @@
       "lipidos_totales_g": 7.6
     }
   },
-  "guisante": {
+  "Guisantes": {
     "id_bedca": "2362",
     "nombre_bedca": "Guisante",
     "categoria": "Legumbres",
@@ -250,7 +250,7 @@
       "lipidos_totales_g": 0.5
     }
   },
-  "lenteja": {
+  "Lentejas": {
     "id_bedca": "2363",
     "nombre_bedca": "Lenteja",
     "categoria": "Legumbres",
@@ -263,7 +263,7 @@
       "lipidos_totales_g": 1.1
     }
   },
-  "garbanzo": {
+  "Garbanzos": {
     "id_bedca": "2360",
     "nombre_bedca": "Garbanzo",
     "categoria": "Legumbres",
@@ -289,7 +289,7 @@
       "lipidos_totales_g": 1.5
     }
   },
-  "pan": {
+  "Pan": {
     "id_bedca": "2170",
     "nombre_bedca": "Pan blanco de barra",
     "categoria": "Fuente de carbohidratos",
@@ -302,7 +302,7 @@
       "lipidos_totales_g": 1.6
     }
   },
-  "arroz": {
+  "Arroz": {
     "id_bedca": "2110",
     "nombre_bedca": "Arroz",
     "categoria": "Fuente de carbohidratos",
@@ -315,7 +315,7 @@
       "lipidos_totales_g": 0.9
     }
   },
-  "pasta": {
+  "Pasta": {
     "id_bedca": "2150",
     "nombre_bedca": "Pasta alimenticia",
     "categoria": "Fuente de carbohidratos",
@@ -328,7 +328,7 @@
       "lipidos_totales_g": 1.6
     }
   },
-  "patata": {
+  "Patatas": {
     "id_bedca": "2410",
     "nombre_bedca": "Patata",
     "categoria": "Fuente de carbohidratos",
@@ -341,7 +341,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "quinoa": {
+  "Quinoa": {
     "id_bedca": "2165",
     "nombre_bedca": "Quinoa",
     "categoria": "Fuente de carbohidratos",
@@ -354,7 +354,7 @@
       "lipidos_totales_g": 6.1
     }
   },
-  "boniato": {
+  "Boniato": {
     "id_bedca": "2405",
     "nombre_bedca": "Boniato",
     "categoria": "Fuente de carbohidratos",
@@ -367,7 +367,7 @@
       "lipidos_totales_g": 0.6
     }
   },
-  "avena": {
+  "Avena": {
     "id_bedca": "2120",
     "nombre_bedca": "Avena en copos",
     "categoria": "Fuente de carbohidratos",
@@ -380,7 +380,7 @@
       "lipidos_totales_g": 7.1
     }
   },
-  "galletas": {
+  "Galletas": {
     "id_bedca": "2140",
     "nombre_bedca": "Galletas de tipo maría",
     "categoria": "Fuente de carbohidratos",
@@ -393,7 +393,7 @@
       "lipidos_totales_g": 12.0
     }
   },
-  "cereales": {
+  "Cereales": {
     "id_bedca": "2130",
     "nombre_bedca": "Cereales",
     "categoria": "Fuente de carbohidratos",
@@ -406,7 +406,7 @@
       "lipidos_totales_g": 1.5
     }
   },
-  "leche": {
+  "Leche": {
     "id_bedca": "2493",
     "nombre_bedca": "Leche de vaca entera",
     "categoria": "Lácteos y derivados",
@@ -419,7 +419,7 @@
       "lipidos_totales_g": 3.8
     }
   },
-  "yogur": {
+  "Yogur": {
     "id_bedca": "2501",
     "nombre_bedca": "Yogur entero natural",
     "categoria": "Lácteos y derivados",
@@ -432,7 +432,7 @@
       "lipidos_totales_g": 3.4
     }
   },
-  "queso": {
+  "Queso": {
     "id_bedca": "2460",
     "nombre_bedca": "Queso semicurado",
     "categoria": "Lácteos y derivados",
@@ -445,7 +445,7 @@
       "lipidos_totales_g": 31.0
     }
   },
-  "tomate": {
+  "Tomate": {
     "id_bedca": "2280",
     "nombre_bedca": "Tomate",
     "categoria": "Verduras y hortalizas",
@@ -458,7 +458,7 @@
       "lipidos_totales_g": 0.2
     }
   },
-  "lechuga": {
+  "Lechuga": {
     "id_bedca": "2265",
     "nombre_bedca": "Lechuga",
     "categoria": "Verduras y hortalizas",
@@ -484,7 +484,7 @@
       "lipidos_totales_g": 0.4
     }
   },
-  "calabacin": {
+  "Calabacín": {
     "id_bedca": "2253",
     "nombre_bedca": "Calabacín",
     "categoria": "Verduras y hortalizas",
@@ -497,7 +497,7 @@
       "lipidos_totales_g": 0.2
     }
   },
-  "repollo": {
+  "Repollo": {
     "id_bedca": "2255",
     "nombre_bedca": "Repollo blanco",
     "categoria": "Verduras y hortalizas",
@@ -510,7 +510,7 @@
       "lipidos_totales_g": 0.3
     }
   },
-  "zanahoria": {
+  "Zanahoria": {
     "id_bedca": "2295",
     "nombre_bedca": "Zanahoria",
     "categoria": "Verduras y hortalizas",
@@ -536,7 +536,7 @@
       "lipidos_totales_g": 0.2
     }
   },
-  "berenjena": {
+  "Berenjena": {
     "id_bedca": "2251",
     "nombre_bedca": "Berenjena",
     "categoria": "Verduras y hortalizas",
@@ -549,7 +549,7 @@
       "lipidos_totales_g": 0.2
     }
   },
-  "puerro": {
+  "Puerro": {
     "id_bedca": "2278",
     "nombre_bedca": "Puerro",
     "categoria": "Verduras y hortalizas",
@@ -575,7 +575,7 @@
       "lipidos_totales_g": 0.2
     }
   },
-  "aguacate": {
+  "Aguacate": {
     "id_bedca": "2202",
     "nombre_bedca": "Aguacate",
     "categoria": "Verduras y hortalizas",
@@ -601,7 +601,7 @@
       "lipidos_totales_g": 59.0
     }
   },
-  "almendra": {
+  "Almendras": {
     "id_bedca": "2331",
     "nombre_bedca": "Almendra",
     "categoria": "Frutos secos",
@@ -614,7 +614,7 @@
       "lipidos_totales_g": 53.5
     }
   },
-  "pistacho": {
+  "Pistachos": {
     "id_bedca": "2337",
     "nombre_bedca": "Pistacho",
     "categoria": "Frutos secos",
@@ -627,7 +627,7 @@
       "lipidos_totales_g": 49.2
     }
   },
-  "cacahuete": {
+  "Cacahuetes": {
     "id_bedca": "2351",
     "nombre_bedca": "Cacahuete",
     "categoria": "Frutos secos",
@@ -640,7 +640,7 @@
       "lipidos_totales_g": 48.0
     }
   },
-  "anacardo": {
+  "Anacardos": {
     "id_bedca": "2332",
     "nombre_bedca": "Anacardo",
     "categoria": "Frutos secos",
@@ -653,7 +653,7 @@
       "lipidos_totales_g": 42.2
     }
   },
-  "pipas_girasol": {
+  "Pipas": {
     "id_bedca": "2340",
     "nombre_bedca": "Pipas de girasol",
     "categoria": "Frutos secos",
@@ -666,7 +666,7 @@
       "lipidos_totales_g": 49.0
     }
   },
-  "naranja": {
+  "Naranja": {
     "id_bedca": "2235",
     "nombre_bedca": "Naranja",
     "categoria": "Frutas y derivados",
@@ -679,7 +679,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "Plátano": {
+  "Platano": {
     "id_bedca": "2238",
     "nombre_bedca": "Plátano",
     "categoria": "Frutas y derivados",
@@ -692,7 +692,7 @@
       "lipidos_totales_g": 0.3
     }
   },
-  "manzana": {
+  "Manzana": {
     "id_bedca": "2230",
     "nombre_bedca": "Manzana",
     "categoria": "Frutas y derivados",
@@ -705,7 +705,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "pera": {
+  "Pera": {
     "id_bedca": "2240",
     "nombre_bedca": "Pera",
     "categoria": "Frutas y derivados",
@@ -718,7 +718,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "fresa": {
+  "Fresas": {
     "id_bedca": "2225",
     "nombre_bedca": "Fresa",
     "categoria": "Frutas y derivados",
@@ -744,7 +744,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "sandia": {
+  "Sandía": {
     "id_bedca": "2228",
     "nombre_bedca": "Sandía",
     "categoria": "Frutas y derivados",
@@ -757,7 +757,7 @@
       "lipidos_totales_g": 0.3
     }
   },
-  "melon": {
+  "Melon": {
     "id_bedca": "2220",
     "nombre_bedca": "Melón",
     "categoria": "Frutas y derivados",
@@ -770,7 +770,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "mandarina": {
+  "Mandarina": {
     "id_bedca": "2233",
     "nombre_bedca": "Mandarina",
     "categoria": "Frutas y derivados",
