@@ -1,108 +1,143 @@
 {
   "L_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno",
+    "valoracion_usuario": 3
   },
   "L_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "L_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "L_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "L_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "M_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno",
+    "valoracion_usuario": 3
   },
   "M_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "M_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "M_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "M_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "X_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno",
+    "valoracion_usuario": 3
   },
   "X_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "X_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "X_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "X_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "J_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno",
+    "valoracion_usuario": 3
   },
   "J_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "J_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "J_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "J_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "V_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno",
+    "valoracion_usuario": 3
   },
   "V_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "V_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "V_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "V_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "S_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno",
+    "valoracion_usuario": 3
   },
   "S_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "S_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "S_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "S_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "D_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno",
+    "valoracion_usuario": 3
   },
   "D_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "D_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "D_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "D_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida",
+    "valoracion_usuario": 3
   },
   "USUARIO": {
     "categoria": "USUARIO"
@@ -124,7 +159,7 @@
     "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
     "categoria": "Huevos",
-    "valoracion_usuario": 2,
+    "valoracion_usuario": 5,
     "alergenos": [
       "HUE"
     ],
@@ -169,7 +204,7 @@
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 4,
+    "valoracion_usuario": 2,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 131.0,
@@ -240,7 +275,7 @@
     "id_bedca": "2650",
     "nombre_bedca": "Carne de cerdo magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 156.0,
@@ -591,7 +626,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "Espárragos": {
+  "Esparragos": {
     "id_bedca": "2258",
     "nombre_bedca": "Espárrago verde",
     "categoria": "Verduras y hortalizas",
@@ -796,7 +831,7 @@
       "lipidos_totales_g": 0.3
     }
   },
-  "Melon": {
+  "Melón": {
     "id_bedca": "2220",
     "nombre_bedca": "Melón",
     "categoria": "Frutas y derivados",

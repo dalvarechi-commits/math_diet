@@ -119,17 +119,20 @@ def _normalizar_color(color):
         return 'lightgray'
 
     aliases = {
-        'light red': 'lightcoral',
-        'light yellow': 'khaki',
-        'dark pink': 'deeppink',
-        'light blue': 'lightskyblue',
-        'lightgray': 'lightgray',
-        'red': 'red',
-        'yellow': 'yellow',
-        'light green': 'lightgreen',
-        'orange': 'orange',
-        'light purple': 'cyan',
-        'pink': 'pink',
+        'light red': 'mistyrose',     
+        'light yellow': 'lemonchiffon',
+        'dark pink': 'hotpink',        
+        'light blue': 'powderblue',    
+        'lightgray': 'gainsboro',      
+        'red': 'salmon',               
+        'yellow': 'yellow',           
+        'light green': 'palegreen',    
+        'orange': 'navajowhite',       
+        'light purple': 'lavender',    
+        'mint': 'aquamarine',          
+        'peach': 'peachpuff',          
+        'lilac': 'thistle',            
+        'beige': 'wheat'
     }
     return aliases.get(color.lower(), color)
 
@@ -192,7 +195,7 @@ def dibujar_grafo(G, alimentos=None):
         divisor = max(1, cantidad * 2)
         for i, nodo in enumerate(nodos_capa):
             x = (i + 1) / divisor
-            pos[nodo] = (x, 1 - (capa / max(len(nodos_por_capa), 4)))
+            pos[nodo] = (x, 1 - (capa / max(len(nodos_por_capa), 5)))
 
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
     edge_widths = [1 * w for w in edge_weights]
@@ -277,10 +280,11 @@ def generar_random_walk(G, nodo_inicio, pasos_maximos=20, nodos_terminales=None)
 
 def generar_menu_aleatorio(G, nodo_final):
     nodos = list(G.nodes())
+    
     for nodo in nodos:
         categoria = G.nodes[nodo]['categoria']
-        #categoria = nodo.get('categoria')
-        if categoria == "Comidas":
+        
+        if categoria == "Comida" or categoria == "Snack" or categoria == "Desayuno":
             st.write(f"Nodo inicial: {nodo}")
             menu_aleatorio =generar_random_walk(
                 G=G, 
