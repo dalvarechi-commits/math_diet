@@ -5,10 +5,10 @@
             "macroprincipal": "0",
             "capa": 0
         },
-        "Usuario":
+    "USUARIO":
         {
             "color": "lightgrey",
-            "macroprincipal": "0",
+            "macroprincipal": "45",
             "capa": 6
         },
     "Carne roja":

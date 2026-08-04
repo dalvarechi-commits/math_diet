@@ -5,6 +5,7 @@ from pathlib import Path
 import streamlit as st
 import matplotlib.pyplot as plt
 import networkx as nx
+import random
 
 '''
 if "alimentos" not in st.session_state:
@@ -36,6 +37,41 @@ if "categorias" not in st.session_state:
     with open(categorias_path, 'r', encoding='utf-8') as f:
         categorias = json.load(f)
 
+# generar adyacencia desde .csv
+def cargar_adyacencia_desde_csv(m_adyacencia):
+    if not Path(m_adyacencia).is_absolute():
+        m_adyacencia = Path(__file__).resolve().parent / m_adyacencia
+
+    adyacencia = {}
+    with open(m_adyacencia, 'r', encoding='utf-8') as archivo:
+        lector = csv.reader(archivo, delimiter=';')
+        header = next(lector, None)
+        if not header or len(header) < 2:
+            raise ValueError(f'Cabecera inválida en {m_adyacencia}')
+        node_names = header[1:]
+        for fila in lector:
+            if not fila or len(fila) < 2:
+                continue
+            nodo = fila[0]
+            valores = fila[1:]
+            vecinos = []
+            for i, val in enumerate(valores):
+                text = val.strip().replace(',', '.')
+                if not text:
+                    continue
+                try:
+                    peso = float(text)
+                except ValueError:
+                    continue
+                if peso > 0:
+                    vecinos.append((node_names[i], peso))
+            adyacencia[nodo] = vecinos
+    return adyacencia
+
+
+#def get_grafo():
+
+    #return st.session_state.grafo_personalizado
 
 def cargar_alimentos(ruta=None, nombre_usuario=None):
     """Carga los alimentos desde datos/alimentos.json o desde un archivo de usuario."""
@@ -101,7 +137,7 @@ def _normalizar_color(color):
 # dibujar el grafo
 def dibujar_grafo(G, alimentos=None):
     alimentos_data = obtener_alimentos(alimentos=alimentos)
-    fig, ax = plt.subplots(figsize=(25, 25))
+    fig, ax = plt.subplots(figsize=(30, 25))
 
     # Orden de capas según macroprincipal de cada categoría
     macroprincipales = []
@@ -125,12 +161,14 @@ def dibujar_grafo(G, alimentos=None):
         categoria = None
         if nodo in alimentos_data:
             categoria = alimentos_data[nodo].get('categoria')
+          #  G.nodes[nodo]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
         else:
             nodo_norm = ''.join(ch.lower() for ch in nodo if ch.isalnum())
             for alimento_id, alimento in alimentos_data.items():
                 nombre_norm = ''.join(ch.lower() for ch in alimento.get('nombre_bedca', '') if ch.isalnum())
                 if nodo_norm in nombre_norm or nombre_norm in nodo_norm:
                     categoria = alimento.get('categoria')
+                   # G.nodes[nodo_norm]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
                     break
         categoria_por_nodo[nodo] = categoria
         macro_por_nodo[nodo] = categoria_a_macro.get(categoria)
@@ -148,8 +186,13 @@ def dibujar_grafo(G, alimentos=None):
     pos = {}
     max_x = max(len(v) for v in nodos_por_capa.values()) if nodos_por_capa else 1
     for capa, nodos_capa in nodos_por_capa.items():
+        cantidad = len(nodos_capa)
+        # Ajusta el espaciado horizontal dentro de la capa.
+        # Cuanto mayor sea el divisor, más separados quedan los nodos.
+        divisor = max(1, cantidad * 2)
         for i, nodo in enumerate(nodos_capa):
-            pos[nodo] = (i / max(max_x - 1, 1), 1 - (capa / max(len(macroprincipales), 1)))
+            x = (i + 1) / divisor
+            pos[nodo] = (x, 1 - (capa / max(len(nodos_por_capa), 4)))
 
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
     edge_widths = [1 * w for w in edge_weights]
@@ -178,41 +221,12 @@ def dibujar_grafo(G, alimentos=None):
     ax.set_axis_off()
     return fig
 
-# generar adyacencia desde .csv
-def cargar_adyacencia_desde_csv(m_adyacencia):
-    if not Path(m_adyacencia).is_absolute():
-        m_adyacencia = Path(__file__).resolve().parent / m_adyacencia
-
-    adyacencia = {}
-    with open(m_adyacencia, 'r', encoding='utf-8') as archivo:
-        lector = csv.reader(archivo, delimiter=';')
-        header = next(lector, None)
-        if not header or len(header) < 2:
-            raise ValueError(f'Cabecera inválida en {m_adyacencia}')
-        node_names = header[1:]
-        for fila in lector:
-            if not fila or len(fila) < 2:
-                continue
-            nodo = fila[0]
-            valores = fila[1:]
-            vecinos = []
-            for i, val in enumerate(valores):
-                text = val.strip().replace(',', '.')
-                if not text:
-                    continue
-                try:
-                    peso = float(text)
-                except ValueError:
-                    continue
-                if peso > 0:
-                    vecinos.append((node_names[i], peso))
-            adyacencia[nodo] = vecinos
-    return adyacencia
 
 
 def pintarGrafo(m_adyacencia='m_adyacencia.csv', alimentos=None, nombre_usuario=None, ruta=None):
     adyacencia = cargar_adyacencia_desde_csv(m_adyacencia)
     G = crear_grafo(adyacencia)
+    st.session_state.grafo_personalizado = G
     if len(G) == 0:
         return None
     alimentos_data = obtener_alimentos(alimentos=alimentos, nombre_usuario=nombre_usuario, ruta=ruta)
@@ -224,4 +238,54 @@ def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
         adyacencia = json.load(archivo)
     return adyacencia    
 
+
+
+
+def generar_random_walk(G, nodo_inicio, pasos_maximos=20, nodos_terminales=None):
+    """
+    Genera un camino aleatorio en el grafo G.
+    Si nodos_terminales no es None, el camino se detiene al alcanzar uno de ellos.
+    """
+    if nodos_terminales is None:
+        nodos_terminales = set()
+        
+    camino = [nodo_inicio]
+    nodo_actual = nodo_inicio
+    
+    for _ in range(pasos_maximos - 1):
+        # Obtener los vecinos del nodo actual
+        vecinos = list(G.neighbors(nodo_actual))
+        
+        # Si estamos en un callejón sin salida, parar
+        if not vecinos:
+            break
+            
+        # Elegir el siguiente paso al azar
+        siguiente_nodo = random.choice(vecinos)
+        
+        # Añadir al camino
+        camino.append(siguiente_nodo)
+        
+        # Si hemos alcanzado un nodo de destino/parada, terminamos el walk
+        if siguiente_nodo in nodos_terminales:
+            break
+            
+        nodo_actual = siguiente_nodo
+        
+    return camino
+
+
+def generar_menu_aleatorio(G, nodo_final):
+    nodos = list(G.nodes())
+    for nodo in nodos:
+        categoria = nodo.get('categoria')
+        if categoria == "Comida":
+            st.write(f"Nodo inicial: {nodo}")
+            menu_aleatorio =generar_random_walk(
+                G=G, 
+                nodo_inicio=nodo, 
+                pasos_maximos=15, 
+                nodos_terminales=nodo_final
+            )
+            st.write(f"Camino generado: {menu_aleatorio}")
 
