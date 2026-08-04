@@ -222,9 +222,7 @@ with tab4:
         st.error("❌ Debes completar el objetivo antes de continuar")
     st.write("Aquí podrás calificar tus gustos alimentarios para mejorar las recomendaciones de tu menú personalizado. ¡Próximamente!")
     defaults_gustos = st.session_state.get('gustos', {})
-    st.write("gustos 1", defaults_gustos)
     gustos = formulario.pedirGustos(st.session_state.alimentos, defaults=defaults_gustos)
-    st.write("gustos 2", gustos)
     if gustos:
         st.session_state.gustos = gustos
         st.success("✅ Gustos alimentarios completados")

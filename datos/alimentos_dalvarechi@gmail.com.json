@@ -146,7 +146,7 @@
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 5,
+    "valoracion_usuario": 1,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 165.0,
@@ -159,7 +159,7 @@
     "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
     "categoria": "Huevos",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 3,
     "alergenos": [
       "HUE"
     ],
@@ -204,7 +204,7 @@
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 2,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 131.0,
@@ -275,7 +275,7 @@
     "id_bedca": "2650",
     "nombre_bedca": "Carne de cerdo magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 5,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 156.0,
