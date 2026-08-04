@@ -146,7 +146,7 @@
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 165.0,
@@ -159,7 +159,7 @@
     "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
     "categoria": "Huevos",
-    "valoracion_usuario": 5,
+    "valoracion_usuario": 1,
     "alergenos": [
       "HUE"
     ],
@@ -262,7 +262,7 @@
     "id_bedca": "2755",
     "nombre_bedca": "Pavo, pechuga",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 5,
+    "valoracion_usuario": 1,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 105.0,
@@ -339,7 +339,7 @@
   "Pan": {
     "id_bedca": "2170",
     "nombre_bedca": "Pan blanco de barra",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3,
     "alergenos": [
       "GLU"
@@ -421,7 +421,7 @@
   "Avena": {
     "id_bedca": "2120",
     "nombre_bedca": "Avena en copos",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3,
     "alergenos": [
       "GLU"
@@ -436,7 +436,7 @@
   "Galletas": {
     "id_bedca": "2140",
     "nombre_bedca": "Galletas de tipo maría",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3,
     "alergenos": [
       "GLU",
@@ -452,7 +452,7 @@
   "Cereales": {
     "id_bedca": "2130",
     "nombre_bedca": "Cereales",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3,
     "alergenos": [
       "GLU"

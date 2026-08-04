@@ -187,16 +187,23 @@ def dibujar_grafo(G, alimentos=None):
         nodos_por_capa.setdefault(capa, []).append(nodo)
 
     pos = {}
-    max_x = max(len(v) for v in nodos_por_capa.values()) if nodos_por_capa else 1
+    total_capas = max(len(nodos_por_capa), 1)
     for capa, nodos_capa in nodos_por_capa.items():
         cantidad = len(nodos_capa)
-        # Ajusta el espaciado horizontal dentro de la capa.
-        # Cuanto mayor sea el divisor, más separados quedan los nodos.
-        divisor = max(1, cantidad * 2)
-        for i, nodo in enumerate(nodos_capa):
-            x = (i + 1) / divisor
-            pos[nodo] = (x, 1 - (capa / max(len(nodos_por_capa), 5)))
+        divisor_x = max(1, cantidad + 1) # Ajusta el espaciado horizontal dentro de la capa
 
+        # Calculamos la posición Y distribuida uniformemente entre 0 y 1
+        # Si solo hay 1 capa, la ponemos en el centro (0.5)
+        if total_capas > 1:
+            y_pos = 1.0 - (capa / (total_capas - 1))
+        else:
+            y_pos = 0.5
+
+        for i_nodo, nodo in enumerate(nodos_capa):
+            x_pos = (i_nodo + 1) / divisor_x
+            pos[nodo] = (x_pos, y_pos)
+
+   
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
     edge_widths = [1 * w for w in edge_weights]
 
@@ -218,8 +225,8 @@ def dibujar_grafo(G, alimentos=None):
         width=edge_widths,
         edge_color='black',
         connectionstyle='arc3,rad=0',
-        min_source_margin=10,
-        min_target_margin=10,
+        min_source_margin=30,
+        min_target_margin=30,
     )
     ax.set_axis_off()
     return fig
@@ -243,7 +250,7 @@ def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
 
 
 
-
+'''
 def generar_random_walk(G, nodo_inicio, pasos_maximos=20, nodos_terminales=None):
     """
     Genera un camino aleatorio en el grafo G.
@@ -294,3 +301,108 @@ def generar_menu_aleatorio(G, nodo_final):
             )
             st.write(f"Camino generado: {menu_aleatorio}")
 
+'''
+# ------------------------------------------------------------------
+# FUNCION AUXILIAR: Extrae el diccionario de reglas directamente
+# ------------------------------------------------------------------
+def extraer_reglas_desde_json():
+    """Extrae las listas de 'cat_alimentos' de cada comida del JSON."""
+    reglas = {}
+    for comida, info in categorias.items():
+        if isinstance(info, dict) and "cat_alimentos" in info:
+            # Como en el JSON 'cat_alimentos' ya es una lista [...],
+            # Python la lee directamente como list sin necesidad de parsear.
+            reglas[comida] = info["cat_alimentos"]
+    return reglas
+
+
+# ------------------------------------------------------------------
+# 1. FUNCION: generar_random_walk
+# ------------------------------------------------------------------
+def generar_random_walk(
+    G, nodo_inicio, pasos_maximos=20, nodos_terminales=None, categorias_permitidas=None
+):
+    """Genera un camino aleatorio en el grafo G limitando los pasos a nodos que
+
+    tengan una categoría que esté dentro de 'categorias_permitidas'.
+    """
+    # Convertir nodos_terminales a conjunto (set) de forma segura
+    if nodos_terminales is None:
+        nodos_terminales_set = set()
+    elif isinstance(nodos_terminales, (str, int)):
+        nodos_terminales_set = {nodos_terminales}
+    else:
+        nodos_terminales_set = set(nodos_terminales)
+
+    camino = [nodo_inicio]
+    nodo_actual = nodo_inicio
+
+    for _ in range(pasos_maximos - 1):
+        vecinos = list(G.neighbors(nodo_actual))
+        if not vecinos:
+            break
+
+        # Filtrar solo los vecinos cuyas categorías sean válidas para esta comida
+        vecinos_validos = []
+        for v in vecinos:
+            # Si el vecino es el nodo final/terminal, siempre se permite para cerrar el recorrido
+            if v in nodos_terminales_set:
+                vecinos_validos.append(v)
+            else:
+                cat_vecino = G.nodes[v].get("categoria")
+                # Permitir solo si no hay restricciones O la categoría está en la lista permitida
+                if (
+                    categorias_permitidas is None
+                    or cat_vecino in categorias_permitidas
+                ):
+                    vecinos_validos.append(v)
+
+        # Si no hay vecinos válidos según la regla, nos detenemos para evitar errores
+        if not vecinos_validos:
+            break
+
+        # Elegimos el siguiente nodo de forma aleatoria solo entre los válidos
+        siguiente_nodo = random.choice(vecinos_validos)
+        camino.append(siguiente_nodo)
+
+        # Si alcanzamos un nodo final, terminamos el recorrido
+        if siguiente_nodo in nodos_terminales_set:
+            break
+
+        nodo_actual = siguiente_nodo
+
+    return camino
+
+
+# ------------------------------------------------------------------
+# 2. FUNCION: generar_menu_aleatorio
+# ------------------------------------------------------------------
+def generar_menu_aleatorio(G, nodo_final):
+    """Recorre las comidas del grafo y genera un random walk usando
+
+    las categorías permitidas definidas en el JSON.
+    """
+    # 1. Obtener el mapa de categorías permitidas directamente del JSON
+    reglas = extraer_reglas_desde_json()
+
+    nodos = list(G.nodes())
+
+    for nodo in nodos:
+        categoria_tipo_comida = G.nodes[nodo].get("categoria")
+
+        # Comprobar si la categoría del nodo está definida en las reglas (ej: "Desayuno", "Comida", "Snack")
+        if categoria_tipo_comida in reglas:
+            permitidas = reglas[categoria_tipo_comida]
+
+            st.write(f"**Nodo inicial ({categoria_tipo_comida}):** {nodo}")
+
+            # Generar el recorrido filtrado por las categorías de la lista
+            menu_aleatorio = generar_random_walk(
+                G=G,
+                nodo_inicio=nodo,
+                pasos_maximos=15,
+                nodos_terminales=nodo_final,
+                categorias_permitidas=permitidas,  # <-- Se pasa la lista extraída del JSON
+            )
+
+            st.write(f"**Camino generado:** {menu_aleatorio}")

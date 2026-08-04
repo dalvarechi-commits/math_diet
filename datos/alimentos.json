@@ -292,7 +292,7 @@
   "Pan": {
     "id_bedca": "2170",
     "nombre_bedca": "Pan blanco de barra",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3.0,
     "alergenos": ["GLU"],
     "nutricion_por_100g": {
@@ -370,7 +370,7 @@
   "Avena": {
     "id_bedca": "2120",
     "nombre_bedca": "Avena en copos",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3.0,
     "alergenos": ["GLU"],
     "nutricion_por_100g": {
@@ -383,7 +383,7 @@
   "Galletas": {
     "id_bedca": "2140",
     "nombre_bedca": "Galletas de tipo maría",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3.0,
     "alergenos": ["GLU", "LAC"],
     "nutricion_por_100g": {
@@ -396,7 +396,7 @@
   "Cereales": {
     "id_bedca": "2130",
     "nombre_bedca": "Cereales",
-    "categoria": "Fuente de carbohidratos",
+    "categoria": "Fuente de carbohidratos desayuno",
     "valoracion_usuario": 3.0,
     "alergenos": ["GLU"],
     "nutricion_por_100g": {
