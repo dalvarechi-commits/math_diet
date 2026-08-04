@@ -119,17 +119,20 @@ def _normalizar_color(color):
         return 'lightgray'
 
     aliases = {
-        'light red': 'lightcoral',
-        'light yellow': 'khaki',
-        'dark pink': 'deeppink',
-        'light blue': 'lightskyblue',
-        'lightgray': 'lightgray',
-        'red': 'red',
-        'yellow': 'yellow',
-        'light green': 'lightgreen',
-        'orange': 'orange',
-        'light purple': 'cyan',
-        'pink': 'pink',
+        'light red': 'mistyrose',     
+        'light yellow': 'lemonchiffon',
+        'dark pink': 'hotpink',        
+        'light blue': 'powderblue',    
+        'lightgray': 'gainsboro',      
+        'red': 'salmon',               
+        'yellow': 'yellow',           
+        'light green': 'palegreen',    
+        'orange': 'navajowhite',       
+        'light purple': 'lavender',    
+        'mint': 'aquamarine',          
+        'peach': 'peachpuff',          
+        'lilac': 'thistle',            
+        'beige': 'wheat'
     }
     return aliases.get(color.lower(), color)
 
@@ -161,14 +164,14 @@ def dibujar_grafo(G, alimentos=None):
         categoria = None
         if nodo in alimentos_data:
             categoria = alimentos_data[nodo].get('categoria')
-          #  G.nodes[nodo]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
+            G.nodes[nodo]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
         else:
             nodo_norm = ''.join(ch.lower() for ch in nodo if ch.isalnum())
             for alimento_id, alimento in alimentos_data.items():
                 nombre_norm = ''.join(ch.lower() for ch in alimento.get('nombre_bedca', '') if ch.isalnum())
                 if nodo_norm in nombre_norm or nombre_norm in nodo_norm:
                     categoria = alimento.get('categoria')
-                   # G.nodes[nodo_norm]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
+                    G.nodes[nodo_norm]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
                     break
         categoria_por_nodo[nodo] = categoria
         macro_por_nodo[nodo] = categoria_a_macro.get(categoria)
@@ -192,7 +195,7 @@ def dibujar_grafo(G, alimentos=None):
         divisor = max(1, cantidad * 2)
         for i, nodo in enumerate(nodos_capa):
             x = (i + 1) / divisor
-            pos[nodo] = (x, 1 - (capa / max(len(nodos_por_capa), 4)))
+            pos[nodo] = (x, 1 - (capa / max(len(nodos_por_capa), 5)))
 
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
     edge_widths = [1 * w for w in edge_weights]
@@ -277,9 +280,11 @@ def generar_random_walk(G, nodo_inicio, pasos_maximos=20, nodos_terminales=None)
 
 def generar_menu_aleatorio(G, nodo_final):
     nodos = list(G.nodes())
+    
     for nodo in nodos:
-        categoria = nodo.get('categoria')
-        if categoria == "Comida":
+        categoria = G.nodes[nodo]['categoria']
+        
+        if categoria == "Comida" or categoria == "Snack" or categoria == "Desayuno":
             st.write(f"Nodo inicial: {nodo}")
             menu_aleatorio =generar_random_walk(
                 G=G, 

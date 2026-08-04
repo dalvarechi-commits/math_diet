@@ -1,108 +1,108 @@
 {
   "L_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno"
   },
   "L_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "L_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "L_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "L_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },  
   "M_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno"
   },
   "M_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "M_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "M_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "M_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },  
   "X_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno"
   },
   "X_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "X_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "X_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "X_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },  
   "J_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno"
   },
   "J_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "J_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "J_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "J_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },  
   "V_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno"
   },
   "V_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "V_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "V_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "V_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
     "S_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno"
   },
   "S_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "S_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "S_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "S_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },  
   "D_Desayuno": {
-    "categoria": "Comidas"
+    "categoria": "Desayuno"
   },
   "D_Almuerzo": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "D_Comida": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "D_Merienda": {
-    "categoria": "Comidas"
+    "categoria": "Snack"
   },
   "D_Cena": {
-    "categoria": "Comidas"
+    "categoria": "Comida"
   },
   "USUARIO": {
     "categoria": "USUARIO"
@@ -172,7 +172,7 @@
       "lipidos_totales_g": 5.4
     }
   },
-  "Sardina": {
+  "Sardinas": {
     "id_bedca": "2958",
     "nombre_bedca": "Sardina",
     "categoria": "Pescado y marisco",
@@ -562,7 +562,7 @@
       "lipidos_totales_g": 0.1
     }
   },
-  "Espárragos": {
+  "Esparragos": {
     "id_bedca": "2258",
     "nombre_bedca": "Espárrago verde",
     "categoria": "Verduras y hortalizas",
@@ -757,7 +757,7 @@
       "lipidos_totales_g": 0.3
     }
   },
-  "Melon": {
+  "Melón": {
     "id_bedca": "2220",
     "nombre_bedca": "Melón",
     "categoria": "Frutas y derivados",

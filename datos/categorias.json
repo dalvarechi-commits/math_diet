@@ -1,10 +1,26 @@
 {
-    "Comidas":
+    "Desayuno":
         {
-            "color": "lightgrey",
+            "color": "mint",
             "macroprincipal": "0",
+            "cat_alimentos": "Lacteos y derivados, Huevos,Fuente de carbohidratos, Frutas y derivados",
             "capa": 0
         },
+    "Comida":
+        {
+            "color": "peach",
+            "macroprincipal": "0",
+            "cat_alimentos": "Carne roja, Carne blanca, Huevos, Pescado y marisco, Legumbres, Fuente de carbohidratos, Verduras y hortalizas, Frutas y derivados",
+            "capa": 0
+        },
+    "Snack":
+        {
+            "color": "lilac",
+            "macroprincipal": "0",
+            "cat_alimentos": "Lácteos y derivados, Fuente de carbohidratos, Frutos secos, Frutas y derivados",
+            "capa": 0
+        },
+
     "USUARIO":
         {
             "color": "lightgrey",
@@ -13,7 +29,7 @@
         },
     "Carne roja":
         {
-            "color": "red",     
+            "color": "mistyrose",     
             "macroprincipal": "proteína",
             "capa": 1
         },
@@ -25,50 +41,50 @@
         },
     "Huevos":
         {
-            "color": "khaki",
+            "color": "yellow",
             "macroprincipal": "proteína",
             "capa": 1
         },
     "Pescado y marisco":
         {
-            "color": "deeppink",
+            "color": "salmon",
             "macroprincipal": "proteína",
             "capa": 1
         },
     "Legumbres":
         {
-            "color": "pink",
+            "color": "hotpink",
             "macroprincipal": "proteína",
             "capa": 1
         },
     "Lácteos y derivados":
         {
-            "color": "lightskyblue",
+            "color": "powderblue",
             "macroprincipal": "proteína",
             "capa": 1
         },
     "Fuente de carbohidratos": 
     
         {
-            "color": "gold",
+            "color": "lemonchiffon",
             "macroprincipal": "carbohidrato",
             "capa": 2
         },
     "Verduras y hortalizas":
         {
-            "color": "light green",
+            "color": "palegreen",
             "macroprincipal": "fibra",
             "capa": 3
         },
     "Frutos secos":
         {
-            "color": "orange",
+            "color": "navajowhite",
             "macroprincipal": "grasa saludable",
             "capa": 4
         },
     "Frutas y derivados":
         {
-            "color": "light purple",
+            "color": "lavender",
             "macroprincipal": "vitamina",
             "capa": 5
         }   
