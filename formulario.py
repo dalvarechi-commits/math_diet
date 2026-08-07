@@ -130,7 +130,7 @@ def pedirGustos(alimentos, defaults=None):
                     if str(info.get("nombre_bedca", "")).lower() in {"usuario", "user"}:
                         continue'''
                     # Obtener el id_bedca del alimento
-                    st.write(f"Valoración actual: {default_gustos.get(alimento_key)}")
+                    st.write(f"Valoración actual : {default_gustos.get(alimento_key)}")
                     # Primero intenta cargar del defaults del usuario (puede esta bajo alimento_key), luego la valoracion actual, si no, 3
                     default_val = info.get('valoracion_usuario')
                     if default_val is None:
@@ -139,9 +139,9 @@ def pedirGustos(alimentos, defaults=None):
                         label=f"{info.get('nombre_bedca', alimento_key)}",
                         min_value=1,
                         max_value=5,
-                        value=int(info.get("valoracion_usuario", 3)),
+                        value=int(default_gustos.get(alimento_key, 3)),
                         step=1,
-                       
+                        #key=f"slider_{alimento_key}"
                     )
                     # Asignamos el valor en tiempo real directamente al objeto en session_state si existe
                     try:
