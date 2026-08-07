@@ -146,7 +146,7 @@
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 165.0,
@@ -262,7 +262,7 @@
     "id_bedca": "2755",
     "nombre_bedca": "Pavo, pechuga",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 1,
+    "valoracion_usuario": 3,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 105.0,
