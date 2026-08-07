@@ -130,15 +130,11 @@ def pedirGustos(alimentos, defaults=None):
                     if str(info.get("nombre_bedca", "")).lower() in {"usuario", "user"}:
                         continue'''
                     # Obtener el id_bedca del alimento
-                    st.write(f"Valoración actual dgrhjdfg: {default_gustos.get(alimento_key)}")
-                    st.write(f"Valoración actual info: {info.get('valoracion_usuario', 'No disponible')}")
+                    st.write(f"Valoración actual: {default_gustos.get(alimento_key)}")
                     # Primero intenta cargar del defaults del usuario (puede esta bajo alimento_key), luego la valoracion actual, si no, 3
                     default_val = info.get('valoracion_usuario')
-                    st.write(f"Valoración actual default_val: {default_val}")
                     if default_val is None:
-                        st.write(f"Valoración actual none")
                         default_val = info.get("valoracion_usuario", 3)
-                    st.write(("meto valoracion_usuario", default_val))
                     nueva_valoracion = st.slider(
                         label=f"{info.get('nombre_bedca', alimento_key)}",
                         min_value=1,
