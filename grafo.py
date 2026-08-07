@@ -114,6 +114,17 @@ def crear_grafo(adyacencia):
                 G.add_edge(nodo, vecino, weight=peso)
     return G
 
+def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
+    G = nx.DiGraph()
+    for nodo, vecinos in adyacencia.items():
+        
+        for vecino, peso in vecinos:
+            if peso > 0:
+                G.add_edge(nodo, vecino, weight=peso)
+    return G
+
+
+
 def _normalizar_color(color):
     if not color:
         return 'lightgray'

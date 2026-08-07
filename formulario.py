@@ -123,12 +123,6 @@ def pedirGustos(alimentos, defaults=None):
                 for alimento_key, info in alimentos.items():
                     if info.get("categoria") != cat:
                         continue
-                    '''if info.get("categoria") == "Comidas":
-                        continue
-                    if str(alimento_key).lower() in {"usuario", "user"}:
-                        continue
-                    if str(info.get("nombre_bedca", "")).lower() in {"usuario", "user"}:
-                        continue'''
                     # Obtener el id_bedca del alimento
                     st.write(f"Valoración actual : {default_gustos.get(alimento_key)}")
                     # Primero intenta cargar del defaults del usuario (puede esta bajo alimento_key), luego la valoracion actual, si no, 3
