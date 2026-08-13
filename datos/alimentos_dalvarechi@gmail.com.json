@@ -1,143 +1,108 @@
 {
   "L_Desayuno": {
-    "categoria": "Desayuno",
-    "valoracion_usuario": 3
+    "categoria": "Desayuno"
   },
   "L_Almuerzo": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "L_Comida": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "L_Merienda": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "L_Cena": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "M_Desayuno": {
-    "categoria": "Desayuno",
-    "valoracion_usuario": 3
+    "categoria": "Desayuno"
   },
   "M_Almuerzo": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "M_Comida": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "M_Merienda": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "M_Cena": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "X_Desayuno": {
-    "categoria": "Desayuno",
-    "valoracion_usuario": 3
+    "categoria": "Desayuno"
   },
   "X_Almuerzo": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "X_Comida": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "X_Merienda": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "X_Cena": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "J_Desayuno": {
-    "categoria": "Desayuno",
-    "valoracion_usuario": 3
+    "categoria": "Desayuno"
   },
   "J_Almuerzo": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "J_Comida": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "J_Merienda": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "J_Cena": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "V_Desayuno": {
-    "categoria": "Desayuno",
-    "valoracion_usuario": 3
+    "categoria": "Desayuno"
   },
   "V_Almuerzo": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "V_Comida": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "V_Merienda": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "V_Cena": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "S_Desayuno": {
-    "categoria": "Desayuno",
-    "valoracion_usuario": 3
+    "categoria": "Desayuno"
   },
   "S_Almuerzo": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "S_Comida": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "S_Merienda": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "S_Cena": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "D_Desayuno": {
-    "categoria": "Desayuno",
-    "valoracion_usuario": 3
+    "categoria": "Desayuno"
   },
   "D_Almuerzo": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "D_Comida": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "D_Merienda": {
-    "categoria": "Snack",
-    "valoracion_usuario": 3
+    "categoria": "Snack"
   },
   "D_Cena": {
-    "categoria": "Comida",
-    "valoracion_usuario": 3
+    "categoria": "Comida"
   },
   "USUARIO": {
     "categoria": "USUARIO"
@@ -146,8 +111,10 @@
     "id_bedca": "2700",
     "nombre_bedca": "Carne de pollo magra",
     "categoria": "Carne blanca",
-    "valoracion_usuario": 3,
-    "alergenos": [],
+    "valoracion_usuario": 5,
+    "alergenos": [
+      "VEG"
+    ],
     "nutricion_por_100g": {
       "energia_kcal": 165.0,
       "proteinas_g": 31.0,
@@ -159,9 +126,10 @@
     "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
     "categoria": "Huevos",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [
-      "HUE"
+      "HUE",
+      "VEG"
     ],
     "nutricion_por_100g": {
       "energia_kcal": 150.0,
@@ -170,42 +138,14 @@
       "lipidos_totales_g": 11.1
     }
   },
-  "Merluza": {
-    "id_bedca": "2950",
-    "nombre_bedca": "Merluza fresca",
-    "categoria": "Pescado y marisco",
-    "valoracion_usuario": 3,
-    "alergenos": [
-      "PES"
-    ],
-    "nutricion_por_100g": {
-      "energia_kcal": 89.0,
-      "proteinas_g": 15.9,
-      "hidratos_carbono_g": 0.0,
-      "lipidos_totales_g": 2.8
-    }
-  },
-  "Salmón": {
-    "id_bedca": "2956",
-    "nombre_bedca": "Salmón fresco",
-    "categoria": "Pescado y marisco",
-    "valoracion_usuario": 3,
-    "alergenos": [
-      "PES"
-    ],
-    "nutricion_por_100g": {
-      "energia_kcal": 182.0,
-      "proteinas_g": 18.4,
-      "hidratos_carbono_g": 0.0,
-      "lipidos_totales_g": 12.0
-    }
-  },
   "Ternera": {
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
     "categoria": "Carne roja",
     "valoracion_usuario": 3,
-    "alergenos": [],
+    "alergenos": [
+      "VEG"
+    ],
     "nutricion_por_100g": {
       "energia_kcal": 131.0,
       "proteinas_g": 20.7,
@@ -213,57 +153,14 @@
       "lipidos_totales_g": 5.4
     }
   },
-  "Sardinas": {
-    "id_bedca": "2958",
-    "nombre_bedca": "Sardina",
-    "categoria": "Pescado y marisco",
-    "valoracion_usuario": 3,
-    "alergenos": [
-      "PES"
-    ],
-    "nutricion_por_100g": {
-      "energia_kcal": 153.0,
-      "proteinas_g": 17.1,
-      "hidratos_carbono_g": 0.0,
-      "lipidos_totales_g": 9.4
-    }
-  },
-  "Boquerones": {
-    "id_bedca": "2920",
-    "nombre_bedca": "Boquerón",
-    "categoria": "Pescado y marisco",
-    "valoracion_usuario": 3,
-    "alergenos": [
-      "PES"
-    ],
-    "nutricion_por_100g": {
-      "energia_kcal": 142.0,
-      "proteinas_g": 17.6,
-      "hidratos_carbono_g": 0.0,
-      "lipidos_totales_g": 8.0
-    }
-  },
-  "Bacalao": {
-    "id_bedca": "2916",
-    "nombre_bedca": "Bacalao fresco",
-    "categoria": "Pescado y marisco",
-    "valoracion_usuario": 3,
-    "alergenos": [
-      "PES"
-    ],
-    "nutricion_por_100g": {
-      "energia_kcal": 74.0,
-      "proteinas_g": 17.7,
-      "hidratos_carbono_g": 0.0,
-      "lipidos_totales_g": 0.4
-    }
-  },
   "Pavo": {
     "id_bedca": "2755",
     "nombre_bedca": "Pavo, pechuga",
     "categoria": "Carne blanca",
     "valoracion_usuario": 3,
-    "alergenos": [],
+    "alergenos": [
+      "VEG"
+    ],
     "nutricion_por_100g": {
       "energia_kcal": 105.0,
       "proteinas_g": 24.1,
@@ -276,7 +173,9 @@
     "nombre_bedca": "Carne de cerdo magra",
     "categoria": "Carne roja",
     "valoracion_usuario": 3,
-    "alergenos": [],
+    "alergenos": [
+      "VEG"
+    ],
     "nutricion_por_100g": {
       "energia_kcal": 156.0,
       "proteinas_g": 22.0,
@@ -470,7 +369,8 @@
     "categoria": "Lácteos y derivados",
     "valoracion_usuario": 3,
     "alergenos": [
-      "LAC"
+      "LAC",
+      "VEG"
     ],
     "nutricion_por_100g": {
       "energia_kcal": 65.0,
@@ -485,7 +385,8 @@
     "categoria": "Lácteos y derivados",
     "valoracion_usuario": 3,
     "alergenos": [
-      "LAC"
+      "LAC",
+      "VEG"
     ],
     "nutricion_por_100g": {
       "energia_kcal": 61.0,
@@ -500,7 +401,8 @@
     "categoria": "Lácteos y derivados",
     "valoracion_usuario": 3,
     "alergenos": [
-      "LAC"
+      "LAC",
+      "VEG"
     ],
     "nutricion_por_100g": {
       "energia_kcal": 381.0,
@@ -695,21 +597,6 @@
       "proteinas_g": 17.6,
       "hidratos_carbono_g": 15.7,
       "lipidos_totales_g": 49.2
-    }
-  },
-  "Cacahuetes": {
-    "id_bedca": "2351",
-    "nombre_bedca": "Cacahuete",
-    "categoria": "Frutos secos",
-    "valoracion_usuario": 3,
-    "alergenos": [
-      "CAC"
-    ],
-    "nutricion_por_100g": {
-      "energia_kcal": 571.0,
-      "proteinas_g": 24.0,
-      "hidratos_carbono_g": 7.9,
-      "lipidos_totales_g": 48.0
     }
   },
   "Anacardos": {
