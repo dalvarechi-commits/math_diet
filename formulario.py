@@ -116,21 +116,28 @@ def pedirGustos(alimentos, defaults=None):
         default_gustos = defaults if isinstance(defaults, dict) else {}
 
         # Organizar por categorías para que la interfaz quede limpia y profesional
-        categorias = sorted({info.get("categoria", "Sin categoría") for info in alimentos.values() if info.get("categoria") != "Comidas" and info.get("categoria") != "USUARIO"})
-
+        categorias = sorted({info.get("categoria", "Sin categoría") for info in alimentos.values() if info.get("categoria") != "Comida" and info.get("categoria") != "Desayuno" and info.get("categoria") != "Snack" and info.get("categoria") != "USUARIO"})
+        try:
+         alergenos_user = st.session_state.get("preferencias").get("alergias", [])
+        except Exception:
+            alergenos_user = defaults.get("alergias", [])
+        
+        st.write(f"Alérgenos del usuario: {alergenos_user}")
+        if alergenos_user is not None:
+            alimentos_filtrados = {key: info for key, info in alimentos.items() if not any(alergeno in info.get("alergenos", []) for alergeno in alergenos_user)}
+            st.session_state.alimentos_user= alimentos_filtrados
+            st.write(f"Alimentos filtrados: {list(alimentos_filtrados.keys())}")
+        
         for cat in categorias:
             with st.expander(f"📂 {cat}"):
-                for alimento_key, info in alimentos.items():
+                for alimento_key, info in alimentos_filtrados.items():
+                    if any(alergeno in info.get("alergenos", []) for alergeno in alergenos_user):
+                        st.write(f"Saltando {info.get('nombre_bedca', alimento_key)} por contener alérgenos del usuario.")
+                        continue  # Saltar alimentos que contengan alérgenos del usuario
                     if info.get("categoria") != cat:
                         continue
-                    '''if info.get("categoria") == "Comidas":
-                        continue
-                    if str(alimento_key).lower() in {"usuario", "user"}:
-                        continue
-                    if str(info.get("nombre_bedca", "")).lower() in {"usuario", "user"}:
-                        continue'''
                     # Obtener el id_bedca del alimento
-                    st.write(f"Valoración actual: {default_gustos.get(alimento_key)}")
+                    st.write(f"Valoración actual : {default_gustos.get(alimento_key)}")
                     # Primero intenta cargar del defaults del usuario (puede esta bajo alimento_key), luego la valoracion actual, si no, 3
                     default_val = info.get('valoracion_usuario')
                     if default_val is None:
@@ -139,13 +146,13 @@ def pedirGustos(alimentos, defaults=None):
                         label=f"{info.get('nombre_bedca', alimento_key)}",
                         min_value=1,
                         max_value=5,
-                        value=int(info.get("valoracion_usuario", 3)),
+                        value=int(default_gustos.get(alimento_key, 3)),
                         step=1,
-                       
+                        #key=f"slider_{alimento_key}"
                     )
                     # Asignamos el valor en tiempo real directamente al objeto en session_state si existe
                     try:
-                        st.session_state.alimentos[alimento_key]["valoracion_usuario"] = nueva_valoracion
+                        st.session_state.alimentos_user[alimento_key]["valoracion_usuario"] = nueva_valoracion
                     except Exception:
                         # si no existe session_state.alimentos, actualizamos el dict local
                         alimentos[alimento_key]["valoracion_usuario"] = nueva_valoracion

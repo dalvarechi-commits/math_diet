@@ -25,12 +25,14 @@ if "alimentos" not in st.session_state:
         alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.get('datos', {}).get('email', 'default')}.json"
         try:
             with alimentos_path_user.open("r", encoding="utf-8") as f:
-                st.session_state.alimentos = json.load(f)
+                st.session_state.alimentos_user = json.load(f)
                 st.write(f"✅ Cargado el fichero de alimentos: {alimentos_path_user}")
         except FileNotFoundError:
             #st.error(f"No se encontró el fichero de alimentos: {alimentos_path_user}. Se cargará el fichero por defecto: {alimentos_path_default}.")
             with alimentos_path_default.open("r", encoding="utf-8") as f:
                 st.session_state.alimentos = json.load(f)
+                st.session_state.alimentos_user = st.session_state.alimentos
+                
                 st.write(f"✅ Cargado el fichero de alimentos: {alimentos_path_default}")
             # Simulación por si aún no creas el archivo
         except Exception as e:
@@ -44,7 +46,7 @@ if "alimentos" not in st.session_state:
 else:   
     try:
         with alimentos_path_user.open("r", encoding="utf-8") as f:
-            st.session_state.alimentos = json.load(f)
+            st.session_state.alimentos_user = json.load(f)
             st.write(f"✅ Cargado el fichero de alimentos: {alimentos_path_user}")
         
         
@@ -62,21 +64,21 @@ st.write("Esta página te va a ayudar a generar un menú personalizado en funci�
 
 
 preferencias_labels = {
-        "frutos_secos": "Alergia a los frutos secos — Evita nueces, almendras y avellanas",
-        "cacahuetes": "Alergia a los cacahuetes — No comer cacahuetes ni derivados",
-        "lactosa": "Intolerancia a la lactosa — Evita leche y lácteos comunes",
-        "huevo": "Alergia al huevo — Incluye huevos de gallina y derivados",
-        "apio": "Alergia al apio — Evita sopas, caldos y salsas con apio",
-        "moluscos": "Alergia a los moluscos — Incluye mejillones, almejas y ostras",
-        "pescado": "Alergia al pescado — Evita todo tipo de pescados",
-        "crustaceos": "Alergia a los crustáceos — Incluye camarones y langostas",
-        "soja": "Alergia a la soja — Evita salsas de soja y productos derivados",
-        "mostaza": "Alergia a la mostaza — Incluye mostaza y condimentos similares",
-        "sesamo": "Alergia al sésamo — Evita semillas y aceites de sésamo",
-        "altramuces": "Alergia a los altramuces — Evita legumbres exóticas",
-        "sulfitos": "Alergia al dióxido de azufre y sulfitos — Evita conservantes en bebidas y alimentos",
-        "vegano": "Soy vegano — No consumir ningún producto animal",
-        "celiaco": "Soy celíaco — Evita gluten y derivados de trigo"
+        "FRU": "Alergia a los frutos secos — Evita nueces, almendras y avellanas",
+        "CAC": "Alergia a los cacahuetes — No comer cacahuetes ni derivados",
+        "LAC": "Intolerancia a la lactosa — Evita leche y lácteos comunes",
+        "HUE": "Alergia al huevo — Incluye huevos de gallina y derivados",
+        "API": "Alergia al apio — Evita sopas, caldos y salsas con apio",
+        "MOL": "Alergia a los moluscos — Incluye mejillones, almejas y ostras",
+        "PES": "Alergia al pescado — Evita todo tipo de pescados",
+        "CRU": "Alergia a los crustáceos — Incluye camarones y langostas",
+        "SOJ": "Alergia a la soja — Evita salsas de soja y productos derivados",
+        "MOS": "Alergia a la mostaza — Incluye mostaza y condimentos similares",
+        "SES": "Alergia al sésamo — Evita semillas y aceites de sésamo",
+        "ALT": "Alergia a los altramuces — Evita legumbres exóticas",
+        "SUL": "Alergia al dióxido de azufre y sulfitos — Evita conservantes en bebidas y alimentos",
+        "VEG": "Soy vegano — No consumir ningún producto animal",
+        "GLU": "Soy celíaco — Evita gluten y derivados de trigo"
     }
 
 
@@ -153,7 +155,7 @@ with tab1:
         if alimentos_path_user.exists():
             with open(alimentos_path_user, 'r', encoding='utf-8') as f:
               
-                st.session_state.alimentos = json.load(f)
+                st.session_state.alimentos_user = json.load(f)
 
             st.success(f"✅ Fichero de alimentos cargado para: {cargar_email}")
         else:
@@ -222,7 +224,7 @@ with tab4:
         st.error("❌ Debes completar el objetivo antes de continuar")
     st.write("Aquí podrás calificar tus gustos alimentarios para mejorar las recomendaciones de tu menú personalizado. ¡Próximamente!")
     defaults_gustos = st.session_state.get('gustos', {})
-    gustos = formulario.pedirGustos(st.session_state.alimentos, defaults=defaults_gustos)
+    gustos = formulario.pedirGustos(st.session_state.alimentos_user, defaults=defaults_gustos)
     if gustos:
         st.session_state.gustos = gustos
         st.success("✅ Gustos alimentarios completados")
@@ -235,22 +237,27 @@ with tab4:
         # Aquí puedes guardar los cambios de vuelta al fichero original si lo deseas
        # alimentos_path = Path(__file__).resolve().parent / "datos" / f"alimentos_{cargar_nombre.strip()}.json"
         with open(Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.datos['email']}.json", "w", encoding="utf-8") as f:
-            json.dump(st.session_state.alimentos, f, ensure_ascii=False, indent=2)
+            json.dump(st.session_state.alimentos_user, f, ensure_ascii=False, indent=2)
             #st.session_state.alimentos = json.load(f)
             st.write(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['email']}.json")
 
     st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
 
-    # Mostramos un fragmento de cómo queda tu objeto para el Backend (descomenta la línea siguiente para mostrarlo en Streamlit)
-    st.json(st.session_state.alimentos)
+  
     fig = grafo.pintarGrafo()
     if fig is not None:
         st.pyplot(fig, use_container_width=True)
+       
+    else:
+        st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
+   
+    fig2 = grafo.pintarGrafo('m_adyacencia.csv',st.session_state.alimentos_user, st.session_state.datos['nombre'])
+    if fig2 is not None:
+        st.pyplot(fig2, use_container_width=True)
         menu_aleatorio=grafo.generar_menu_aleatorio(st.session_state.grafo_personalizado, nodo_final="USARIO")
     else:
         st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
 
-    
 
     
    

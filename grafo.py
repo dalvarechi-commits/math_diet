@@ -100,6 +100,8 @@ def obtener_alimentos(alimentos=None, nombre_usuario=None, ruta=None):
         return alimentos
 
     if "alimentos" in st.session_state and st.session_state.alimentos:
+        if nombre_usuario is not None:
+            return st.session_state.alimentos_user
         return st.session_state.alimentos
 
     return cargar_alimentos(ruta=ruta, nombre_usuario=nombre_usuario)
@@ -113,6 +115,27 @@ def crear_grafo(adyacencia):
             if peso > 0:
                 G.add_edge(nodo, vecino, weight=peso)
     return G
+
+def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
+    G = nx.DiGraph()
+    if alimentos is None:
+        for nodo, vecinos in adyacencia.items():
+            for vecino, peso in vecinos:
+                if peso > 0:
+                    G.add_edge(nodo, vecino, weight=peso)
+    else:
+        for nodo, vecinos in adyacencia.items():
+            if nodo not in alimentos:
+                st.write(f"Saltando nodo {nodo} porque no está en la lista de alimentos del usuario.")
+                continue  # Saltar nodos que no están en la lista de alimentos del usuario  
+            else: 
+                for vecino, peso in vecinos:
+                    if peso > 0:
+                        G.add_edge(nodo, vecino, weight=peso)
+    
+    return G
+
+
 
 def _normalizar_color(color):
     if not color:
@@ -139,7 +162,8 @@ def _normalizar_color(color):
 
 # dibujar el grafo
 def dibujar_grafo(G, alimentos=None):
-    alimentos_data = obtener_alimentos(alimentos=alimentos)
+    alimentos_data = obtener_alimentos(alimentos)
+    st.write("alimentos_data en dibujar_grafo:", alimentos_data)
     fig, ax = plt.subplots(figsize=(30, 25))
 
     # Orden de capas según macroprincipal de cada categoría
@@ -165,14 +189,7 @@ def dibujar_grafo(G, alimentos=None):
         if nodo in alimentos_data:
             categoria = alimentos_data[nodo].get('categoria')
             G.nodes[nodo]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
-        else:
-            nodo_norm = ''.join(ch.lower() for ch in nodo if ch.isalnum())
-            for alimento_id, alimento in alimentos_data.items():
-                nombre_norm = ''.join(ch.lower() for ch in alimento.get('nombre_bedca', '') if ch.isalnum())
-                if nodo_norm in nombre_norm or nombre_norm in nodo_norm:
-                    categoria = alimento.get('categoria')
-                    G.nodes[nodo_norm]['categoria'] = categoria  # Guardar la categoría en el nodo para uso futuro
-                    break
+      
         categoria_por_nodo[nodo] = categoria
         macro_por_nodo[nodo] = categoria_a_macro.get(categoria)
         capa_por_nodo[nodo] = categorias.get(categoria, {}).get('capa')
@@ -188,20 +205,22 @@ def dibujar_grafo(G, alimentos=None):
 
     pos = {}
     total_capas = max(len(nodos_por_capa), 1)
-    for capa, nodos_capa in nodos_por_capa.items():
-        cantidad = len(nodos_capa)
-        divisor_x = max(1, cantidad + 1) # Ajusta el espaciado horizontal dentro de la capa
+    if nodos_por_capa is not None:
+        for capa, nodos_capa in nodos_por_capa.items():
+            cantidad = len(nodos_capa)
+            divisor_x = max(1, cantidad + 1) # Ajusta el espaciado horizontal dentro de la capa
 
-        # Calculamos la posición Y distribuida uniformemente entre 0 y 1
-        # Si solo hay 1 capa, la ponemos en el centro (0.5)
-        if total_capas > 1:
-            y_pos = 1.0 - (capa / (total_capas - 1))
-        else:
-            y_pos = 0.5
+            # Calculamos la posición Y distribuida uniformemente entre 0 y 1
+            # Si solo hay 1 capa, la ponemos en el centro (0.5)
+            if capa is not None:
+                if total_capas > 1:
+                    y_pos = 1.0 - (capa / (total_capas - 1))
+                else:
+                    y_pos = 0.5
 
-        for i_nodo, nodo in enumerate(nodos_capa):
-            x_pos = (i_nodo + 1) / divisor_x
-            pos[nodo] = (x_pos, y_pos)
+                for i_nodo, nodo in enumerate(nodos_capa):
+                    x_pos = (i_nodo + 1) / divisor_x
+                    pos[nodo] = (x_pos, y_pos)
 
    
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
@@ -230,17 +249,28 @@ def dibujar_grafo(G, alimentos=None):
     )
     ax.set_axis_off()
     return fig
-
-
+    
 
 def pintarGrafo(m_adyacencia='m_adyacencia.csv', alimentos=None, nombre_usuario=None, ruta=None):
+    st.write("Generando grafo de alimentos con parámetros...")
     adyacencia = cargar_adyacencia_desde_csv(m_adyacencia)
-    G = crear_grafo(adyacencia)
-    st.session_state.grafo_personalizado = G
+    if alimentos is None:
+        alimentos = obtener_alimentos(nombre_usuario=nombre_usuario, ruta=ruta)
+
+    if nombre_usuario is None:
+       G = crear_grafo(adyacencia)
+       st.session_state.grafo = G
+       alimentos_data = obtener_alimentos(alimentos)
+    else:
+       
+        G = crear_grafo(adyacencia, st.session_state.alimentos_user, st.session_state.datos)
+        st.session_state.grafo_personalizado = G   
+        st.write(f"Grafo creado con personalización de usuario.", f"Nodos: {len(G.nodes())}")
+        alimentos_data = obtener_alimentos(st.session_state.alimentos_user, nombre_usuario=nombre_usuario, ruta=ruta)
     if len(G) == 0:
         return None
-    alimentos_data = obtener_alimentos(alimentos=alimentos, nombre_usuario=nombre_usuario, ruta=ruta)
-    return dibujar_grafo(G, alimentos=alimentos_data)
+    st.write("alimentos_data:", alimentos_data)
+    return dibujar_grafo(G, alimentos_data)
 
 
 def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
