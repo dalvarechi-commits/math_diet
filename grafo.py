@@ -126,12 +126,11 @@ def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
     else:
         for nodo, vecinos in adyacencia.items():
             if nodo not in alimentos:
-                st.write(f"Saltando nodo {nodo} porque no está en la lista de alimentos del usuario.")
                 continue  # Saltar nodos que no están en la lista de alimentos del usuario  
             else: 
                 for vecino, peso in vecinos:
                     if peso > 0:
-                        G.add_edge(nodo, vecino, weight=peso)
+                       G.add_edge(nodo, vecino, weight=peso)
     
     return G
 
@@ -163,7 +162,6 @@ def _normalizar_color(color):
 # dibujar el grafo
 def dibujar_grafo(G, alimentos=None):
     alimentos_data = obtener_alimentos(alimentos)
-    st.write("alimentos_data en dibujar_grafo:", alimentos_data)
     fig, ax = plt.subplots(figsize=(30, 25))
 
     # Orden de capas según macroprincipal de cada categoría
@@ -265,11 +263,9 @@ def pintarGrafo(m_adyacencia='m_adyacencia.csv', alimentos=None, nombre_usuario=
        
         G = crear_grafo(adyacencia, st.session_state.alimentos_user, st.session_state.datos)
         st.session_state.grafo_personalizado = G   
-        st.write(f"Grafo creado con personalización de usuario.", f"Nodos: {len(G.nodes())}")
         alimentos_data = obtener_alimentos(st.session_state.alimentos_user, nombre_usuario=nombre_usuario, ruta=ruta)
     if len(G) == 0:
         return None
-    st.write("alimentos_data:", alimentos_data)
     return dibujar_grafo(G, alimentos_data)
 
 
@@ -278,60 +274,13 @@ def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
         adyacencia = json.load(archivo)
     return adyacencia    
 
+def podarGrafo(G, alimentos_usuario):
+    """Elimina del grafo G los nodos que no están en la lista de alimentos del usuario."""
+    nodos_a_eliminar = [nodo for nodo in G.nodes() if nodo not in alimentos_usuario]
+    G.remove_nodes_from(nodos_a_eliminar)
+    return G
 
 
-'''
-def generar_random_walk(G, nodo_inicio, pasos_maximos=20, nodos_terminales=None):
-    """
-    Genera un camino aleatorio en el grafo G.
-    Si nodos_terminales no es None, el camino se detiene al alcanzar uno de ellos.
-    """
-    if nodos_terminales is None:
-        nodos_terminales = set()
-        
-    camino = [nodo_inicio]
-    nodo_actual = nodo_inicio
-    
-    for _ in range(pasos_maximos - 1):
-        # Obtener los vecinos del nodo actual
-        vecinos = list(G.neighbors(nodo_actual))
-        
-        # Si estamos en un callejón sin salida, parar
-        if not vecinos:
-            break
-            
-        # Elegir el siguiente paso al azar
-        siguiente_nodo = random.choice(vecinos)
-        
-        # Añadir al camino
-        camino.append(siguiente_nodo)
-        
-        # Si hemos alcanzado un nodo de destino/parada, terminamos el walk
-        if siguiente_nodo in nodos_terminales:
-            break
-            
-        nodo_actual = siguiente_nodo
-        
-    return camino
-
-
-def generar_menu_aleatorio(G, nodo_final):
-    nodos = list(G.nodes())
-    
-    for nodo in nodos:
-        categoria = G.nodes[nodo]['categoria']
-        
-        if categoria == "Comida" or categoria == "Snack" or categoria == "Desayuno":
-            st.write(f"Nodo inicial: {nodo}")
-            menu_aleatorio =generar_random_walk(
-                G=G, 
-                nodo_inicio=nodo, 
-                pasos_maximos=15, 
-                nodos_terminales=nodo_final
-            )
-            st.write(f"Camino generado: {menu_aleatorio}")
-
-'''
 # ------------------------------------------------------------------
 # FUNCION AUXILIAR: Extrae el diccionario de reglas directamente
 # ------------------------------------------------------------------
@@ -414,8 +363,12 @@ def generar_menu_aleatorio(G, nodo_final):
     """
     # 1. Obtener el mapa de categorías permitidas directamente del JSON
     reglas = extraer_reglas_desde_json()
-
+    if G is None:
+        st.write("El grafo es None. No se puede generar un menú aleatorio.")
+        return None
+    
     nodos = list(G.nodes())
+    
 
     for nodo in nodos:
         categoria_tipo_comida = G.nodes[nodo].get("categoria")
@@ -424,7 +377,7 @@ def generar_menu_aleatorio(G, nodo_final):
         if categoria_tipo_comida in reglas:
             permitidas = reglas[categoria_tipo_comida]
 
-            st.write(f"**Nodo inicial ({categoria_tipo_comida}):** {nodo}")
+            #st.write(f"**Nodo inicial ({categoria_tipo_comida}):** {nodo}")
 
             # Generar el recorrido filtrado por las categorías de la lista
             menu_aleatorio = generar_random_walk(

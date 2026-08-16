@@ -251,10 +251,13 @@ with tab4:
     else:
         st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
    
-    fig2 = grafo.pintarGrafo('m_adyacencia.csv',st.session_state.alimentos_user, st.session_state.datos['nombre'])
+    #fig2 = grafo.pintarGrafo('m_adyacencia.csv',st.session_state.alimentos_user, st.session_state.datos['nombre'])
+    grafo_personalizado = grafo.podarGrafo(st.session_state.grafo, st.session_state.alimentos_user)
+    st.session_state.grafo_personalizado = grafo_personalizado
+    fig2 = grafo.dibujar_grafo(grafo_personalizado, st.session_state.alimentos_user)
     if fig2 is not None:
         st.pyplot(fig2, use_container_width=True)
-        menu_aleatorio=grafo.generar_menu_aleatorio(st.session_state.grafo_personalizado, nodo_final="USARIO")
+        menu_aleatorio=grafo.generar_menu_aleatorio(grafo_personalizado, nodo_final="USARIO")
     else:
         st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
 
