@@ -6,30 +6,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import networkx as nx
 import random
+import menu
 
-'''
-if "alimentos" not in st.session_state:
-    # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/alimentos.json)
-    datos_path_default = Path(__file__).resolve().parent / "datos" / "alimentos.json"
-    datos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.get('datos', {}).get('nombre', 'default')}.json"
-       
-    try:
-        with datos_path_user.open("r", encoding="utf-8") as f:
-            st.session_state.alimentos = json.load(f)
-           
-    except FileNotFoundError:
-        #st.error(f"No se encontró el fichero de alimentos: {datos_path_user}. Se cargará el fichero por defecto: {datos_path_default}.")
-        with datos_path_default.open("r", encoding="utf-8") as f:
-            st.session_state.alimentos = json.load(f)
-        # Simulación por si aún no creas el archivo
-           
-    except Exception as e:
-        st.error(f"Error cargando {datos_path_default}: {e}")
-        st.session_state.alimentos = {
-            "251111": {"nombre_bedca": "Huevo de gallina entero", "categoria": "Huevos y derivados", "valoracion_usuario": 4.5},
-            "295000": {"nombre_bedca": "Merluza fresca", "categoria": "Pescados y derivados", "valoracion_usuario": 4.0}
-        }
-    '''
 
 if "categorias" not in st.session_state:
     # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/categorias.json)
@@ -69,9 +47,6 @@ def cargar_adyacencia_desde_csv(m_adyacencia):
     return adyacencia
 
 
-#def get_grafo():
-
-    #return st.session_state.grafo_personalizado
 
 def cargar_alimentos(ruta=None, nombre_usuario=None):
     """Carga los alimentos desde datos/alimentos.json o desde un archivo de usuario."""
@@ -113,6 +88,7 @@ def crear_grafo(adyacencia):
     for nodo, vecinos in adyacencia.items():
         for vecino, peso in vecinos:
             if peso > 0:
+                st.write("nodos solo adyacencia")
                 G.add_edge(nodo, vecino, weight=peso)
     return G
 
@@ -121,7 +97,8 @@ def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
     if alimentos is None:
         for nodo, vecinos in adyacencia.items():
             for vecino, peso in vecinos:
-                if peso > 0:
+                if peso > 0:  
+                    st.write("nodos con alimentos none")
                     G.add_edge(nodo, vecino, weight=peso)
     else:
         for nodo, vecinos in adyacencia.items():
@@ -130,7 +107,11 @@ def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
             else: 
                 for vecino, peso in vecinos:
                     if peso > 0:
-                       G.add_edge(nodo, vecino, weight=peso)
+                       st.write("nodos con alimentos personalizados")
+                       #calcular_peso(alimento, alimentos, objetivos_nutricionales
+                       peso_personalizado = menu.calcular_peso(vecino, alimentos, datos_usuario.get('objetivos').get('objetivo'))
+                       st.write(f"Peso personalizado2:",{peso_personalizado})
+                       G.add_edge(nodo, vecino, weight=peso_personalizado)
     
     return G
 
@@ -275,9 +256,19 @@ def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
     return adyacencia    
 
 def podarGrafo(G, alimentos_usuario):
-    """Elimina del grafo G los nodos que no están en la lista de alimentos del usuario."""
+    """Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
+    recalcula los pesos en función de los alimentos y objetivos del usuario"""
     nodos_a_eliminar = [nodo for nodo in G.nodes() if nodo not in alimentos_usuario]
     G.remove_nodes_from(nodos_a_eliminar)
+
+    for nodo in G.nodes():
+        #Recorremos los nodos del grafo para modificar todas sus aristas con los pesos calculados
+
+        '''st.write("nodos con alimentos personalizados")
+        #calcular_peso(alimento, alimentos, objetivos_nutricionales
+                            peso_personalizado = menu.calcular_peso(vecino, alimentos, datos_usuario.get('objetivos').get('objetivo'))
+                            st.write(f"Peso personalizado2:",{peso_personalizado})
+                            G.add_edge(nodo, vecino, weight=peso_personalizado)'''
     return G
 
 
