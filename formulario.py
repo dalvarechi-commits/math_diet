@@ -89,12 +89,21 @@ def pedirPreferenciasAlimentarias(preferencias_labels, defaults=None):
 
 def pedirObjetivosNutricionales(defaults=None):
     defaults = defaults or {}
-    opciones = ["Perder peso", "Ganar músculo", "Mantener peso"]
-    default_objetivo = defaults.get("objetivo")
-    default_index = opciones.index(default_objetivo) if default_objetivo in opciones else 0
-
-    with st.form("formulario_objetivosNutricionales"):
-        objetivo = st.selectbox("Selecciona tu objetivo nutricional", opciones, index=default_index)
+   
+    objetivos_labels = {
+        "perder": "Perder peso",
+        "ganar": "Ganar músculo",
+        "mantener": "Mantener peso"
+    }
+    with st.form("formulario_objetivos"):
+    
+    # El selectbox mágico
+        objetivo = st.selectbox(
+        label="¿Cuál es tu objetivo principal?",
+        options=list(objetivos_labels.keys()),       # 1. El programa maneja ['perder', 'ganar', 'mantener']
+        format_func=lambda clave: objetivos_labels[clave]  # 2. El usuario ve ['Perder peso', 'Ganar músculo', ...]
+    )
+        
         enviado = st.form_submit_button("Enviar")
 
         if enviado:
@@ -102,8 +111,8 @@ def pedirObjetivosNutricionales(defaults=None):
                 "objetivo": objetivo,
             }
         else:
-            return None
-
+            return None   
+  
 
 def pedirGustos(alimentos, defaults=None):
     defaults = defaults or {}

@@ -4,21 +4,24 @@
             "color": "mint",
             "macroprincipal": "0",
             "cat_alimentos": ["Lacteos y derivados", "Huevos", "Fuente de carbohidratos desayuno", "Frutas y derivados"],
-            "capa": 0
+            "capa": 0,
+            "ncomidas" : 7
         },
     "Comida":
         {
             "color": "peach",
             "macroprincipal": "0",
             "cat_alimentos": ["Carne roja", "Carne blanca", "Huevos", "Pescado y marisco", "Legumbres", "Fuente de carbohidratos", "Verduras y hortalizas", "Frutas y derivados"],
-            "capa": 0
+            "capa": 0,
+            "ncomidas" : 14
         },
     "Snack":
         {
             "color": "lilac",
             "macroprincipal": "0",
             "cat_alimentos": ["Lácteos y derivados", "Fuente de carbohidratos desayuno", "Frutos secos", "Frutas y derivados"],
-            "capa": 0
+            "capa": 0,
+            "ncomidas" : 14
         },
 
     "USUARIO":
