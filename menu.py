@@ -2,7 +2,7 @@
 import streamlit as st
 import json
 from pathlib import Path
-
+import math
 
 """alimentos = grafo.cargar_alimentos(nombre_usuario="richi")
 print(alimentos.keys())
@@ -24,7 +24,7 @@ def generar_menu_aleatorio(G_final, nodo_final):
 
 
 
-def calcular_peso(alimento, alimentos, objetivos_nutricionales=None):
+"""def calcular_peso(alimento, alimentos, objetivos_nutricionales=None):
     #Recuperamos las categorías
     if "categorias" not in st.session_state:
         # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/categorias.json)
@@ -47,14 +47,95 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None):
         distribucion = st.session_state.get("distribucion", {})        
     
     nalimentos_por_cat = 0
-    for alimento1 in alimentos.items():
-        if alimento1.get('categoria') == alimento.get('categoria'):
+    categoria = alimentos.get('categoria')
+    for alimento1, propiedades_alimento1 in alimentos.items():
+            
+        if propiedades_alimento1.get('categoria') == categoria:
+        
             nalimentos_por_cat= nalimentos_por_cat + 1
     
 
     if nalimentos_por_cat == 0: #Esto no debería pasar porque alimento está en la lista de alimentos.
-        st.warning(f"No se encontraron alimentos en la categoría '{alimento.get('categoria')}'.")
+        st.write(f"No se encontraron alimentos en la categoría:",categoria,".")
         return 0
-    peso_personalizado = alimento.get('peso')*distribucion.get(alimento.get('categoria'))/nalimentos_por_cat
+    #peso_personalizado = alimento.get('peso')*distribucion.get(categoria)/nalimentos_por_cat
+    peso_personalizado = nalimentos_por_cat
     st.write(f"Peso calculado para {alimento}:{peso_personalizado}")
+    return peso_personalizado"""
+
+
+
+def nalimentos_por_cat(categoria_buscada, alimentos):
+    """
+    Recorre el diccionario/lista de alimentos y cuenta cuántos pertenecen a 'categoria_buscada'.
+    """
+    if not categoria_buscada:
+        return 0
+
+    contador = 0
+    # Recorremos todos los alimentos disponbles
+    for nombre_alimento, propiedades in alimentos.items():
+        # Si propiedades es un diccionario (ej: {"categoria": "Carnes", "peso": 100})
+        if isinstance(propiedades, dict):
+            if propiedades.get('categoria') == categoria_buscada:
+                contador += 1
+        # Si la estructura fuera simplemente {"Pollo": "Carnes"}
+        elif propiedades == categoria_buscada:
+            contador += 1
+
+    return contador
+
+
+def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b=1):
+    # 1. Recuperamos las categorías desde session_state o el fichero JSON
+    if "categorias" not in st.session_state:
+        categorias_path = Path(__file__).resolve().parent / "datos" / "categorias.json"
+        with open(categorias_path, 'r', encoding='utf-8') as f:
+            categorias = json.load(f)
+            st.session_state.categorias = categorias
+    else:        
+        categorias = st.session_state.get("categorias", {})    
+
+    # 2. Recuperamos la distribución según objetivos
+    if "distribucion" not in st.session_state:
+        distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
+        with open(distribucion_path, 'r', encoding='utf-8') as f:
+            distribucion = json.load(f)
+            st.session_state.distribucion = distribucion.get(objetivos_nutricionales, {})
+    else:        
+        distribucion = st.session_state.get("distribucion", {})        
+    
+    # Extraemos el objeto del alimento y su categoría
+    datos_alimento = alimentos.get(alimento, {})
+    
+    if isinstance(datos_alimento, dict):
+        categoria = datos_alimento.get('categoria')
+    else:
+        categoria = datos_alimento  # Por si no se encuentra la categoría en alimentos
+
+    # Llamamos a la función para contar los alimentos de esa categoría
+    num_alimentos = nalimentos_por_cat(categoria, alimentos)
+
+    #Validamos que hemos encontrado alimientos porque vamos a dividir por ese número
+    if num_alimentos == 0:
+        st.write(f"No se encontraron alimentos en la categoría: {categoria}.")
+        return 0
+
+    #Cálculo del peso personalizado
+    valoracion = datos_alimento.get('valoracion_usuario', 1) if isinstance(datos_alimento, dict) else 1
+    st.write(f"distribucion.get(categoria)" + distribucion.get(categoria).values()())
+    nveces_categoria = distribucion.get(categoria).get("nveces")
+    ncomidas_categoria =  distribucion.get(categoria).get("ncomidas")
+    st.write(f"nveces_categoria: ", nveces_categoria," ncomidas_categoria: ", ncomidas_categoria)
+    try:
+        peso_base = nveces_categoria / ncomidas_categoria
+    except:
+        peso_base = 1 
+    
+    st.write(f"peso base", peso_base)
+    peso_personalizado = w * valoracion + l * math.log(peso_base)
+   
+   
+    st.write(f"Peso calculado para {alimento}: {peso_personalizado} (Total en {categoria}: {num_alimentos})")
+    
     return peso_personalizado

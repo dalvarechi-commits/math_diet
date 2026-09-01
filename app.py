@@ -252,7 +252,7 @@ with tab4:
         st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
    
     #fig2 = grafo.pintarGrafo('m_adyacencia.csv',st.session_state.alimentos_user, st.session_state.datos['nombre'])
-    grafo_personalizado = grafo.podarGrafo(st.session_state.grafo, st.session_state.alimentos_user)
+    grafo_personalizado = grafo.podarGrafo(st.session_state.grafo, st.session_state.alimentos_user, st.session_state.get("datos"))
     st.session_state.grafo_personalizado = grafo_personalizado
     fig2 = grafo.dibujar_grafo(grafo_personalizado, st.session_state.alimentos_user)
     if fig2 is not None:

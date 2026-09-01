@@ -26,3 +26,5 @@ Kleiner, J. (n.d.). EFSA’s work on Dietary Reference Values and related activi
 Documentacion algoritmos paseos aleatorios nx
 random_walk — NetworkX 3.7rc0.dev0 documentation. (2026). Networkx.Org. https://networkx.org/documentation/latest/reference/algorithms/generated/networkx.algorithms.walks.random_walk.html#networkx.algorithms.walks.random_walk
 ‌
+PONER LA URL DEL GIT Q AL ESTAR PUBLICO SE PDE VER EN CODIGO (para q el tribunal lo vea)
+https://github.com/dalvarechi-commits/math_diet

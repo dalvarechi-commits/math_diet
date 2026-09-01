@@ -8,12 +8,15 @@ import networkx as nx
 import random
 import menu
 
+categorias=None
 
 if "categorias" not in st.session_state:
     # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/categorias.json)
     categorias_path = Path(__file__).resolve().parent / "datos" / "categorias.json"
     with open(categorias_path, 'r', encoding='utf-8') as f:
         categorias = json.load(f)
+else:
+    categorias = st.session_state.get('categorias')        
 
 # generar adyacencia desde .csv
 def cargar_adyacencia_desde_csv(m_adyacencia):
@@ -98,7 +101,7 @@ def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
         for nodo, vecinos in adyacencia.items():
             for vecino, peso in vecinos:
                 if peso > 0:  
-                    st.write("nodos con alimentos none")
+                    #   st.write("nodos con alimentos none")    
                     G.add_edge(nodo, vecino, weight=peso)
     else:
         for nodo, vecinos in adyacencia.items():
@@ -255,21 +258,44 @@ def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
         adyacencia = json.load(archivo)
     return adyacencia    
 
-def podarGrafo(G, alimentos_usuario):
-    """Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
-    recalcula los pesos en función de los alimentos y objetivos del usuario"""
+def podarGrafo(G, alimentos_usuario, datos_usuario):
+    #Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
+    #recalcula los pesos en función de los alimentos y objetivos del usuario.
+    nodos_a_eliminar = [nodo for nodo in G.nodes() if nodo not in alimentos_usuario]
+    G.remove_nodes_from(nodos_a_eliminar)
+    objetivo = datos_usuario.get('objetivos', {}).get('objetivo', 'mantener')
+
+    # Recorremos todas las aristas que han sobrevivido a la poda
+    # u = nodo origen, v = nodo destino
+    for u, v in G.edges():
+        
+        peso_personalizado = menu.calcular_peso(v, alimentos_usuario, objetivo)
+        st.write(f"Peso personalizado de", v,":", peso_personalizado)
+        
+        # Actualizamos directamente el atributo 'weight' de esa arista
+        G.edges[u, v]['weight'] = peso_personalizado
+        
+        # Descomenta esto solo cuando necesites depurar, si no llenará la pantalla de texto:
+        # st.write(f"Peso actualizado arista [{u} - {v}]: {peso_personalizado}")
+
+    return G
+
+"""def podarGrafo(G, alimentos_usuario):
+    #Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
+    #recalcula los pesos en función de los alimentos y objetivos del usuario
     nodos_a_eliminar = [nodo for nodo in G.nodes() if nodo not in alimentos_usuario]
     G.remove_nodes_from(nodos_a_eliminar)
 
+     
     for nodo in G.nodes():
         #Recorremos los nodos del grafo para modificar todas sus aristas con los pesos calculados
-
-        '''st.write("nodos con alimentos personalizados")
+    // quiero modificar los pesos de las aristas para que se recalculen teniendo en cuenta la distribución de alimentos por categorías a lo largo de la semana
+    '''st.write("nodos con alimentos personalizados")
         #calcular_peso(alimento, alimentos, objetivos_nutricionales
                             peso_personalizado = menu.calcular_peso(vecino, alimentos, datos_usuario.get('objetivos').get('objetivo'))
                             st.write(f"Peso personalizado2:",{peso_personalizado})
                             G.add_edge(nodo, vecino, weight=peso_personalizado)'''
-    return G
+    return G"""
 
 
 # ------------------------------------------------------------------
