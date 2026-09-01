@@ -123,7 +123,6 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b
 
     #Cálculo del peso personalizado
     valoracion = datos_alimento.get('valoracion_usuario', 1) if isinstance(datos_alimento, dict) else 1
-    st.write(f"distribucion.get(categoria)" + distribucion.get(categoria).values()())
     nveces_categoria = distribucion.get(categoria).get("nveces")
     ncomidas_categoria =  distribucion.get(categoria).get("ncomidas")
     st.write(f"nveces_categoria: ", nveces_categoria," ncomidas_categoria: ", ncomidas_categoria)
