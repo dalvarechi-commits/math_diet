@@ -20,11 +20,11 @@ def generar_menu_aleatorio(G_final, nodo_final):
                 nodos_terminales=nodo_final
             )
             st.write(f"Camino generado: {menu_aleatorio}")
-"""
 
-
-
-"""def calcular_peso(alimento, alimentos, objetivos_nutricionales=None):
+            
+            
+            
+            def calcular_peso(alimento, alimentos, objetivos_nutricionales=None):
     #Recuperamos las categorías
     if "categorias" not in st.session_state:
         # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/categorias.json)
@@ -66,9 +66,8 @@ def generar_menu_aleatorio(G_final, nodo_final):
 
 
 def nalimentos_por_cat(categoria_buscada, alimentos):
-    """
-    Recorre el diccionario/lista de alimentos y cuenta cuántos pertenecen a 'categoria_buscada'.
-    """
+    
+    # Recorre el diccionario/lista de alimentos y cuenta cuántos pertenecen a 'categoria_buscada'.
     if not categoria_buscada:
         return 0
 
@@ -87,7 +86,7 @@ def nalimentos_por_cat(categoria_buscada, alimentos):
 
 
 def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b=1):
-    # 1. Recuperamos las categorías desde session_state o el fichero JSON
+    # Recuperamos las categorías desde session_state o el fichero JSON
     if "categorias" not in st.session_state:
         categorias_path = Path(__file__).resolve().parent / "datos" / "categorias.json"
         with open(categorias_path, 'r', encoding='utf-8') as f:
@@ -96,7 +95,7 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b
     else:        
         categorias = st.session_state.get("categorias", {})    
 
-    # 2. Recuperamos la distribución según objetivos
+    # Recuperamos la distribución según objetivos
     if "distribucion" not in st.session_state:
         distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
         with open(distribucion_path, 'r', encoding='utf-8') as f:
@@ -123,13 +122,33 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b
 
     #Cálculo del peso personalizado
     valoracion = datos_alimento.get('valoracion_usuario', 1) if isinstance(datos_alimento, dict) else 1
-    st.write(f"distribucion.get(categoria)" + distribucion.get(categoria).values()())
-    nveces_categoria = distribucion.get(categoria).get("nveces")
-    ncomidas_categoria =  distribucion.get(categoria).get("ncomidas")
-    st.write(f"nveces_categoria: ", nveces_categoria," ncomidas_categoria: ", ncomidas_categoria)
+    # nveces_categoria = distribucion.get("nveces")
+    distribucion_categoria =  distribucion.get(categoria)
+    #nveces_todo = distribucion.get(categoria)
+    # nveces_categoria = eval(nveces_todo) if isinstance(nveces_todo, str) and "/" in nveces_todo else float(nveces_todo)
+    """if isinstance(distribucion_categoria, dict):
+        distribucion_categoria = distribucion_categoria.get("frecuencia", distribucion_categoria.get("valor", 1))
+        st.write(f"distribucion_categoria", distribucion_categoria )
+    else:
+        st.write(f"ncomidas categoria no es dicionario")"""
+    # Conversión segura según el tipo de dato
+    st.write(f"distribucion_categoria", distribucion_categoria )
+    if isinstance(distribucion_categoria, str) and "/" in distribucion_categoria:
+        partes = distribucion_categoria.split("/")
+        distribucion_categoria = float(partes[0]) / float(partes[1]) if float(partes[1]) != 0 else 0.0
+        st.write(f"distribucion_categoria", distribucion_categoria )
+    else:
+        try:
+            distribucion_categoria = float(distribucion_categoria)
+        except (ValueError, TypeError):
+            distribucion_categoria = 1.0  # Valor de respaldo si el dato no es convertible
+    st.write(f" distribucion_categoria: ", distribucion_categoria)
+   
+   
     try:
-        peso_base = nveces_categoria / ncomidas_categoria
+        peso_base = float(distribucion_categoria)
     except:
+        st.write(f" distribucion_categoria error: ", distribucion_categoria)
         peso_base = 1 
     
     st.write(f"peso base", peso_base)
