@@ -52,7 +52,7 @@ def cargar_adyacencia_desde_csv(m_adyacencia):
 
 
 def cargar_alimentos(ruta=None, nombre_usuario=None):
-    """Carga los alimentos desde datos/alimentos.json o desde un archivo de usuario."""
+    # Carga los alimentos desde datos/alimentos.json o desde un archivo de usuario.
     if ruta:
         alimentos_path = Path(ruta)
     elif nombre_usuario:
@@ -101,7 +101,6 @@ def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
         for nodo, vecinos in adyacencia.items():
             for vecino, peso in vecinos:
                 if peso > 0:  
-                    #   st.write("nodos con alimentos none")    
                     G.add_edge(nodo, vecino, weight=peso)
     else:
         for nodo, vecinos in adyacencia.items():
@@ -280,23 +279,6 @@ def podarGrafo(G, alimentos_usuario, datos_usuario):
 
     return G
 
-"""def podarGrafo(G, alimentos_usuario):
-    #Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
-    #recalcula los pesos en función de los alimentos y objetivos del usuario
-    nodos_a_eliminar = [nodo for nodo in G.nodes() if nodo not in alimentos_usuario]
-    G.remove_nodes_from(nodos_a_eliminar)
-
-     
-    for nodo in G.nodes():
-        #Recorremos los nodos del grafo para modificar todas sus aristas con los pesos calculados
-    // quiero modificar los pesos de las aristas para que se recalculen teniendo en cuenta la distribución de alimentos por categorías a lo largo de la semana
-    '''st.write("nodos con alimentos personalizados")
-        #calcular_peso(alimento, alimentos, objetivos_nutricionales
-                            peso_personalizado = menu.calcular_peso(vecino, alimentos, datos_usuario.get('objetivos').get('objetivo'))
-                            st.write(f"Peso personalizado2:",{peso_personalizado})
-                            G.add_edge(nodo, vecino, weight=peso_personalizado)'''
-    return G"""
-
 
 # ------------------------------------------------------------------
 # FUNCION AUXILIAR: Extrae el diccionario de reglas directamente
@@ -313,15 +295,13 @@ def extraer_reglas_desde_json():
 
 
 # ------------------------------------------------------------------
-# 1. FUNCION: generar_random_walk
+# FUNCION: generar_random_walk
 # ------------------------------------------------------------------
 def generar_random_walk(
     G, nodo_inicio, pasos_maximos=20, nodos_terminales=None, categorias_permitidas=None
 ):
     """Genera un camino aleatorio en el grafo G limitando los pasos a nodos que
-
-    tengan una categoría que esté dentro de 'categorias_permitidas'.
-    """
+    tengan una categoría que esté dentro de 'categorias_permitidas'.  """
     # Convertir nodos_terminales a conjunto (set) de forma segura
     if nodos_terminales is None:
         nodos_terminales_set = set()
@@ -367,18 +347,18 @@ def generar_random_walk(
 
         nodo_actual = siguiente_nodo
 
-    return camino
+    return camino 
 
 
 # ------------------------------------------------------------------
-# 2. FUNCION: generar_menu_aleatorio
+# FUNCION: generar_menu_aleatorio
 # ------------------------------------------------------------------
 def generar_menu_aleatorio(G, nodo_final):
     """Recorre las comidas del grafo y genera un random walk usando
 
     las categorías permitidas definidas en el JSON.
     """
-    # 1. Obtener el mapa de categorías permitidas directamente del JSON
+    # Obtener el mapa de categorías permitidas directamente del JSON
     reglas = extraer_reglas_desde_json()
     if G is None:
         st.write("El grafo es None. No se puede generar un menú aleatorio.")
@@ -387,7 +367,7 @@ def generar_menu_aleatorio(G, nodo_final):
     nodos = list(G.nodes())
     
 
-    for nodo in nodos:
+    for nodo in nodos: 
         categoria_tipo_comida = G.nodes[nodo].get("categoria")
 
         # Comprobar si la categoría del nodo está definida en las reglas (ej: "Desayuno", "Comida", "Snack")

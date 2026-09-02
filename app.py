@@ -28,7 +28,6 @@ if "alimentos" not in st.session_state:
                 st.session_state.alimentos_user = json.load(f)
                 st.write(f"✅ Cargado el fichero de alimentos: {alimentos_path_user}")
         except FileNotFoundError:
-            #st.error(f"No se encontró el fichero de alimentos: {alimentos_path_user}. Se cargará el fichero por defecto: {alimentos_path_default}.")
             with alimentos_path_default.open("r", encoding="utf-8") as f:
                 st.session_state.alimentos = json.load(f)
                 st.session_state.alimentos_user = st.session_state.alimentos
@@ -231,11 +230,9 @@ with tab4:
         #Quitar el print para la versión final, lo dejo para que se vea cómo queda el objeto en el Backend
         st.write("Gustos alimentarios registrados:", gustos)
         _guardar_datos_usuario()
-    # 4. Botón opcional para procesar o guardar los datos en el archivo
+    # Botón para procesar o guardar los datos en el archivo
     st.divider()
     if st.button("Guardar y Actualizar Grafo", type="primary"):
-        # Aquí puedes guardar los cambios de vuelta al fichero original si lo deseas
-       # alimentos_path = Path(__file__).resolve().parent / "datos" / f"alimentos_{cargar_nombre.strip()}.json"
         with open(Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.datos['email']}.json", "w", encoding="utf-8") as f:
             json.dump(st.session_state.alimentos_user, f, ensure_ascii=False, indent=2)
             #st.session_state.alimentos = json.load(f)

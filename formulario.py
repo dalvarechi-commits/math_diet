@@ -97,11 +97,11 @@ def pedirObjetivosNutricionales(defaults=None):
     }
     with st.form("formulario_objetivos"):
     
-    # El selectbox mágico
+    # El selectbox
         objetivo = st.selectbox(
         label="¿Cuál es tu objetivo principal?",
-        options=list(objetivos_labels.keys()),       # 1. El programa maneja ['perder', 'ganar', 'mantener']
-        format_func=lambda clave: objetivos_labels[clave]  # 2. El usuario ve ['Perder peso', 'Ganar músculo', ...]
+        options=list(objetivos_labels.keys()),       # El programa maneja ['perder', 'ganar', 'mantener']
+        format_func=lambda clave: objetivos_labels[clave]  # El usuario ve ['Perder peso', 'Ganar músculo', ...]
     )
         
         enviado = st.form_submit_button("Enviar")
@@ -124,7 +124,7 @@ def pedirGustos(alimentos, defaults=None):
         st.markdown("Valora tu gusto por cada alimento en una escala del 1 al 5, donde 1 es 'No me gusta nada' y 5 es 'Me encanta'.")
         default_gustos = defaults if isinstance(defaults, dict) else {}
 
-        # Organizar por categorías para que la interfaz quede limpia y profesional
+        # Organizar por categorías para que la interfaz quede limpia 
         categorias = sorted({info.get("categoria", "Sin categoría") for info in alimentos.values() if info.get("categoria") != "Comida" and info.get("categoria") != "Desayuno" and info.get("categoria") != "Snack" and info.get("categoria") != "USUARIO"})
         try:
          alergenos_user = st.session_state.get("preferencias").get("alergias", [])
@@ -147,7 +147,7 @@ def pedirGustos(alimentos, defaults=None):
                         continue
                     # Obtener el id_bedca del alimento
                     st.write(f"Valoración actual : {default_gustos.get(alimento_key)}")
-                    # Primero intenta cargar del defaults del usuario (puede esta bajo alimento_key), luego la valoracion actual, si no, 3
+                    # Intenta cargar del defaults del usuario (puede esta bajo alimento_key), luego la valoracion actual, si no, 3
                     default_val = info.get('valoracion_usuario')
                     if default_val is None:
                         default_val = info.get("valoracion_usuario", 3)
@@ -157,7 +157,6 @@ def pedirGustos(alimentos, defaults=None):
                         max_value=5,
                         value=int(default_gustos.get(alimento_key, 3)),
                         step=1,
-                        #key=f"slider_{alimento_key}"
                     )
                     # Asignamos el valor en tiempo real directamente al objeto en session_state si existe
                     try:
