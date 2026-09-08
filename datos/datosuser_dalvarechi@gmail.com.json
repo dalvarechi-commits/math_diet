@@ -1,13 +1,13 @@
 {
   "email": "dalvarechi@gmail.com",
   "nombre": "David",
-  "peso": 56,
+  "peso": 57,
   "altura": 170,
   "edad": 17,
-  "imc": 19.377162629757787,
+  "imc": 19.723183391003463,
   "sexo": "Hombre",
-  "tmb": 1542.5,
-  "energia_total": 3085.0,
+  "tmb": 1552.5,
+  "energia_total": 3105.0,
   "actividad_diaria": "Actividad a nivel profesional",
   "preferencias": {
     "alergias": [
@@ -15,7 +15,7 @@
       "PES"
     ]
   },
-  "objetivos": {
+  "objetivo": {
     "objetivo": "ganar"
   },
   "gustos": {
@@ -46,12 +46,12 @@
     "Avena": 3,
     "Galletas": 3,
     "Cereales": 3,
-    "Huevos": 5,
+    "Huevos": 2,
     "Guisantes": 3,
     "Lentejas": 3,
     "Garbanzos": 3,
     "Alubias": 3,
-    "Leche": 3,
+    "Leche": 5,
     "Yogur": 3,
     "Queso": 3,
     "Tomate": 3,

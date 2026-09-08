@@ -28,3 +28,13 @@ random_walk — NetworkX 3.7rc0.dev0 documentation. (2026). Networkx.Org. https:
 ‌
 PONER LA URL DEL GIT Q AL ESTAR PUBLICO SE PDE VER EN CODIGO (para q el tribunal lo vea)
 https://github.com/dalvarechi-commits/math_diet
+
+3.3.1. Clasificación de los Lenguajes de Programación
+Existen múltiples tipos de lenguajes de programación basados en varios factores, como el nivel de abstracción que
+manejan, su propósito o el paradigma de programación que
+siguen. La variedad de los lenguajes permite distintos niveles
+de abstracción y usos según las características (UOC, s.f.). (david hernandez p.invest, robot)
+
+Cadenas de Markov definicion UPM
+Departamento de Matemática Aplicada © Copyright 2021. (2021). 4.2 Cadenas de Markov — Introducción al Aprendizaje Automático. Etsin.Upm.Es. https://dcain.etsin.upm.es/~carlos/bookAA/04.02_CadenasMarkovResultados.html
+‌

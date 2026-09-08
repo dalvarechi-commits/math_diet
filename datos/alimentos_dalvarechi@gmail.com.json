@@ -126,7 +126,7 @@
     "id_bedca": "2511",
     "nombre_bedca": "Huevo de gallina entero",
     "categoria": "Huevos",
-    "valoracion_usuario": 5,
+    "valoracion_usuario": 2,
     "alergenos": [
       "HUE",
       "VEG"
@@ -367,7 +367,7 @@
     "id_bedca": "2493",
     "nombre_bedca": "Leche de vaca entera",
     "categoria": "Lácteos y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [
       "LAC",
       "VEG"

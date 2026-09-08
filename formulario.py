@@ -1,4 +1,10 @@
 import streamlit as st
+import os
+
+
+
+
+
 
 
 def pedirDatosBiometricos(defaults=None):
@@ -87,31 +93,30 @@ def pedirPreferenciasAlimentarias(preferencias_labels, defaults=None):
             return None
 
 
-def pedirObjetivosNutricionales(defaults=None):
+def pedirObjetivoNutricional(defaults=None):
     defaults = defaults or {}
-   
-    objetivos_labels = {
+    objetivo_labels = {
         "perder": "Perder peso",
         "ganar": "Ganar músculo",
         "mantener": "Mantener peso"
     }
-    with st.form("formulario_objetivos"):
-    
-    # El selectbox
-        objetivo = st.selectbox(
-        label="¿Cuál es tu objetivo principal?",
-        options=list(objetivos_labels.keys()),       # El programa maneja ['perder', 'ganar', 'mantener']
-        format_func=lambda clave: objetivos_labels[clave]  # El usuario ve ['Perder peso', 'Ganar músculo', ...]
-    )
-        
-        enviado = st.form_submit_button("Enviar")
 
+    opciones = list(objetivo_labels.keys())
+    valor_default = defaults.get("objetivo")
+    index_default = opciones.index(valor_default) if valor_default in opciones else 0
+
+    with st.form("formulario_objetivos"):
+        objetivo = st.selectbox(
+            label="¿Cuál es tu objetivo principal?",
+            options=opciones,
+            index=index_default,
+            format_func=lambda clave: objetivo_labels[clave],
+        )
+
+        enviado = st.form_submit_button("Enviar")
         if enviado:
-            return {
-                "objetivo": objetivo,
-            }
-        else:
-            return None   
+            return {"objetivo": objetivo}
+        return None  
   
 
 def pedirGustos(alimentos, defaults=None):
