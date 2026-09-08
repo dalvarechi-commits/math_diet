@@ -8,6 +8,7 @@ import networkx as nx
 import random
 import menu
 
+
 categorias=None
 
 if "categorias" not in st.session_state:
@@ -284,7 +285,7 @@ def podarGrafo(G, alimentos_usuario, datos_usuario):
 # FUNCION AUXILIAR: Extrae el diccionario de reglas directamente
 # ------------------------------------------------------------------
 def extraer_reglas_desde_json():
-    """Extrae las listas de 'cat_alimentos' de cada comida del JSON."""
+    #Extrae las listas de 'cat_alimentos' de cada comida del JSON.
     reglas = {}
     for comida, info in categorias.items():
         if isinstance(info, dict) and "cat_alimentos" in info:
@@ -323,6 +324,7 @@ def generar_random_walk(
         for v in vecinos:
             # Si el vecino es el nodo final/terminal, siempre se permite para cerrar el recorrido
             if v in nodos_terminales_set:
+                st.write(f" if vecinos validos de ", nodo_actual, " añadimos ", v)
                 vecinos_validos.append(v)
             else:
                 cat_vecino = G.nodes[v].get("categoria")
@@ -331,10 +333,12 @@ def generar_random_walk(
                     categorias_permitidas is None
                     or cat_vecino in categorias_permitidas
                 ):
+                    st.write(f"else vecinos validos de ", nodo_actual, " añadimos ", v)
                     vecinos_validos.append(v)
 
         # Si no hay vecinos válidos según la regla, nos detenemos para evitar errores
         if not vecinos_validos:
+            st.write(f" sin vecinos validos de ", nodo_actual)
             break
 
         # Elegimos el siguiente nodo de forma aleatoria solo entre los válidos
@@ -354,10 +358,8 @@ def generar_random_walk(
 # FUNCION: generar_menu_aleatorio
 # ------------------------------------------------------------------
 def generar_menu_aleatorio(G, nodo_final):
-    """Recorre las comidas del grafo y genera un random walk usando
-
-    las categorías permitidas definidas en el JSON.
-    """
+    #Recorre las comidas del grafo y genera un random walk usando las categorías permitidas definidas en el JSON.
+    
     # Obtener el mapa de categorías permitidas directamente del JSON
     reglas = extraer_reglas_desde_json()
     if G is None:
@@ -373,9 +375,7 @@ def generar_menu_aleatorio(G, nodo_final):
         # Comprobar si la categoría del nodo está definida en las reglas (ej: "Desayuno", "Comida", "Snack")
         if categoria_tipo_comida in reglas:
             permitidas = reglas[categoria_tipo_comida]
-
-            #st.write(f"**Nodo inicial ({categoria_tipo_comida}):** {nodo}")
-
+            
             # Generar el recorrido filtrado por las categorías de la lista
             menu_aleatorio = generar_random_walk(
                 G=G,

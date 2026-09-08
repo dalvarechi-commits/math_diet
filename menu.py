@@ -3,6 +3,11 @@ import streamlit as st
 import json
 from pathlib import Path
 import math
+import os
+
+
+
+
 
 """alimentos = grafo.cargar_alimentos(nombre_usuario="richi")
 print(alimentos.keys())
@@ -122,15 +127,8 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b
 
     #Cálculo del peso personalizado
     valoracion = datos_alimento.get('valoracion_usuario', 1) if isinstance(datos_alimento, dict) else 1
-    # nveces_categoria = distribucion.get("nveces")
     distribucion_categoria =  distribucion.get(categoria)
-    #nveces_todo = distribucion.get(categoria)
-    # nveces_categoria = eval(nveces_todo) if isinstance(nveces_todo, str) and "/" in nveces_todo else float(nveces_todo)
-    """if isinstance(distribucion_categoria, dict):
-        distribucion_categoria = distribucion_categoria.get("frecuencia", distribucion_categoria.get("valor", 1))
-        st.write(f"distribucion_categoria", distribucion_categoria )
-    else:
-        st.write(f"ncomidas categoria no es dicionario")"""
+   
     # Conversión segura según el tipo de dato
     st.write(f"distribucion_categoria", distribucion_categoria )
     if isinstance(distribucion_categoria, str) and "/" in distribucion_categoria:

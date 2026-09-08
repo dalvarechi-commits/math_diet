@@ -6,6 +6,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import grafo
 import networkx as nx
+import os
 
 
 st.set_page_config(page_title="Math Diet", layout="wide")
@@ -13,6 +14,12 @@ alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos.js
 alimentos_path_default = Path(__file__).resolve().parent / "datos" / "alimentos.json"
 
 datos_path_user = Path(__file__).resolve().parent / "datos" / f"datosuser.json"
+
+
+
+
+
+
 
 
 if "user" not in st.session_state:
@@ -98,8 +105,8 @@ if "objetivo_completado" not in st.session_state:
     st.session_state.objetivo_completado = False
 
 
-if "objetivos" not in st.session_state:
-    st.session_state.objetivos = None
+if "objetivo" not in st.session_state:
+    st.session_state.objetivo = None
 
 
 if "gustos" not in st.session_state:
@@ -122,14 +129,14 @@ def _guardar_datos_usuario():
     user_data = {
         **datos_usuario,
         "preferencias": st.session_state.get("preferencias"),
-        "objetivos": st.session_state.get("objetivos"),
+        "objetivo": st.session_state.get("objetivo"),
         "gustos": st.session_state.get("gustos"),
     }
     with open(datos_path, "w", encoding="utf-8") as f:
         json.dump(user_data, f, ensure_ascii=False, indent=2)
 
 
-tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Alergias y Restricciones", "Objetivos Nutricionales", "Gustos Alimentarios"])
+tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Alergias y Restricciones", "Objetivo Nutricional", "Gustos Alimentarios"])
 
 with tab1:
     # permitir cargar datos guardados por email
@@ -142,7 +149,7 @@ with tab1:
                 datos_cargados = json.load(f)
             st.session_state.datos = datos_cargados
             st.session_state.preferencias = datos_cargados.get('preferencias')
-            st.session_state.objetivos = datos_cargados.get('objetivos')
+            st.session_state.objetivo = datos_cargados.get('objetivo')
             st.session_state.gustos = datos_cargados.get('gustos')
             st.session_state.datos_completados = True
             st.session_state.preferencias_completadas = True
@@ -208,12 +215,12 @@ with tab2:
 with tab3:
     if not st.session_state.preferencias_completadas:
         st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
-    st.write("Aquí podrás establecer tus objetivos nutricionales y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
-    defaults_obj = st.session_state.get('objetivos', {})
-    objetivo = formulario.pedirObjetivosNutricionales(defaults=defaults_obj)
+    st.write("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
+    defaults_obj = st.session_state.get('objetivo', {})
+    objetivo = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
     if objetivo:
         st.session_state.objetivo_completado = True
-        st.session_state.objetivos = objetivo
+        st.session_state.objetivo = objetivo
         st.success("✅ Objetivo nutricional completado")
         st.write("Objetivo seleccionado:", objetivo["objetivo"])
         _guardar_datos_usuario()
