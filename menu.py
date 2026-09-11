@@ -151,8 +151,127 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b
     
     st.write(f"peso base", peso_base)
     peso_personalizado = w * valoracion + l * math.log(peso_base)
+    
    
    
     st.write(f"Peso calculado para {alimento}: {peso_personalizado} (Total en {categoria}: {num_alimentos})")
     
     return peso_personalizado
+
+def calcular_logit_alimento(alimento, alimentos,objetivos_nutricionales=None, distribucion=None, w=1.0, l=5.0, b=0.0):
+    #Calcula la puntuación raw (logit) z_i para un alimento.
+    if "distribucion" not in st.session_state:
+        distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
+        with open(distribucion_path, 'r', encoding='utf-8') as f:
+            distribucion = json.load(f)
+            st.session_state.distribucion = distribucion.get(objetivos_nutricionales, {})
+    else:        
+        distribucion = st.session_state.get("distribucion", {})        
+    
+    
+    datos_alimento = alimentos.get(alimento, {})
+    
+    categoria = datos_alimento.get('categoria') if isinstance(datos_alimento, dict) else datos_alimento
+    valoracion = datos_alimento.get('valoracion_usuario', 1) if isinstance(datos_alimento, dict) else 1
+
+    distribucion_categoria = distribucion.get(categoria, 1.0)
+    # Conversión segura de fracciones a float
+    if isinstance(distribucion_categoria, str) and "/" in distribucion_categoria:
+            partes = distribucion_categoria.split("/")
+            distribucion_categoria = float(partes[0]) / float(partes[1]) if float(partes[1]) != 0 else 0.0
+            st.write(f"distribucion_categoria logit", distribucion_categoria )
+    else:
+        try:
+                distribucion_categoria = float(distribucion_categoria)
+        except (ValueError, TypeError):
+                distribucion_categoria = 1.0  # Valor de respaldo si el dato no es convertible
+    try:
+        peso_base = float(distribucion_categoria)
+    except:
+        st.write(f" distribucion_categoria error: ", distribucion_categoria)
+        peso_base = 1 
+    
+    
+
+
+    # Evitamos log(0) asegurando que peso_base > 0
+   # peso_base = max(peso_base, 1e-5)
+    
+    # Puntuación lineal z_i = w * valoracion + l * ln(peso_base) + b
+    z_i = (w * valoracion) + (l * math.log(peso_base)) + b
+    return z_i
+
+
+
+def aplicar_softmax(diccionario_logits):
+    # Aplica Softmax estable a un diccionario {vecino: logit}.
+    if not diccionario_logits:
+        return {}
+
+    logits = list(diccionario_logits.values())
+    max_logit = max(logits)
+
+    exps = {item: math.exp(score - max_logit) for item, score in diccionario_logits.items()}
+    suma_exps = sum(exps.values())
+
+    return {item: exp_val / suma_exps for item, exp_val in exps.items()}
+
+
+def recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, distribucion, w=1, l=5, b=1):
+    # Calculamos Softmax de forma LOCAL para cada nodo origen.
+    # Las aristas salientes de cada nodo sumarán 1.0.
+    for u in G.nodes():
+        vecinos = list(G.neighbors(u))
+        
+        if not vecinos:
+            continue
+
+        # Obtenemos los logits SOLO de los vecinos de 'u'
+        logits_vecinos = {}
+        for v in vecinos:
+            logits_vecinos[v] = calcular_logit_alimento(
+                alimento=v,
+                alimentos=alimentos_usuario,
+                distribucion=distribucion,
+                w=w, l=l, b=b
+            )
+
+        # Aplicamos Softmax únicamente sobre este grupo local
+        pesos_locales = aplicar_softmax(diccionario_logits=logits_vecinos)
+
+        # Y asignamos la probabilidad local a cada arista (u, v)
+        for v, probabilidad in pesos_locales.items():
+            G.edges[u, v]['weight'] = probabilidad
+
+    return G
+"""def aplicar_softmax(diccionario_logits, G):
+   # Aplica Softmax estable a un diccionario de {alimento: logit}.
+    if not diccionario_logits:
+        return {}
+
+    logits = list(diccionario_logits.values())
+    logits_vecinos = {}
+   # max_logit = max(logits)  # Truco de estabilidad numérica
+
+    # Exponencial de cada puntuación ajustada
+    # exps = {item: math.exp(score - max_logit) for item, score in diccionario_logits.items()}
+    for nodo_actual in G.nodes():
+        vecinos_validos = []
+        # Obtenemos los vecinos del nodo actual
+        vecinos = list(G.neighbors(nodo_actual))
+        for v in vecinos:
+            # Si el vecino es el nodo final/terminal, siempre se permite para cerrar el recorrido
+            vecinos_validos.append(v)
+            logits_vecinos[nodo_actual,v] = diccionario_logits.get(v, 0.0)
+
+
+
+    exps = {item: math.exp(score) for item, score in logits_vecinos.items()}
+    suma_exps = sum(exps.values())
+
+
+    # Normalización Softmax
+    pesos_softmax = {item: exp_val / suma_exps for item, exp_val in exps.items()}
+    return pesos_softmax"""
+
+
