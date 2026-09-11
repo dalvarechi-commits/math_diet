@@ -184,7 +184,7 @@ def dibujar_grafo(G, alimentos=None):
         macro = macro_por_nodo.get(nodo)
         capa = capa_por_nodo.get(nodo)
         nodos_por_capa.setdefault(capa, []).append(nodo)
-
+        # st.write(f"nodos por capa:{nodos_por_capa}")
     pos = {}
     total_capas = max(len(nodos_por_capa), 1)
     if nodos_por_capa is not None:
@@ -204,7 +204,7 @@ def dibujar_grafo(G, alimentos=None):
                     x_pos = (i_nodo + 1) / divisor_x
                     pos[nodo] = (x_pos, y_pos)
 
-   
+    st.session_state.nodos_por_capa = nodos_por_capa
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
     edge_widths = [1 * w for w in edge_weights]
 
@@ -258,6 +258,63 @@ def cargar_adyacencia_desde_json(grafo_nodos_enlaces):
         adyacencia = json.load(archivo)
     return adyacencia    
 
+
+def recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, distribucion, w=1, l=5, b=1):
+    # Calcula Softmax de forma LOCAL para cada nodo origen.
+    #Las aristas salientes de cada nodo sumarán 1.0.
+    for u in G.nodes():
+        vecinos = list(G.neighbors(u))
+        
+        if not vecinos:
+            continue
+
+        # 1. Obtenemos los logits SOLO de los vecinos de 'u'
+        logits_vecinos = {}
+        for v in vecinos:
+            logits_vecinos[v] = menu.calcular_logit_alimento(
+                alimento=v,
+                alimentos=alimentos_usuario,
+                distribucion=distribucion,
+                w=w, l=l, b=b
+            )
+
+        # 2. Aplicamos Softmax únicamente sobre este grupo local
+        pesos_locales = menu.aplicar_softmax(diccionario_logits=logits_vecinos)
+
+        # 3. Asignamos la probabilidad local a cada arista (u, v)
+        for v, probabilidad in pesos_locales.items():
+            G.edges[u, v]['weight'] = probabilidad
+
+    return G
+
+
+"""def recalcular_pesos_grafo_softmax(G, alimentos_usuario, distribucion, w=1, l=5, b=0):
+    #Recalcula los pesos de las aristas del grafo usando Softmax.
+    logits = {}
+
+    # Obtenemos el logit de cada nodo presente en el grafo
+    for nodo in G.nodes():
+        logits[nodo] = menu.calcular_logit_alimento(
+            alimento=nodo, 
+            alimentos=alimentos_usuario, 
+            distribucion=distribucion, 
+            w=1, 
+            l=5, 
+            b=0 
+        )
+
+
+    # Convertimos los logits en distribución de probabilidad Softmax
+    pesos_softmax = menu.aplicar_softmax(logits, G)
+    st.write(f"Pesos Softmax recalculados: {pesos_softmax}" )
+
+    # Asignamos el peso normalizado a las aristas
+    for u, v in G.edges():
+        # El peso de la arista usa la probabilidad Softmax del nodo destino v
+        G.edges[u, v]['weight'] = pesos_softmax.get(v, 0.0)
+        st.write(f"Peso actualizado arista [{u} - {v}]: {pesos_softmax.get(v, 0.0)}")
+    return G"""
+
 def podarGrafo(G, alimentos_usuario, datos_usuario):
     #Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
     #recalcula los pesos en función de los alimentos y objetivos del usuario.
@@ -267,18 +324,25 @@ def podarGrafo(G, alimentos_usuario, datos_usuario):
 
     # Recorremos todas las aristas que han sobrevivido a la poda
     # u = nodo origen, v = nodo destino
-    for u, v in G.edges():
-        
-        peso_personalizado = menu.calcular_peso(v, alimentos_usuario, objetivo)
-        st.write(f"Peso personalizado de", v,":", peso_personalizado)
-        
-        # Actualizamos directamente el atributo 'weight' de esa arista
-        G.edges[u, v]['weight'] = peso_personalizado
-        
-        # Descomenta esto solo cuando necesites depurar, si no llenará la pantalla de texto:
-        # st.write(f"Peso actualizado arista [{u} - {v}]: {peso_personalizado}")
-
+    '''  for u, v in G.edges():
+            
+        #  peso_personalizado = menu.calcular_peso(v, alimentos_usuario, objetivo)
+            peso_softmax = menu.aplicar_softmax()
+        #   st.write(f"Peso personalizado de", v,":", peso_personalizado)
+            st.write(f"Peso Softmax de", v,":", peso_softmax.get(v, 0.0))
+            
+            # Actualizamos directamente el atributo 'weight' de esa arista
+            G.edges[u, v]['weight'] = peso_softmax.get(v, 0.0) 
+            
+            # Descomenta esto solo cuando necesites depurar, si no llenará la pantalla de texto:
+            # st.write(f"Peso actualizado arista [{u} - {v}]: {peso_personalizado}")
+    '''
+    recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, datos_usuario.get('distribucion', {}), w=1, l=5, b=0)
+    
     return G
+
+
+
 
 
 # ------------------------------------------------------------------
@@ -299,7 +363,7 @@ def extraer_reglas_desde_json():
 # FUNCION: generar_random_walk
 # ------------------------------------------------------------------
 def generar_random_walk(
-    G, nodo_inicio, pasos_maximos=20, nodos_terminales=None, categorias_permitidas=None
+    G, nodo_inicio,pesos_locales=None, pasos_maximos=20, nodos_terminales=None, categorias_permitidas=None
 ):
     """Genera un camino aleatorio en el grafo G limitando los pasos a nodos que
     tengan una categoría que esté dentro de 'categorias_permitidas'.  """
@@ -321,11 +385,13 @@ def generar_random_walk(
 
         # Filtrar solo los vecinos cuyas categorías sean válidas para esta comida
         vecinos_validos = []
+        pesos_vecinos = []
         for v in vecinos:
             # Si el vecino es el nodo final/terminal, siempre se permite para cerrar el recorrido
             if v in nodos_terminales_set:
                 st.write(f" if vecinos validos de ", nodo_actual, " añadimos ", v)
                 vecinos_validos.append(v)
+                pesos_vecinos=recalcular_pesos_grafo_softmax_local(G, st.session_state.alimentos_user, st.session_state.datos.get('distribucion', {}), w=1, l=5, b=0)
             else:
                 cat_vecino = G.nodes[v].get("categoria")
                 # Permitir solo si no hay restricciones O la categoría está en la lista permitida
@@ -333,8 +399,10 @@ def generar_random_walk(
                     categorias_permitidas is None
                     or cat_vecino in categorias_permitidas
                 ):
-                    st.write(f"else vecinos validos de ", nodo_actual, " añadimos ", v)
+                    
                     vecinos_validos.append(v)
+                    pesos_vecinos.append(G.edges[nodo_actual, v]['weight'])
+                    st.write(f"else vecinos validos de ", nodo_actual, " añadimos ", v, "con peso", G.edges[nodo_actual, v]['weight'])
 
         # Si no hay vecinos válidos según la regla, nos detenemos para evitar errores
         if not vecinos_validos:
@@ -342,7 +410,7 @@ def generar_random_walk(
             break
 
         # Elegimos el siguiente nodo de forma aleatoria solo entre los válidos
-        siguiente_nodo = random.choice(vecinos_validos)
+        siguiente_nodo = random.choices(vecinos_validos, weights=pesos_locales, k=1)[0]
         camino.append(siguiente_nodo)
 
         # Si alcanzamos un nodo final, terminamos el recorrido

@@ -35,6 +35,8 @@ manejan, su propósito o el paradigma de programación que
 siguen. La variedad de los lenguajes permite distintos niveles
 de abstracción y usos según las características (UOC, s.f.). (david hernandez p.invest, robot)
 
-Cadenas de Markov definicion UPM
+Cadenas de Markov definicion 
 Departamento de Matemática Aplicada © Copyright 2021. (2021). 4.2 Cadenas de Markov — Introducción al Aprendizaje Automático. Etsin.Upm.Es. https://dcain.etsin.upm.es/~carlos/bookAA/04.02_CadenasMarkovResultados.html
+‌https://docta.ucm.es/rest/api/core/bitstreams/87d679e8-e424-4593-ab1c-e23e995c9df4/content#:~:text=Una%20cadena%20de%20Markov%20es%20un%20proceso,Xn%2B1%20%3D%20xn%2B1%7CX0%20%3D%20x0%2CX1%20%3D%20x1%2C
+Corral, A. G. (2021, August 12). Andrei Markov, cadenas para luchar contra las epidemias (I) – Antonio Gómez Corral. Mat.Ucm.Es. https://blogs.mat.ucm.es/agomez-corral/2021/08/12/andrei-markov-cadenas-para-luchar-contra-las-epidemias-i/
 ‌
