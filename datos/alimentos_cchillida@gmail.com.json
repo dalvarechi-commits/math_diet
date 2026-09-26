@@ -358,7 +358,7 @@
     "id_bedca": "2340",
     "nombre_bedca": "Pipas de girasol",
     "categoria": "Frutos secos",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 1,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 580.0,
@@ -371,7 +371,7 @@
     "id_bedca": "2235",
     "nombre_bedca": "Naranja",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 42.0,
@@ -384,7 +384,7 @@
     "id_bedca": "2238",
     "nombre_bedca": "Plátano",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 1,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 94.0,
@@ -397,7 +397,7 @@
     "id_bedca": "2230",
     "nombre_bedca": "Manzana",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 1,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 50.0,
@@ -410,7 +410,7 @@
     "id_bedca": "2240",
     "nombre_bedca": "Pera",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 1,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 45.0,
@@ -423,7 +423,7 @@
     "id_bedca": "2225",
     "nombre_bedca": "Fresa",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 1,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 36.0,
@@ -436,7 +436,7 @@
     "id_bedca": "2245",
     "nombre_bedca": "Uva blanca",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 69.0,
@@ -449,7 +449,7 @@
     "id_bedca": "2228",
     "nombre_bedca": "Sandía",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 28.0,
@@ -462,7 +462,7 @@
     "id_bedca": "2220",
     "nombre_bedca": "Melón",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 27.0,
@@ -475,7 +475,7 @@
     "id_bedca": "2233",
     "nombre_bedca": "Mandarina",
     "categoria": "Frutas y derivados",
-    "valoracion_usuario": 3,
+    "valoracion_usuario": 5,
     "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 40.0,

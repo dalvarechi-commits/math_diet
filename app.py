@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import grafo
 import networkx as nx
 import os
+import menu
+import plato
 
 
 st.set_page_config(page_title="Math Diet", layout="wide")
@@ -14,12 +16,10 @@ alimentos_path_user = Path(__file__).resolve().parent / "datos" / f"alimentos.js
 alimentos_path_default = Path(__file__).resolve().parent / "datos" / "alimentos.json"
 
 datos_path_user = Path(__file__).resolve().parent / "datos" / f"datosuser.json"
+categorias_path = Path(__file__).resolve().parent / "datos" / f"categorias.json"
 
-
-
-
-
-
+with categorias_path.open("r", encoding="utf-8") as f:
+                st.session_state.categorias = json.load(f)
 
 
 if "user" not in st.session_state:
@@ -136,7 +136,7 @@ def _guardar_datos_usuario():
         json.dump(user_data, f, ensure_ascii=False, indent=2)
 
 
-tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Alergias y Restricciones", "Objetivo Nutricional", "Gustos Alimentarios"])
+tab1, tab2, tab3, tab4 = st.tabs(["Datos Biométricos", "Objetivo Nutricional","Alergias y Restricciones", "Gustos Alimentarios"])
 
 with tab1:
     # permitir cargar datos guardados por email
@@ -192,38 +192,41 @@ with tab1:
         st.write("Por favor, completa el formulario para continuar.")
 
 with tab2:
+    
+        if not st.session_state.preferencias_completadas:
+            st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
+        st.write("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
+        defaults_obj = st.session_state.get('objetivo', {})
+        objetivo = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
+        if objetivo:
+            st.session_state.objetivo_completado = True
+            st.session_state.objetivo = objetivo
+            st.success("✅ Objetivo nutricional completado")
+            st.write("Objetivo seleccionado:", objetivo["objetivo"])
+            _guardar_datos_usuario()
+
+        plato.dibujar_plato()
+
+
+with tab3:
     if not st.session_state.datos_completados:
         st.error("❌ Debes completar los datos biométricos primero")
     preferencias = formulario.pedirPreferenciasAlimentarias(preferencias_labels, defaults=st.session_state.get('preferencias', {}))
     if preferencias:
-            st.session_state.preferencias_completadas = True
-            st.session_state.preferencias = preferencias
-            st.success("✅ Preferencias alimentarias completadas")
-            st.write("Alergias alimentarias seleccionadas:")
-            for alergia in preferencias["alergias"]:
-                st.write("- ", preferencias_labels[alergia])
-            _guardar_datos_usuario()
-    elif st.session_state.preferencias:
-            st.write("Alergias alimentarias seleccionadas:")
-            for alergia in st.session_state.preferencias["alergias"]:
-                st.write("- ", alergia)
-    else:
-            st.write("Completa el formulario de alergias y restricciones alimentarias para ver los resultados.")
-
-
-
-with tab3:
-    if not st.session_state.preferencias_completadas:
-        st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
-    st.write("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
-    defaults_obj = st.session_state.get('objetivo', {})
-    objetivo = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
-    if objetivo:
-        st.session_state.objetivo_completado = True
-        st.session_state.objetivo = objetivo
-        st.success("✅ Objetivo nutricional completado")
-        st.write("Objetivo seleccionado:", objetivo["objetivo"])
+        st.session_state.preferencias_completadas = True
+        st.session_state.preferencias = preferencias
+        st.success("✅ Preferencias alimentarias completadas")
+        st.write("Alergias alimentarias seleccionadas:")
+        for alergia in preferencias["alergias"]:
+            st.write("- ", preferencias_labels[alergia])
         _guardar_datos_usuario()
+    elif st.session_state.preferencias:
+        st.write("Alergias alimentarias seleccionadas:")
+        for alergia in st.session_state.preferencias["alergias"]:
+            st.write("- ", alergia)
+    else:
+        st.write("Completa el formulario de alergias y restricciones alimentarias para ver los resultados.")
+    
 
 with tab4:
     if not st.session_state.objetivo_completado:
@@ -245,25 +248,27 @@ with tab4:
             #st.session_state.alimentos = json.load(f)
             st.write(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['email']}.json")
 
-    st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
+        st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
 
   
-    fig = grafo.pintarGrafo()
-    if fig is not None:
-        st.pyplot(fig, use_container_width=True)
-       
-    else:
-        st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
-   
-    #fig2 = grafo.pintarGrafo('m_adyacencia.csv',st.session_state.alimentos_user, st.session_state.datos['nombre'])
-    grafo_personalizado = grafo.podarGrafo(st.session_state.grafo, st.session_state.alimentos_user, st.session_state.get("datos"))
-    st.session_state.grafo_personalizado = grafo_personalizado
-    fig2 = grafo.dibujar_grafo(grafo_personalizado, st.session_state.alimentos_user)
-    if fig2 is not None:
-        st.pyplot(fig2, use_container_width=True)
-        menu_aleatorio=grafo.generar_menu_aleatorio(grafo_personalizado, nodo_final="USARIO")
-    else:
-        st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
+        fig = grafo.pintarGrafo()
+        if fig is not None:
+            st.pyplot(fig, use_container_width=True)
+        
+        else:
+            st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
+    
+        #fig2 = grafo.pintarGrafo('m_adyacencia.csv',st.session_state.alimentos_user, st.session_state.datos['nombre'])
+        grafo_personalizado = grafo.podarGrafo(st.session_state.grafo, st.session_state.alimentos_user, st.session_state.get("datos"))
+        st.session_state.grafo_personalizado = grafo_personalizado
+        fig2 = grafo.dibujar_grafo(grafo_personalizado, st.session_state.alimentos_user)
+        if fig2 is not None:
+            st.pyplot(fig2, use_container_width=True)
+            menu_aleatorio=grafo.generar_menu_aleatorio(grafo_personalizado, nodo_final="USARIO")
+            st.write("Cantidades de alimentos:")
+            st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.distribucion, st.session_state.datos, st.session_state.categorias))
+        else:
+            st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
 
 
     

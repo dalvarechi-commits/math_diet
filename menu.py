@@ -8,68 +8,6 @@ import os
 
 
 
-
-"""alimentos = grafo.cargar_alimentos(nombre_usuario="richi")
-print(alimentos.keys())
-
-def generar_menu_aleatorio(G_final, nodo_final):
-    for nodo in G_final.nodes():
-        categoria = nodo.get('categoria', None )
-
-        if categoria == "Comida":
-            st.write(f"Nodo inicial: {nodo}")
-            menu_aleatorio = grafo.generar_random_walk(
-                G=G_final, 
-                nodo_inicio=nodo, 
-                pasos_maximos=15, 
-                nodos_terminales=nodo_final
-            )
-            st.write(f"Camino generado: {menu_aleatorio}")
-
-            
-            
-            
-            def calcular_peso(alimento, alimentos, objetivos_nutricionales=None):
-    #Recuperamos las categorías
-    if "categorias" not in st.session_state:
-        # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/categorias.json)
-        categorias_path = Path(__file__).resolve().parent / "datos" / "categorias.json"
-        with open(categorias_path, 'r', encoding='utf-8') as f:
-            categorias = json.load(f)
-            st.session_state.categorias = categorias
-    else:        
-        categorias = st.session_state.get("categorias", {})    
-
-
-
-    if "distribucion" not in st.session_state:
-        # Cargamos el fichero JSON relativo a este archivo (repo_root/datos/distribucion.json)
-        distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
-        with open(distribucion_path, 'r', encoding='utf-8') as f:
-            distribuciones = json.load(f)
-            st.session_state.distribucion = distribuciones.get(objetivos_nutricionales, {})
-    else:        
-        distribucion = st.session_state.get("distribucion", {})        
-    
-    nalimentos_por_cat = 0
-    categoria = alimentos.get('categoria')
-    for alimento1, propiedades_alimento1 in alimentos.items():
-            
-        if propiedades_alimento1.get('categoria') == categoria:
-        
-            nalimentos_por_cat= nalimentos_por_cat + 1
-    
-
-    if nalimentos_por_cat == 0: #Esto no debería pasar porque alimento está en la lista de alimentos.
-        st.write(f"No se encontraron alimentos en la categoría:",categoria,".")
-        return 0
-    #peso_personalizado = alimento.get('peso')*distribucion.get(categoria)/nalimentos_por_cat
-    peso_personalizado = nalimentos_por_cat
-    st.write(f"Peso calculado para {alimento}:{peso_personalizado}")
-    return peso_personalizado"""
-
-
-
 def nalimentos_por_cat(categoria_buscada, alimentos):
     
     # Recorre el diccionario/lista de alimentos y cuenta cuántos pertenecen a 'categoria_buscada'.
@@ -179,20 +117,24 @@ def calcular_logit_alimento(alimento, alimentos,objetivos_nutricionales=None, di
     if isinstance(distribucion_categoria, str) and "/" in distribucion_categoria:
             partes = distribucion_categoria.split("/")
             distribucion_categoria = float(partes[0]) / float(partes[1]) if float(partes[1]) != 0 else 0.0
-            st.write(f"distribucion_categoria logit", distribucion_categoria )
+            #st.write(f"distribucion_categoria logit", distribucion_categoria )
     else:
         try:
                 distribucion_categoria = float(distribucion_categoria)
+                #st.write(f"distribucion_categoria logit", distribucion_categoria )
+
         except (ValueError, TypeError):
                 distribucion_categoria = 1.0  # Valor de respaldo si el dato no es convertible
+                st.write(f"distribucion_categoria error")
     try:
         peso_base = float(distribucion_categoria)
+
     except:
-        st.write(f" distribucion_categoria error: ", distribucion_categoria)
+        #st.write(f" distribucion_categoria error: ", distribucion_categoria)
         peso_base = 1 
     
     
-
+ 
 
     # Evitamos log(0) asegurando que peso_base > 0
    # peso_base = max(peso_base, 1e-5)
@@ -244,34 +186,48 @@ def recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, distribucion, w=1
             G.edges[u, v]['weight'] = probabilidad
 
     return G
-"""def aplicar_softmax(diccionario_logits, G):
-   # Aplica Softmax estable a un diccionario de {alimento: logit}.
-    if not diccionario_logits:
-        return {}
-
-    logits = list(diccionario_logits.values())
-    logits_vecinos = {}
-   # max_logit = max(logits)  # Truco de estabilidad numérica
-
-    # Exponencial de cada puntuación ajustada
-    # exps = {item: math.exp(score - max_logit) for item, score in diccionario_logits.items()}
-    for nodo_actual in G.nodes():
-        vecinos_validos = []
-        # Obtenemos los vecinos del nodo actual
-        vecinos = list(G.neighbors(nodo_actual))
-        for v in vecinos:
-            # Si el vecino es el nodo final/terminal, siempre se permite para cerrar el recorrido
-            vecinos_validos.append(v)
-            logits_vecinos[nodo_actual,v] = diccionario_logits.get(v, 0.0)
 
 
 
-    exps = {item: math.exp(score) for item, score in logits_vecinos.items()}
-    suma_exps = sum(exps.values())
+def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, distribucion, datos_usuario, categorias):
 
+    menu_calculado = {}
+    distribucion_usuario = distribucion.get(datos_usuario.get("objetivo", {}).get("objetivo"), {})
+    st.write(f"Distribución del usuario según objetivo {datos_usuario.get('objetivo')}: {distribucion_usuario}")
+    calorias_diarias = datos_usuario.get("energia_total", 2000)  # Valor por defecto si no se encuentra
 
-    # Normalización Softmax
-    pesos_softmax = {item: exp_val / suma_exps for item, exp_val in exps.items()}
-    return pesos_softmax"""
+    porcentajes_comidas = {
+        "Desayuno": distribucion_usuario.get("pcal_desayuno"),
+        "Almuerzo": distribucion_usuario.get("pcal_almuerzo"),
+        "Comida": distribucion_usuario.get("pcal_comida"),
+        "Snack": distribucion_usuario.get("pcal_snack"),
+        "Cena": distribucion_usuario.get("pcal_cena")
+        }
+    porcentajes_macros_dia = {
+        "Hidratos de Carbono": distribucion_usuario.get("pcal_hc/d", 0),
+        "Proteínas": distribucion_usuario.get("pcal_prot/d", 0),
+        "Lípidos": distribucion_usuario.get("pcal_lip/d", 0)
+    }
+    #creamos un diccionario para añadir las cantidades de cada alimento en el menú semanal
+    # Recorremos el menú semanal y calculamos la cantidad de cada alimento según su categoría y la distribución del usuario
+    for comida, datos in menu_semanal.items():
+        
+        alimentos = datos.get("alimentos", [])
+        for alimento in alimentos:
+            st.write(f"Calculando cantidad para {alimento} en {comida}")
+            categoria = alimentos_usuario.get(alimento, {}).get("categoria") if isinstance(alimentos_usuario.get(alimento, {}), dict) else None
+            macro_pincipal = categorias.get(categoria, {}).get("macroprincipal") 
+            st.write(f"Categoría: {categoria}, Macro principal: {macro_pincipal}")
+            calorías_alimento = alimentos_usuario.get(alimento, {}).get("nutricion_por_100g").get("energia_kcal", 0) if isinstance(alimentos_usuario.get(alimento, {}).get("nutricion_por_100g"), dict) else 0
 
+            porcentaje_categoria = porcentajes_macros_dia.get(categoria, 0)
+            porcentaje_comida = porcentajes_comidas.get(categoria, 0)
+            st.write(f"Porcentaje de la categoría {categoria}: {porcentaje_categoria}, Porcentaje de la comida {comida}: {porcentaje_comida}")
+            # Calculamos la cantidad de alimento en gramos según la distribución y las calorías diarias
+            cantidad_alimento = porcentaje_categoria * porcentaje_comida
+            if alimento in menu_calculado:
+                    menu_calculado[alimento] += cantidad_alimento
+            else:
+                    menu_calculado[alimento] = cantidad_alimento    
 
+    st.write(f"**Cantidades calculadas para el menú semanal:** {menu_calculado}")
