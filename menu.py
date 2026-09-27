@@ -194,7 +194,7 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, distribucion,
     menu_calculado = {}
     distribucion_usuario = distribucion.get(datos_usuario.get("objetivo", {}).get("objetivo"), {})
     st.write(f"Distribución del usuario según objetivo {datos_usuario.get('objetivo')}: {distribucion_usuario}")
-    calorias_diarias = datos_usuario.get("energia_total", 2000)  # Valor por defecto si no se encuentra
+    calorias_diarias = datos_usuario.get("GETD", 2000)  # Valor por defecto si no se encuentra
 
     porcentajes_comidas = {
         "Desayuno": distribucion_usuario.get("pcal_desayuno"),

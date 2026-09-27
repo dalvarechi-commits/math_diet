@@ -182,7 +182,7 @@ with tab1:
         st.write("Edad:", datos["edad"], "años")
         st.write("IMC:", datos["imc"])
         st.write("TMB:", datos["tmb"], "calorías/día")
-        st.write("Energía Total:", datos["energia_total"], "calorías/día")
+        st.write("Energía Total:", datos["GETD"], "calorías/día")
         st.write("¡Gracias por proporcionar tus datos! Ahora puedes pasar a la siguiente sección para ingresar tus preferencias alimentarias.")
 
         # guardar datos por email para recuperarlos después

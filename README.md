@@ -50,3 +50,11 @@ Iraki, J., Fitschen, P., Espinar, S., & Helms, E. (2019). Nutrition Recommendati
 1. **Kerksick, C. M., et al. (2018).** ISSN exercise & sports nutrition review update: research & recommendations. *Journal of the International Society of Sports Nutrition*, 15(1), 38.
 2. **Helms, E. R., et al. (2014).** Evidence-based recommendations for natural bodybuilding contest preparation: nutrition and supplementation. *Journal of the International Society of Sports Nutrition*, 11(1), 20.
 3. **Harvard T.H. Chan School of Public Health.** *The Healthy Eating Plate*. [https://nutritionsource.hsph.harvard.edu/healthy-eating-plate/](https://nutritionsource.hsph.harvard.edu/healthy-eating-plate/)
+
+g/kg de proteina para ganar 2.0g/kg
+Iraki, J., Fitschen, P., Espinar, S., & Helms, E. (2019). Nutrition Recommendations for Bodybuilders in the Off-Season: A Narrative Review. Sports, 7(7), 154. https://doi.org/10.3390/sports7070154
+
+g/kg de proteina para perder(1.4g/kg) y mantener(0.8g/kg)
+Pescari, D., Mihuta, M. S., Bena, A., & Stoian, D. (2024). Quantitative analysis of the caloric restriction versus isocaloric diets models based on macronutrients composition: impacts on body weight regulation, anthropometric, and bioimpedance parameters in women with obesity. Frontiers in Nutrition, 11. https://doi.org/10.3389/fnut.2024.1493954
+‌
+‌

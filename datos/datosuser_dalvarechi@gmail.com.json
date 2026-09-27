@@ -7,16 +7,14 @@
   "imc": 19.723183391003463,
   "sexo": "Hombre",
   "tmb": 1552.5,
-  "energia_total": 3105.0,
+  "GETD": 3105.0,
   "actividad_diaria": "Actividad a nivel profesional",
   "preferencias": {
     "alergias": [
       "CAC"
     ]
   },
-  "objetivo": {
-    "objetivo": "ganar"
-  },
+  "objetivo": "ganar",
   "gustos": {
     "Pollo": 5,
     "Pavo": 3,
