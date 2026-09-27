@@ -265,8 +265,8 @@ with tab4:
         if fig2 is not None:
             st.pyplot(fig2, use_container_width=True)
             menu_aleatorio=grafo.generar_menu_aleatorio(grafo_personalizado, nodo_final="USARIO")
-            st.write("Cantidades de alimentos:")
-            st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.distribucion, st.session_state.datos, st.session_state.categorias))
+            # st.write("Cantidades de alimentos:")
+            # st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.distribucion, st.session_state.datos, st.session_state.categorias))
         else:
             st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
 
