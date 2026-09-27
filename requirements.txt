@@ -10,3 +10,5 @@ matplotlib
 
 #Graficos de Plotly
 plotly
+
+pandas

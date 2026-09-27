@@ -182,7 +182,7 @@ with tab1:
         st.write("Edad:", datos["edad"], "años")
         st.write("IMC:", datos["imc"])
         st.write("TMB:", datos["tmb"], "calorías/día")
-        st.write("Energía Total:", datos["energia_total"], "calorías/día")
+        st.write("Energía Total:", datos["GETD"], "calorías/día")
         st.write("¡Gracias por proporcionar tus datos! Ahora puedes pasar a la siguiente sección para ingresar tus preferencias alimentarias.")
 
         # guardar datos por email para recuperarlos después
@@ -265,8 +265,8 @@ with tab4:
         if fig2 is not None:
             st.pyplot(fig2, use_container_width=True)
             menu_aleatorio=grafo.generar_menu_aleatorio(grafo_personalizado, nodo_final="USARIO")
-            st.write("Cantidades de alimentos:")
-            st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.distribucion, st.session_state.datos, st.session_state.categorias))
+            # st.write("Cantidades de alimentos:")
+            # st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.distribucion, st.session_state.datos, st.session_state.categorias))
         else:
             st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
 

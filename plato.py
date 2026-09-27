@@ -14,59 +14,59 @@ def dibujar_plato():
 
     actividad = st.session_state.datos.get("actividad_diaria", "Sedentario (Poco o nada de ejercicio)")
 
-    objetivo = st.session_state.datos.get("objetivo_nutricional", "Mantener Peso")
+    objetivo = st.session_state.datos.get("objetivo", "Mantener Peso")
 
  
-    tdee = st.session_state.datos.get("energia_total", 2400)  # Valor por defecto si no se encuentra
+    GETD = st.session_state.datos.get("GETD", 2400)  # Valor por defecto si no se encuentra
 
     # Lógica de Distribución Corregida
     if objetivo == "ganar":
-        calorias = tdee * 1.10
+        calorias = GETD * 1.10
         # Carbohidratos altos (35%) para glucógeno/fuerza + Proteína alta (30%)
         # Frutas y Verduras reducidas al 35% para no saciar en exceso
         secciones = {
-            "🍠 Fuentes de Carbohidratos": 35,
-            "🥩 Fuentes de Proteína": 30,
-            "🥬 Verduras": 25,
-            "🍎 Frutas": 10
+            "Fuentes de Carbohidratos": 35,
+            "Fuentes de Proteína": 30,
+            "Verduras y hortalizas": 25,
+            "Frutas y derivados": 10
         }
-        g_prot_kg = 2.0
+        g_prot_kg = 1.8
     elif objetivo == "perder":
-        calorias = tdee * 0.80
+        calorias = GETD * 0.80
         # Verduras + Frutas al 50% para saciedad + Proteína alta (30%) para proteger masa magra
         secciones = {
-            "🥬 Verduras": 40,
-            "🥩 Fuentes de Proteína": 30,
-            "🍠 Fuentes de Carbohidratos": 20,
-            "🍎 Frutas": 10
+            "Verduras y hortalizas": 40,
+            "Fuentes de Proteína": 30,
+            "Fuentes de Carbohidratos": 20,
+            "Frutas y derivados": 10
         }
-        g_prot_kg = 2.2
+        g_prot_kg = 1.4
     else:  # Mantener Peso
-        calorias = tdee
+        calorias = GETD
         # Plato Harvard estándar (50% Frutas/Verduras, 25% Proteína, 25% Carbohidratos)
         secciones = {
-            "🥬 Verduras": 35,
-            "🥩 Fuentes de Proteína": 25,
-            "🍠 Fuentes de Carbohidratos": 25,
-            "🍎 Frutas": 15
+            "Verduras y hortalizas": 35,
+            "Fuentes de Proteína": 25,
+            "Fuentes de Carbohidratos": 25,
+            "Frutas y derivados": 15
         }
-        g_prot_kg = 1.6
+        g_prot_kg = 0.8
 
     gramos_proteina = peso * g_prot_kg
     colores = ["#2ECC71", "#E42E2E", "#E9E177", "#A367E7FF"]
     col1, col2 = st.columns([1, 1])
 
     with col1:
-        st.subheader("📊 Metas Energéticas y de Macronutrientes")
-        st.metric("Gasto Calórico Estimado (TDEE)", f"{round(tdee)} kcal")
-        st.metric("Calorías Diarias Objetivo", f"{round(calorias)} kcal", delta=f"{round(calorias - tdee)} kcal")
+        st.subheader("Metas Energéticas y de Macronutrientes")
+        st.metric("Gasto Calórico Estimado (GETD)", f"{round(GETD)} kcal")
+        st.metric("Calorías Diarias Objetivo", f"{round(calorias)} kcal", delta=f"{round(calorias - GETD)} kcal")
         
-        st.subheader("🥩 Ingesta Proteica Recomendada")
+        st.subheader("Ingesta Proteica Recomendada")
         st.metric("Proteína Diaria", f"{round(gramos_proteina)} g", delta=f"{g_prot_kg} g/kg peso")
 
 
     with col2:
-        st.subheader("🍽️ Distribución del Plato")
+        st.subheader("Distribución del Plato")
         
         fig = go.Figure()
 

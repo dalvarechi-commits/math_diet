@@ -35,17 +35,17 @@ def pedirDatosBiometricos(defaults=None):
             if altura > 0:
                 imc = peso / (altura / 100) ** 2
                 tmb = 10 * peso + 6.25 * altura - 5 * edad + (5 if sexo == "Hombre" else -161)
-                energia_total = 0
+                GETD = 0
                 if actividad_diaria == "Sedentario":
-                    energia_total = tmb * 1.2
+                    GETD = tmb * 1.2
                 elif actividad_diaria == "Poca actividad":
-                    energia_total = tmb * 1.4
+                    GETD = tmb * 1.4
                 elif actividad_diaria == "Actividad moderada":
-                    energia_total = tmb * 1.55
+                    GETD = tmb * 1.55
                 elif actividad_diaria == "Muy activo":
-                    energia_total = tmb * 1.75
+                    GETD = tmb * 1.75
                 elif actividad_diaria == "Actividad a nivel profesional":
-                    energia_total = tmb * 2.0
+                    GETD = tmb * 2.0
             else:
                 imc = 0
                 tmb = 0
@@ -58,7 +58,7 @@ def pedirDatosBiometricos(defaults=None):
                 "imc": imc,
                 "sexo": sexo,
                 "tmb": tmb,
-                "energia_total": energia_total,
+                "GETD": GETD,
                 "actividad_diaria": actividad_diaria,
             }
         else:
@@ -94,7 +94,7 @@ def pedirPreferenciasAlimentarias(preferencias_labels, defaults=None):
 
 
 def pedirObjetivoNutricional(defaults=None):
-    defaults = defaults or {}
+    defaults = defaults or "manetener"
     objetivo_labels = {
         "perder": "Perder peso",
         "ganar": "Ganar músculo",
@@ -102,7 +102,7 @@ def pedirObjetivoNutricional(defaults=None):
     }
 
     opciones = list(objetivo_labels.keys())
-    valor_default = defaults.get("objetivo")
+    valor_default = defaults
     index_default = opciones.index(valor_default) if valor_default in opciones else 0
 
     with st.form("formulario_objetivos"):
@@ -115,7 +115,7 @@ def pedirObjetivoNutricional(defaults=None):
 
         enviado = st.form_submit_button("Enviar")
         if enviado:
-            return {"objetivo": objetivo}
+            return  objetivo
         return None  
   
 
