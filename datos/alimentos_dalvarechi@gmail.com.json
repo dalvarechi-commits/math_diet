@@ -138,6 +138,38 @@
       "lipidos_totales_g": 11.1
     }
   },
+  "Merluza": {
+    "id_bedca": "2950",
+    "nombre_bedca": "Merluza fresca",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 1,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 89.0,
+      "proteinas_g": 15.9,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 2.8
+    }
+  },
+  "Salmón": {
+    "id_bedca": "2956",
+    "nombre_bedca": "Salmón fresco",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 1,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 182.0,
+      "proteinas_g": 18.4,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 12.0
+    }
+  },
   "Ternera": {
     "id_bedca": "2715",
     "nombre_bedca": "Carne de ternera magra",
@@ -151,6 +183,54 @@
       "proteinas_g": 20.7,
       "hidratos_carbono_g": 0.0,
       "lipidos_totales_g": 5.4
+    }
+  },
+  "Sardinas": {
+    "id_bedca": "2958",
+    "nombre_bedca": "Sardina",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 1,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 153.0,
+      "proteinas_g": 17.1,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 9.4
+    }
+  },
+  "Boquerones": {
+    "id_bedca": "2920",
+    "nombre_bedca": "Boquerón",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 1,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 142.0,
+      "proteinas_g": 17.6,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 8.0
+    }
+  },
+  "Bacalao": {
+    "id_bedca": "2916",
+    "nombre_bedca": "Bacalao fresco",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 1,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 74.0,
+      "proteinas_g": 17.7,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 0.4
     }
   },
   "Pavo": {
@@ -172,7 +252,7 @@
     "id_bedca": "2650",
     "nombre_bedca": "Carne de cerdo magra",
     "categoria": "Carne roja",
-    "valoracion_usuario": 4,
+    "valoracion_usuario": 5,
     "alergenos": [
       "VEG"
     ],

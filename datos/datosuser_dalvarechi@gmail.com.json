@@ -11,8 +11,7 @@
   "actividad_diaria": "Actividad a nivel profesional",
   "preferencias": {
     "alergias": [
-      "CAC",
-      "PES"
+      "CAC"
     ]
   },
   "objetivo": {
@@ -22,7 +21,7 @@
     "Pollo": 5,
     "Pavo": 3,
     "Ternera": 5,
-    "Cerdo": 4,
+    "Cerdo": 5,
     "Naranja": 3,
     "Platano": 5,
     "Manzana": 4,
@@ -64,6 +63,11 @@
     "Berenjena": 1,
     "Puerro": 2,
     "Esparragos": 2,
-    "Aguacate": 5
+    "Aguacate": 5,
+    "Merluza": 1,
+    "Salmón": 1,
+    "Sardinas": 1,
+    "Boquerones": 1,
+    "Bacalao": 1
   }
 }

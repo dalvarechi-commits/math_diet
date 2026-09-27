@@ -7,3 +7,6 @@ networkx
 
 # Gráficos de Matplotlib
 matplotlib
+
+#Graficos de Plotly
+plotly

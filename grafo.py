@@ -323,7 +323,7 @@ def podarGrafo(G, alimentos_usuario, datos_usuario):
     objetivo = datos_usuario.get('objetivos', {}).get('objetivo', 'mantener')
 
     # Recorremos todas las aristas que han sobrevivido a la poda
-    # u = nodo origen, v = nodo destino
+    # u = nodo inicial, v = nodo final
     '''  for u, v in G.edges():
             
         #  peso_personalizado = menu.calcular_peso(v, alimentos_usuario, objetivo)
@@ -401,12 +401,12 @@ def generar_random_walk(
                 ):
                     
                     vecinos_validos.append(v)
-                    pesos_vecinos.append(G.edges[nodo_actual, v]['weight'])
-                    st.write(f"else vecinos validos de ", nodo_actual, " añadimos ", v, "con peso", G.edges[nodo_actual, v]['weight'])
+                    pesos_vecinos=recalcular_pesos_grafo_softmax_local(G, st.session_state.alimentos_user, st.session_state.datos.get('distribucion', {}), w=1, l=5, b=0)
+                    # st.write(f"else vecinos validos de ", nodo_actual, " añadimos ", v, "con peso", G.edges[nodo_actual, v]['weight'])
 
         # Si no hay vecinos válidos según la regla, nos detenemos para evitar errores
         if not vecinos_validos:
-            st.write(f" sin vecinos validos de ", nodo_actual)
+            # st.write(f" sin vecinos validos de ", nodo_actual)
             break
 
         # Elegimos el siguiente nodo de forma aleatoria solo entre los válidos
@@ -433,7 +433,7 @@ def generar_menu_aleatorio(G, nodo_final):
     if G is None:
         st.write("El grafo es None. No se puede generar un menú aleatorio.")
         return None
-    
+    menu_completo = {}
     nodos = list(G.nodes())
     
 
@@ -452,5 +452,13 @@ def generar_menu_aleatorio(G, nodo_final):
                 nodos_terminales=nodo_final,
                 categorias_permitidas=permitidas,  # <-- Se pasa la lista extraída del JSON
             )
+            # st.write(f"Random walk generado para: {menu_aleatorio}")
+            menu_completo[nodo] = {
+                "categoria_comida": categoria_tipo_comida,
+                #"camino": menu_aleatorio,
+                # Extraemos los alimentos excluyendo el nodo inicial si es una categoría
+                "alimentos": [n for n in menu_aleatorio if n != nodo],
+            }
 
-            st.write(f"**Camino generado:** {menu_aleatorio}")
+    st.write(f"**Menu generado:** {menu_completo}")
+    return menu_completo

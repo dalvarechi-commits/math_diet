@@ -28,20 +28,18 @@
       "GLU"
     ]
   },
-  "objetivos": {
-    "objetivo": "Perder peso"
-  },
+  "objetivo": null,
   "gustos": {
-    "Naranja": 3,
-    "Platano": 3,
-    "Manzana": 3,
-    "Pera": 3,
-    "Fresas": 3,
-    "Uvas": 3,
-    "Sandía": 3,
-    "Melón": 3,
-    "Mandarina": 3,
-    "Pipas": 3,
+    "Naranja": 5,
+    "Platano": 1,
+    "Manzana": 1,
+    "Pera": 1,
+    "Fresas": 1,
+    "Uvas": 5,
+    "Sandía": 5,
+    "Melón": 5,
+    "Mandarina": 5,
+    "Pipas": 1,
     "Arroz": 3,
     "Patatas": 3,
     "Quinoa": 3,
