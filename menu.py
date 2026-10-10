@@ -28,7 +28,7 @@ def nalimentos_por_cat(categoria_buscada, alimentos):
     return contador
 
 
-def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b=1):
+def calcular_peso(alimento, alimentos, objetivos=None, w=1, l=5, b=1):
     # Recuperamos las categorías desde session_state o el fichero JSON
     if "categorias" not in st.session_state:
         categorias_path = Path(__file__).resolve().parent / "datos" / "categorias.json"
@@ -43,7 +43,7 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b
         distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
         with open(distribucion_path, 'r', encoding='utf-8') as f:
             distribucion = json.load(f)
-            st.session_state.distribucion = distribucion.get(objetivos_nutricionales, {})
+            st.session_state.distribucion = distribucion.get(objetivos, {})
     else:        
         distribucion = st.session_state.get("distribucion", {})        
     
@@ -96,13 +96,13 @@ def calcular_peso(alimento, alimentos, objetivos_nutricionales=None, w=1, l=5, b
     
     return peso_personalizado
 
-def calcular_logit_alimento(alimento, alimentos,objetivos_nutricionales=None, distribucion=None, w=1.0, l=5.0, b=0.0):
+def calcular_logit_alimento(alimento, alimentos,objetivos=None, distribucion=None, w=1.0, l=5.0, b=0.0):
     #Calcula la puntuación raw (logit) z_i para un alimento.
     if "distribucion" not in st.session_state:
         distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
         with open(distribucion_path, 'r', encoding='utf-8') as f:
             distribucion = json.load(f)
-            st.session_state.distribucion = distribucion.get(objetivos_nutricionales, {})
+            st.session_state.distribucion = distribucion.get(objetivos, {})
     else:        
         distribucion = st.session_state.get("distribucion", {})        
     
@@ -127,7 +127,9 @@ def calcular_logit_alimento(alimento, alimentos,objetivos_nutricionales=None, di
                 distribucion_categoria = 1.0  # Valor de respaldo si el dato no es convertible
                 st.write(f"distribucion_categoria error")
     try:
-        peso_base = float(distribucion_categoria)
+        nalimentos_categoria = nalimentos_por_cat(categoria, alimentos)
+        peso_base = float(distribucion_categoria)/nalimentos_categoria if nalimentos_categoria != 0 else 1.0
+        #st.write(f"peso_base logit", peso_base )
 
     except:
         #st.write(f" distribucion_categoria error: ", distribucion_categoria)
@@ -152,8 +154,7 @@ def aplicar_softmax(diccionario_logits):
 
     logits = list(diccionario_logits.values())
     max_logit = max(logits)
-
-    exps = {item: math.exp(score - max_logit) for item, score in diccionario_logits.items()}
+    exps = {item: math.exp(score) for item, score in diccionario_logits.items()}
     suma_exps = sum(exps.values())
 
     return {item: exp_val / suma_exps for item, exp_val in exps.items()}
@@ -189,26 +190,37 @@ def recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, distribucion, w=1
 
 
 
-def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, distribucion, datos_usuario, categorias):
+def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario, categorias):
 
     menu_calculado = []
-    distribucion_usuario = distribucion.get(datos_usuario.get("objetivo", "mantener"), {})
+    if "distribucion" not in st.session_state or not st.session_state.distribucion:
+        distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
+        with open(distribucion_path, 'r', encoding='utf-8') as f:
+            distribucion = json.load(f)
+            st.session_state.distribucion = distribucion.get(datos_usuario.get("objetivo"))
+            distribucion = st.session_state.get("distribucion", {})
+            st.write(f"Distribución cargada desde JSON: {distribucion}") 
+    else:        
+        distribucion = st.session_state.get("distribucion", {})         
+        st.write(f"Distribución cargada desde session_state: {distribucion}")
+
+    distribucion_usuario = distribucion#.get(datos_usuario.get("objetivo", "mantener"), {})
     st.write(f"Distribución del usuario según objetivo {datos_usuario.get('objetivo')}: {distribucion_usuario}")
     calorias_diarias = datos_usuario.get("GETD", 2000)  # Valor por defecto si no se encuentra
 
     porcentajes_comidas = {
-        "Desayuno": distribucion_usuario.get("pcal_desayuno"),
-        "Almuerzo": distribucion_usuario.get("pcal_almuerzo"),
-        "Comida": distribucion_usuario.get("pcal_comida"),
-        "Snack": distribucion_usuario.get("pcal_merienda"),
-        "Cena": distribucion_usuario.get("pcal_cena")
+        "Desayuno": distribucion_usuario.get("pcal_desayuno", 0),
+        "Almuerzo": distribucion_usuario.get("pcal_almuerzo", 0),
+        "Comida": distribucion_usuario.get("pcal_comida", 0),
+        "Snack": distribucion_usuario.get("pcal_merienda", 0),
+        "Cena": distribucion_usuario.get("pcal_cena", 0)
         }
     porcentajes_macros_dia = {
         "carbohidrato": distribucion_usuario.get("pcal_hc/d", 0),
         "proteína": distribucion_usuario.get("pcal_prot/d", 0),
-        "grasa saludable": distribucion_usuario.get("pcal_lip/d", 0)
+        "grasa saludable": distribucion_usuario.get("pcal_lip/d", 0),
     }
-
+ 
     # Definimos las filas (comidas) y mapeamos las letras a días completos
     orden_comidas = ["Desayuno", "Almuerzo", "Comida", "Merienda", "Cena"]
     mapa_dias = {
@@ -230,7 +242,7 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, distribucion,
         dia_letra, comida_nombre = partes[0], partes[1]
         dia_nombre = mapa_dias.get(dia_letra, dia_letra)
         
-        # En tu JSON, Almuerzo y Merienda tienen categoria_comida='Snack'. 
+        # En el JSON, Almuerzo y Merienda tienen categoria_comida='Snack'. 
         # Usaremos esto para buscar el % calórico correcto.
         categoria_comida = datos.get("categoria_comida", comida_nombre)
 
@@ -249,13 +261,15 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, distribucion,
             # Buscamos el porcentaje basado en la categoría (ej. "Snack")
             st.write(f"Calculando cantidad para {alimento} en {comida_nombre} ({dia_nombre}) de la categoría {categoria_comida} con macro {macro_principal}:")
             porcentaje_comida = porcentajes_comidas.get(categoria_comida, 0)
+            st.write(f"Porcentaje macro {macro_principal}: {porcentaje_macro}, Porcentaje de la comida {comida_nombre}: {porcentaje_comida}")
 
             # Cálculo de gramos
             if calorias_100g > 0:
                 calorias_ingrediente = calorias_diarias * (
-                    (porcentaje_comida / 100) * (porcentaje_macro / 100)
+                    (porcentaje_comida) * (porcentaje_macro)
                 )
                 cantidad_gramos = round((calorias_ingrediente / calorias_100g) * 100)
+                st.write(f"Calorías asignadas al ingrediente {alimento}: {calorias_ingrediente} kcal, Cantidad calculada: {cantidad_gramos} g")
             else:
                 cantidad_gramos = 0
 
@@ -268,13 +282,13 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, distribucion,
 
     # 3. Convertimos a DataFrame y transponemos (.T) 
     df_menu = pd.DataFrame(matriz_menu).T
-    
+    st.write(f"**Menú Semanal Calculado (DataFrame):**")
     # Ordenamos las columnas explícitamente para que siga el orden Lunes -> Domingo
     df_menu = df_menu.reindex(columns=list(mapa_dias.values()))
 
     # Dibujamos la tabla en Streamlit
-    st.subheader("📅 Plan Nutricional Semanal")
-    st.dataframe(df_menu, use_container_width=True)
+    st.subheader("Plan Nutricional Semanal")
+    #st.dataframe(df_menu, use_container_width=True)
 
 
     

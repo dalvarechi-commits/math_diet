@@ -18,6 +18,7 @@ def dibujar_plato():
 
  
     GETD = st.session_state.datos.get("GETD", 2400)  # Valor por defecto si no se encuentra
+    st.write(f"Objetivo Nutricional: {objetivo} y actividad diaria: {actividad}")
 
     # Lógica de Distribución Corregida
     if objetivo == "ganar":
@@ -31,6 +32,17 @@ def dibujar_plato():
             "Frutas y derivados": 10
         }
         g_prot_kg = 1.8
+    elif objetivo == "ganar_deportista":
+            calorias = GETD * 1.10
+            # Carbohidratos altos (35%) para glucógeno/fuerza + Proteína alta (30%)
+            # Frutas y Verduras reducidas al 35% para no saciar en exceso
+            secciones = {
+                "Fuentes de Carbohidratos": 35,
+                "Fuentes de Proteína": 30,
+                "Verduras y hortalizas": 25,
+                "Frutas y derivados": 10
+            }
+            g_prot_kg = 1.8
     elif objetivo == "perder":
         calorias = GETD * 0.80
         # Verduras + Frutas al 50% para saciedad + Proteína alta (30%) para proteger masa magra
@@ -51,8 +63,9 @@ def dibujar_plato():
             "Frutas y derivados": 15
         }
         g_prot_kg = 0.8
-
+    st.session_state.datos["calorias"] = calorias
     gramos_proteina = peso * g_prot_kg
+    st.session_state.datos["gramos_proteina"] = gramos_proteina
     colores = ["#2ECC71", "#E42E2E", "#E9E177", "#A367E7FF"]
     col1, col2 = st.columns([1, 1])
 

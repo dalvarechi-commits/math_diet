@@ -197,16 +197,17 @@ with tab2:
             st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
         st.write("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
         defaults_obj = st.session_state.get('objetivo', {})
-        objetivo = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
-        if objetivo:
+        objetivo_form = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
+        if objetivo_form:
             st.session_state.objetivo_completado = True
-            st.session_state.objetivo = objetivo
+            st.session_state.objetivo = objetivo_form
             st.success("✅ Objetivo nutricional completado")
-            st.write("Objetivo seleccionado:", objetivo["objetivo"])
+            st.write("Objetivo seleccionado:", st.session_state.objetivo)
             _guardar_datos_usuario()
+            plato.dibujar_plato()
+            
 
-        plato.dibujar_plato()
-
+       
 
 with tab3:
     if not st.session_state.datos_completados:
@@ -261,12 +262,13 @@ with tab4:
         #fig2 = grafo.pintarGrafo('m_adyacencia.csv',st.session_state.alimentos_user, st.session_state.datos['nombre'])
         grafo_personalizado = grafo.podarGrafo(st.session_state.grafo, st.session_state.alimentos_user, st.session_state.get("datos"))
         st.session_state.grafo_personalizado = grafo_personalizado
-        fig2 = grafo.dibujar_grafo(grafo_personalizado, st.session_state.alimentos_user)
+        fig2 = grafo.dibujar_grafo(grafo_personalizado, st.session_state.alimentos_user,3) #El valor 3 nos permite aumentar el grosor de las aristas para que se vea mejor en la representación del grafo
+
         if fig2 is not None:
             st.pyplot(fig2, use_container_width=True)
             menu_aleatorio=grafo.generar_menu_aleatorio(grafo_personalizado, nodo_final="USARIO")
-            # st.write("Cantidades de alimentos:")
-            # st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.distribucion, st.session_state.datos, st.session_state.categorias))
+            st.write("Cantidades de alimentos:")
+            st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.datos, st.session_state.categorias))
         else:
             st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')
 

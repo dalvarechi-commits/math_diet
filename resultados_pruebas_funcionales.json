@@ -1,0 +1,1273 @@
+[
+  {
+    "perfil": "Ana balanceada",
+    "email": "ana@test.com",
+    "objetivo": "mantener",
+    "alergias": [],
+    "nodos_generados": 35,
+    "menu": {
+      "L_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Leche",
+          "Avena",
+          "Pera"
+        ]
+      },
+      "L_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pistachos",
+          "Manzana"
+        ]
+      },
+      "L_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Alubias",
+          "Arroz",
+          "Tomate",
+          "Platano"
+        ]
+      },
+      "L_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Platano"
+        ]
+      },
+      "L_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Boquerones",
+          "Patatas",
+          "Repollo",
+          "Platano"
+        ]
+      },
+      "M_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Galletas",
+          "Platano"
+        ]
+      },
+      "M_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Galletas",
+          "Platano"
+        ]
+      },
+      "M_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pavo",
+          "Boniato",
+          "Zanahoria",
+          "Melón"
+        ]
+      },
+      "M_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Fresas"
+        ]
+      },
+      "M_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Salmón",
+          "Pasta",
+          "Esparragos",
+          "Melón"
+        ]
+      },
+      "X_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Queso",
+          "Fresas"
+        ]
+      },
+      "X_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pistachos",
+          "Mandarina"
+        ]
+      },
+      "X_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Lentejas",
+          "Arroz",
+          "Pimientos",
+          "Pera"
+        ]
+      },
+      "X_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Galletas",
+          "Pera"
+        ]
+      },
+      "X_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Huevos",
+          "Quinoa",
+          "Zanahoria",
+          "Sandía"
+        ]
+      },
+      "J_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Yogur",
+          "Melón"
+        ]
+      },
+      "J_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Cacahuetes",
+          "Uvas"
+        ]
+      },
+      "J_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Patatas",
+          "Repollo",
+          "Fresas"
+        ]
+      },
+      "J_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Melón"
+        ]
+      },
+      "J_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Boquerones",
+          "Boniato",
+          "Pimientos",
+          "Pera"
+        ]
+      },
+      "V_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Cereales",
+          "Mandarina"
+        ]
+      },
+      "V_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pera"
+        ]
+      },
+      "V_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Sardinas",
+          "Quinoa",
+          "Tomate",
+          "Melón"
+        ]
+      },
+      "V_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Galletas",
+          "Melón"
+        ]
+      },
+      "V_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Lentejas",
+          "Arroz",
+          "Calabacín",
+          "Sandía"
+        ]
+      },
+      "S_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Leche",
+          "Platano"
+        ]
+      },
+      "S_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Queso",
+          "Naranja"
+        ]
+      },
+      "S_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Sardinas",
+          "Pasta",
+          "Pimientos",
+          "Naranja"
+        ]
+      },
+      "S_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Mandarina"
+        ]
+      },
+      "S_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Salmón",
+          "Boniato",
+          "Aguacate",
+          "Uvas"
+        ]
+      },
+      "D_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Leche",
+          "Sandía"
+        ]
+      },
+      "D_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Nueces",
+          "Pera"
+        ]
+      },
+      "D_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Ternera",
+          "Arroz",
+          "Tomate",
+          "Platano"
+        ]
+      },
+      "D_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Queso",
+          "Sandía"
+        ]
+      },
+      "D_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Lentejas",
+          "Patatas",
+          "Pimientos",
+          "Naranja"
+        ]
+      }
+    },
+    "tabla": {
+      "Desayuno": {
+        "Lunes": "Leche (0g)\nAvena (0g)\nPera (0g)",
+        "Martes": "Huevos (0g)\nGalletas (0g)\nPlatano (0g)",
+        "Miércoles": "Queso (0g)\nFresas (0g)",
+        "Jueves": "Yogur (0g)\nMelón (0g)",
+        "Viernes": "Huevos (0g)\nCereales (0g)\nMandarina (0g)",
+        "Sábado": "Huevos (0g)\nLeche (0g)\nPlatano (0g)",
+        "Domingo": "Leche (0g)\nSandía (0g)"
+      },
+      "Almuerzo": {
+        "Lunes": "Pistachos (0g)\nManzana (0g)",
+        "Martes": "Galletas (0g)\nPlatano (0g)",
+        "Miércoles": "Pistachos (0g)\nMandarina (0g)",
+        "Jueves": "Cacahuetes (0g)\nUvas (0g)",
+        "Viernes": "Pera (0g)",
+        "Sábado": "Queso (0g)\nNaranja (0g)",
+        "Domingo": "Nueces (0g)\nPera (0g)"
+      },
+      "Comida": {
+        "Lunes": "Alubias (0g)\nArroz (0g)\nTomate (0g)\nPlatano (0g)",
+        "Martes": "Pavo (0g)\nBoniato (0g)\nZanahoria (0g)\nMelón (0g)",
+        "Miércoles": "Lentejas (0g)\nArroz (0g)\nPimientos (0g)\nPera (0g)",
+        "Jueves": "Pollo (0g)\nPatatas (0g)\nRepollo (0g)\nFresas (0g)",
+        "Viernes": "Sardinas (0g)\nQuinoa (0g)\nTomate (0g)\nMelón (0g)",
+        "Sábado": "Sardinas (0g)\nPasta (0g)\nPimientos (0g)\nNaranja (0g)",
+        "Domingo": "Ternera (0g)\nArroz (0g)\nTomate (0g)\nPlatano (0g)"
+      },
+      "Merienda": {
+        "Lunes": "Platano (0g)",
+        "Martes": "Fresas (0g)",
+        "Miércoles": "Galletas (0g)\nPera (0g)",
+        "Jueves": "Melón (0g)",
+        "Viernes": "Galletas (0g)\nMelón (0g)",
+        "Sábado": "Mandarina (0g)",
+        "Domingo": "Queso (0g)\nSandía (0g)"
+      },
+      "Cena": {
+        "Lunes": "Boquerones (0g)\nPatatas (0g)\nRepollo (0g)\nPlatano (0g)",
+        "Martes": "Salmón (0g)\nPasta (0g)\nEsparragos (0g)\nMelón (0g)",
+        "Miércoles": "Huevos (0g)\nQuinoa (0g)\nZanahoria (0g)\nSandía (0g)",
+        "Jueves": "Boquerones (0g)\nBoniato (0g)\nPimientos (0g)\nPera (0g)",
+        "Viernes": "Lentejas (0g)\nArroz (0g)\nCalabacín (0g)\nSandía (0g)",
+        "Sábado": "Salmón (0g)\nBoniato (0g)\nAguacate (0g)\nUvas (0g)",
+        "Domingo": "Lentejas (0g)\nPatatas (0g)\nPimientos (0g)\nNaranja (0g)"
+      }
+    }
+  },
+  {
+    "perfil": "Luis pérdida de peso",
+    "email": "luis@test.com",
+    "objetivo": "perder",
+    "alergias": [
+      "LAC",
+      "GLU"
+    ],
+    "nodos_generados": 35,
+    "menu": {
+      "L_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos"
+        ]
+      },
+      "L_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Fresas"
+        ]
+      },
+      "L_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Quinoa",
+          "Puerro",
+          "Uvas"
+        ]
+      },
+      "L_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Nueces",
+          "Naranja"
+        ]
+      },
+      "L_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Alubias",
+          "Arroz",
+          "Aguacate",
+          "Platano"
+        ]
+      },
+      "M_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos"
+        ]
+      },
+      "M_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Manzana"
+        ]
+      },
+      "M_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Sardinas",
+          "Patatas",
+          "Calabacín",
+          "Manzana"
+        ]
+      },
+      "M_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Melón"
+        ]
+      },
+      "M_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Bacalao",
+          "Quinoa",
+          "Aguacate",
+          "Uvas"
+        ]
+      },
+      "X_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos"
+        ]
+      },
+      "X_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Fresas"
+        ]
+      },
+      "X_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Bacalao",
+          "Patatas",
+          "Puerro",
+          "Fresas"
+        ]
+      },
+      "X_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pistachos",
+          "Melón"
+        ]
+      },
+      "X_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Boniato",
+          "Puerro",
+          "Pera"
+        ]
+      },
+      "J_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos"
+        ]
+      },
+      "J_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Sandía"
+        ]
+      },
+      "J_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Patatas",
+          "Repollo",
+          "Naranja"
+        ]
+      },
+      "J_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Mandarina"
+        ]
+      },
+      "J_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Huevos",
+          "Patatas",
+          "Pimientos",
+          "Mandarina"
+        ]
+      },
+      "V_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos"
+        ]
+      },
+      "V_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pipas",
+          "Mandarina"
+        ]
+      },
+      "V_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Quinoa",
+          "Aguacate",
+          "Pera"
+        ]
+      },
+      "V_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pipas",
+          "Platano"
+        ]
+      },
+      "V_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Bacalao",
+          "Patatas",
+          "Aguacate",
+          "Melón"
+        ]
+      },
+      "S_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos"
+        ]
+      },
+      "S_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Platano"
+        ]
+      },
+      "S_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Boniato",
+          "Lechuga",
+          "Pera"
+        ]
+      },
+      "S_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Naranja"
+        ]
+      },
+      "S_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Patatas",
+          "Berenjena",
+          "Manzana"
+        ]
+      },
+      "D_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos"
+        ]
+      },
+      "D_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Mandarina"
+        ]
+      },
+      "D_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Ternera",
+          "Patatas",
+          "Pimientos",
+          "Sandía"
+        ]
+      },
+      "D_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Sandía"
+        ]
+      },
+      "D_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Patatas",
+          "Tomate",
+          "Pera"
+        ]
+      }
+    },
+    "tabla": {
+      "Desayuno": {
+        "Lunes": "Huevos (0g)",
+        "Martes": "Huevos (0g)",
+        "Miércoles": "Huevos (0g)",
+        "Jueves": "Huevos (0g)",
+        "Viernes": "Huevos (0g)",
+        "Sábado": "Huevos (0g)",
+        "Domingo": "Huevos (0g)"
+      },
+      "Almuerzo": {
+        "Lunes": "Fresas (0g)",
+        "Martes": "Manzana (0g)",
+        "Miércoles": "Fresas (0g)",
+        "Jueves": "Sandía (0g)",
+        "Viernes": "Pipas (0g)\nMandarina (0g)",
+        "Sábado": "Platano (0g)",
+        "Domingo": "Mandarina (0g)"
+      },
+      "Comida": {
+        "Lunes": "Pollo (0g)\nQuinoa (0g)\nPuerro (0g)\nUvas (0g)",
+        "Martes": "Sardinas (0g)\nPatatas (0g)\nCalabacín (0g)\nManzana (0g)",
+        "Miércoles": "Bacalao (0g)\nPatatas (0g)\nPuerro (0g)\nFresas (0g)",
+        "Jueves": "Garbanzos (0g)\nPatatas (0g)\nRepollo (0g)\nNaranja (0g)",
+        "Viernes": "Pollo (0g)\nQuinoa (0g)\nAguacate (0g)\nPera (0g)",
+        "Sábado": "Pollo (0g)\nBoniato (0g)\nLechuga (0g)\nPera (0g)",
+        "Domingo": "Ternera (0g)\nPatatas (0g)\nPimientos (0g)\nSandía (0g)"
+      },
+      "Merienda": {
+        "Lunes": "Nueces (0g)\nNaranja (0g)",
+        "Martes": "Melón (0g)",
+        "Miércoles": "Pistachos (0g)\nMelón (0g)",
+        "Jueves": "Mandarina (0g)",
+        "Viernes": "Pipas (0g)\nPlatano (0g)",
+        "Sábado": "Naranja (0g)",
+        "Domingo": "Sandía (0g)"
+      },
+      "Cena": {
+        "Lunes": "Alubias (0g)\nArroz (0g)\nAguacate (0g)\nPlatano (0g)",
+        "Martes": "Bacalao (0g)\nQuinoa (0g)\nAguacate (0g)\nUvas (0g)",
+        "Miércoles": "Pollo (0g)\nBoniato (0g)\nPuerro (0g)\nPera (0g)",
+        "Jueves": "Huevos (0g)\nPatatas (0g)\nPimientos (0g)\nMandarina (0g)",
+        "Viernes": "Bacalao (0g)\nPatatas (0g)\nAguacate (0g)\nMelón (0g)",
+        "Sábado": "Garbanzos (0g)\nPatatas (0g)\nBerenjena (0g)\nManzana (0g)",
+        "Domingo": "Garbanzos (0g)\nPatatas (0g)\nTomate (0g)\nPera (0g)"
+      }
+    }
+  },
+  {
+    "perfil": "Marta vegana",
+    "email": "marta@test.com",
+    "objetivo": "ganar",
+    "alergias": [
+      "VEG"
+    ],
+    "nodos_generados": 35,
+    "menu": {
+      "L_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": []
+      },
+      "L_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Naranja"
+        ]
+      },
+      "L_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Pasta",
+          "Zanahoria",
+          "Mandarina"
+        ]
+      },
+      "L_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Nueces",
+          "Fresas"
+        ]
+      },
+      "L_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Lentejas",
+          "Patatas",
+          "Tomate",
+          "Pera"
+        ]
+      },
+      "M_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": []
+      },
+      "M_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pera"
+        ]
+      },
+      "M_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Patatas",
+          "Pimientos",
+          "Fresas"
+        ]
+      },
+      "M_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Fresas"
+        ]
+      },
+      "M_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Guisantes",
+          "Quinoa",
+          "Repollo",
+          "Mandarina"
+        ]
+      },
+      "X_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": []
+      },
+      "X_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Cacahuetes",
+          "Fresas"
+        ]
+      },
+      "X_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Patatas",
+          "Tomate",
+          "Melón"
+        ]
+      },
+      "X_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Cacahuetes",
+          "Pera"
+        ]
+      },
+      "X_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Guisantes",
+          "Pasta",
+          "Aguacate",
+          "Platano"
+        ]
+      },
+      "J_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": []
+      },
+      "J_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Fresas"
+        ]
+      },
+      "J_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Pasta",
+          "Puerro",
+          "Mandarina"
+        ]
+      },
+      "J_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Sandía"
+        ]
+      },
+      "J_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Pasta",
+          "Aguacate",
+          "Fresas"
+        ]
+      },
+      "V_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": []
+      },
+      "V_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Fresas"
+        ]
+      },
+      "V_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Guisantes",
+          "Arroz",
+          "Pimientos",
+          "Sandía"
+        ]
+      },
+      "V_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Uvas"
+        ]
+      },
+      "V_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Pasta",
+          "Berenjena",
+          "Uvas"
+        ]
+      },
+      "S_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": []
+      },
+      "S_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Galletas",
+          "Mandarina"
+        ]
+      },
+      "S_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Alubias",
+          "Arroz",
+          "Lechuga",
+          "Mandarina"
+        ]
+      },
+      "S_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pan",
+          "Platano"
+        ]
+      },
+      "S_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Patatas",
+          "Judias Verdes",
+          "Naranja"
+        ]
+      },
+      "D_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": []
+      },
+      "D_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Platano"
+        ]
+      },
+      "D_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Guisantes",
+          "Quinoa",
+          "Calabacín",
+          "Naranja"
+        ]
+      },
+      "D_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Melón"
+        ]
+      },
+      "D_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Alubias",
+          "Patatas",
+          "Calabacín",
+          "Naranja"
+        ]
+      }
+    },
+    "tabla": {
+      "Desayuno": {
+        "Lunes": "",
+        "Martes": "",
+        "Miércoles": "",
+        "Jueves": "",
+        "Viernes": "",
+        "Sábado": "",
+        "Domingo": ""
+      },
+      "Almuerzo": {
+        "Lunes": "Naranja (0g)",
+        "Martes": "Pera (0g)",
+        "Miércoles": "Cacahuetes (0g)\nFresas (0g)",
+        "Jueves": "Fresas (0g)",
+        "Viernes": "Fresas (0g)",
+        "Sábado": "Galletas (0g)\nMandarina (0g)",
+        "Domingo": "Platano (0g)"
+      },
+      "Comida": {
+        "Lunes": "Garbanzos (0g)\nPasta (0g)\nZanahoria (0g)\nMandarina (0g)",
+        "Martes": "Garbanzos (0g)\nPatatas (0g)\nPimientos (0g)\nFresas (0g)",
+        "Miércoles": "Garbanzos (0g)\nPatatas (0g)\nTomate (0g)\nMelón (0g)",
+        "Jueves": "Garbanzos (0g)\nPasta (0g)\nPuerro (0g)\nMandarina (0g)",
+        "Viernes": "Guisantes (0g)\nArroz (0g)\nPimientos (0g)\nSandía (0g)",
+        "Sábado": "Alubias (0g)\nArroz (0g)\nLechuga (0g)\nMandarina (0g)",
+        "Domingo": "Guisantes (0g)\nQuinoa (0g)\nCalabacín (0g)\nNaranja (0g)"
+      },
+      "Merienda": {
+        "Lunes": "Nueces (0g)\nFresas (0g)",
+        "Martes": "Fresas (0g)",
+        "Miércoles": "Cacahuetes (0g)\nPera (0g)",
+        "Jueves": "Sandía (0g)",
+        "Viernes": "Uvas (0g)",
+        "Sábado": "Pan (0g)\nPlatano (0g)",
+        "Domingo": "Melón (0g)"
+      },
+      "Cena": {
+        "Lunes": "Lentejas (0g)\nPatatas (0g)\nTomate (0g)\nPera (0g)",
+        "Martes": "Guisantes (0g)\nQuinoa (0g)\nRepollo (0g)\nMandarina (0g)",
+        "Miércoles": "Guisantes (0g)\nPasta (0g)\nAguacate (0g)\nPlatano (0g)",
+        "Jueves": "Garbanzos (0g)\nPasta (0g)\nAguacate (0g)\nFresas (0g)",
+        "Viernes": "Garbanzos (0g)\nPasta (0g)\nBerenjena (0g)\nUvas (0g)",
+        "Sábado": "Garbanzos (0g)\nPatatas (0g)\nJudias Verdes (0g)\nNaranja (0g)",
+        "Domingo": "Alubias (0g)\nPatatas (0g)\nCalabacín (0g)\nNaranja (0g)"
+      }
+    }
+  },
+  {
+    "perfil": "Pablo con intolerancia",
+    "email": "pablo@test.com",
+    "objetivo": "mantener",
+    "alergias": [
+      "LAC",
+      "FRU"
+    ],
+    "nodos_generados": 35,
+    "menu": {
+      "L_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Cereales",
+          "Pera"
+        ]
+      },
+      "L_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Manzana"
+        ]
+      },
+      "L_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Lentejas",
+          "Patatas",
+          "Judias Verdes",
+          "Mandarina"
+        ]
+      },
+      "L_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Sandía"
+        ]
+      },
+      "L_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Alubias",
+          "Patatas",
+          "Repollo",
+          "Platano"
+        ]
+      },
+      "M_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Avena",
+          "Fresas"
+        ]
+      },
+      "M_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Uvas"
+        ]
+      },
+      "M_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Cerdo",
+          "Boniato",
+          "Zanahoria",
+          "Uvas"
+        ]
+      },
+      "M_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Platano"
+        ]
+      },
+      "M_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Salmón",
+          "Boniato",
+          "Judias Verdes",
+          "Manzana"
+        ]
+      },
+      "X_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Avena",
+          "Uvas"
+        ]
+      },
+      "X_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Manzana"
+        ]
+      },
+      "X_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Bacalao",
+          "Boniato",
+          "Lechuga",
+          "Uvas"
+        ]
+      },
+      "X_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pipas",
+          "Mandarina"
+        ]
+      },
+      "X_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Pasta",
+          "Repollo",
+          "Sandía"
+        ]
+      },
+      "J_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Cereales",
+          "Uvas"
+        ]
+      },
+      "J_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Melón"
+        ]
+      },
+      "J_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Garbanzos",
+          "Patatas",
+          "Zanahoria",
+          "Naranja"
+        ]
+      },
+      "J_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Pan",
+          "Fresas"
+        ]
+      },
+      "J_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Arroz",
+          "Zanahoria",
+          "Melón"
+        ]
+      },
+      "V_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Cereales",
+          "Mandarina"
+        ]
+      },
+      "V_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Manzana"
+        ]
+      },
+      "V_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pavo",
+          "Pasta",
+          "Puerro",
+          "Naranja"
+        ]
+      },
+      "V_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Fresas"
+        ]
+      },
+      "V_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Boquerones",
+          "Boniato",
+          "Puerro",
+          "Platano"
+        ]
+      },
+      "S_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Avena",
+          "Mandarina"
+        ]
+      },
+      "S_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Manzana"
+        ]
+      },
+      "S_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Pollo",
+          "Pasta",
+          "Esparragos",
+          "Pera"
+        ]
+      },
+      "S_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Uvas"
+        ]
+      },
+      "S_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Lentejas",
+          "Patatas",
+          "Tomate",
+          "Naranja"
+        ]
+      },
+      "D_Desayuno": {
+        "categoria_comida": "Desayuno",
+        "alimentos": [
+          "Huevos",
+          "Avena",
+          "Uvas"
+        ]
+      },
+      "D_Almuerzo": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Naranja"
+        ]
+      },
+      "D_Comida": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Boquerones",
+          "Pasta",
+          "Esparragos",
+          "Pera"
+        ]
+      },
+      "D_Merienda": {
+        "categoria_comida": "Snack",
+        "alimentos": [
+          "Melón"
+        ]
+      },
+      "D_Cena": {
+        "categoria_comida": "Comida",
+        "alimentos": [
+          "Lentejas",
+          "Patatas",
+          "Berenjena",
+          "Melón"
+        ]
+      }
+    },
+    "tabla": {
+      "Desayuno": {
+        "Lunes": "Huevos (0g)\nCereales (0g)\nPera (0g)",
+        "Martes": "Huevos (0g)\nAvena (0g)\nFresas (0g)",
+        "Miércoles": "Huevos (0g)\nAvena (0g)\nUvas (0g)",
+        "Jueves": "Huevos (0g)\nCereales (0g)\nUvas (0g)",
+        "Viernes": "Huevos (0g)\nCereales (0g)\nMandarina (0g)",
+        "Sábado": "Huevos (0g)\nAvena (0g)\nMandarina (0g)",
+        "Domingo": "Huevos (0g)\nAvena (0g)\nUvas (0g)"
+      },
+      "Almuerzo": {
+        "Lunes": "Manzana (0g)",
+        "Martes": "Uvas (0g)",
+        "Miércoles": "Manzana (0g)",
+        "Jueves": "Melón (0g)",
+        "Viernes": "Manzana (0g)",
+        "Sábado": "Manzana (0g)",
+        "Domingo": "Naranja (0g)"
+      },
+      "Comida": {
+        "Lunes": "Lentejas (0g)\nPatatas (0g)\nJudias Verdes (0g)\nMandarina (0g)",
+        "Martes": "Cerdo (0g)\nBoniato (0g)\nZanahoria (0g)\nUvas (0g)",
+        "Miércoles": "Bacalao (0g)\nBoniato (0g)\nLechuga (0g)\nUvas (0g)",
+        "Jueves": "Garbanzos (0g)\nPatatas (0g)\nZanahoria (0g)\nNaranja (0g)",
+        "Viernes": "Pavo (0g)\nPasta (0g)\nPuerro (0g)\nNaranja (0g)",
+        "Sábado": "Pollo (0g)\nPasta (0g)\nEsparragos (0g)\nPera (0g)",
+        "Domingo": "Boquerones (0g)\nPasta (0g)\nEsparragos (0g)\nPera (0g)"
+      },
+      "Merienda": {
+        "Lunes": "Sandía (0g)",
+        "Martes": "Platano (0g)",
+        "Miércoles": "Pipas (0g)\nMandarina (0g)",
+        "Jueves": "Pan (0g)\nFresas (0g)",
+        "Viernes": "Fresas (0g)",
+        "Sábado": "Uvas (0g)",
+        "Domingo": "Melón (0g)"
+      },
+      "Cena": {
+        "Lunes": "Alubias (0g)\nPatatas (0g)\nRepollo (0g)\nPlatano (0g)",
+        "Martes": "Salmón (0g)\nBoniato (0g)\nJudias Verdes (0g)\nManzana (0g)",
+        "Miércoles": "Pollo (0g)\nPasta (0g)\nRepollo (0g)\nSandía (0g)",
+        "Jueves": "Pollo (0g)\nArroz (0g)\nZanahoria (0g)\nMelón (0g)",
+        "Viernes": "Boquerones (0g)\nBoniato (0g)\nPuerro (0g)\nPlatano (0g)",
+        "Sábado": "Lentejas (0g)\nPatatas (0g)\nTomate (0g)\nNaranja (0g)",
+        "Domingo": "Lentejas (0g)\nPatatas (0g)\nBerenjena (0g)\nMelón (0g)"
+      }
+    }
+  }
+]

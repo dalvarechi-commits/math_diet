@@ -111,8 +111,8 @@ def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
                 for vecino, peso in vecinos:
                     if peso > 0:
                        st.write("nodos con alimentos personalizados")
-                       #calcular_peso(alimento, alimentos, objetivos_nutricionales
-                       peso_personalizado = menu.calcular_peso(vecino, alimentos, datos_usuario.get('objetivos').get('objetivo'))
+                       #calcular_peso(alimento, alimentos, objetivos
+                       peso_personalizado = menu.calcular_peso(vecino, alimentos, datos_usuario.get('objetivos'))
                        st.write(f"Peso personalizado2:",{peso_personalizado})
                        G.add_edge(nodo, vecino, weight=peso_personalizado)
     
@@ -144,7 +144,7 @@ def _normalizar_color(color):
 
 
 # dibujar el grafo
-def dibujar_grafo(G, alimentos=None):
+def dibujar_grafo(G, alimentos=None,k=1):
     alimentos_data = obtener_alimentos(alimentos)
     fig, ax = plt.subplots(figsize=(30, 25))
 
@@ -206,7 +206,7 @@ def dibujar_grafo(G, alimentos=None):
 
     st.session_state.nodos_por_capa = nodos_por_capa
     edge_weights = [G[u][v].get('weight', 1) for u, v in G.edges()]
-    edge_widths = [1 * w for w in edge_weights]
+    edge_widths = [k ** w/2 for w in edge_weights] #k permite aumentar el grosor de las aristas para que se vea mejor en la representación del grafo
 
     color_map = []
     for nodo in G.nodes():
@@ -320,7 +320,7 @@ def podarGrafo(G, alimentos_usuario, datos_usuario):
     #recalcula los pesos en función de los alimentos y objetivos del usuario.
     nodos_a_eliminar = [nodo for nodo in G.nodes() if nodo not in alimentos_usuario]
     G.remove_nodes_from(nodos_a_eliminar)
-    objetivo = datos_usuario.get('objetivos', {}).get('objetivo', 'mantener')
+    objetivo = datos_usuario.get('objetivo', 'mantener')
 
     # Recorremos todas las aristas que han sobrevivido a la poda
     # u = nodo inicial, v = nodo final
