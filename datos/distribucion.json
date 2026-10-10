@@ -21,6 +21,29 @@
         "pcal_prot/d" : 0.3,
         "pcal_lip/d" : 0.2
     },
+    "ganar_deportista":
+        {
+        "n Comidas": 5,
+        "Carne roja": "1/14",
+        "Carne blanca": "4/14",
+        "Huevos": "4/14",
+        "Pescado y marisco": "3/14",
+        "Legumbres": "3/14",
+        "Lácteos y derivados": "21/21",
+        "Fuente de carbohidratos": "14/14",
+        "Fuente de carbohidratos desayuno" : "7/21",
+        "Verduras y hortalizas": "14/14",
+        "Frutos secos": "3/14",
+        "Frutas y derivados": "21/35",
+        "pcal_desayuno": 0.2,
+        "pcal_almuerzo": 0.15,
+        "pcal_comida": 0.25,
+        "pcal_merienda": 0.15,
+        "pcal_cena": 0.25,
+        "pcal_hc/d" : 0.6, 
+        "pcal_prot/d" : 0.2,
+        "pcal_lip/d" : 0.2
+    },
     "ganar":
         {
         "n Comidas": 5,
@@ -36,13 +59,13 @@
         "Frutos secos": "3/14",
         "Frutas y derivados": "21/35",
         "pcal_desayuno": 0.2,
-        "pcal_almuerzo": 0.1,
-        "pcal_comida": 0.3,
-        "pcal_merienda": 0.1,
-        "pcal_cena": 0.3,
-        "pcal_hc/d" : 0.7, 
+        "pcal_almuerzo": 0.15,
+        "pcal_comida": 0.25,
+        "pcal_merienda": 0.15,
+        "pcal_cena": 0.25,
+        "pcal_hc/d" : 0.5, 
         "pcal_prot/d" : 0.2,
-        "pcal_lip/d" : 0.1
+        "pcal_lip/d" : 0.3
     },
     "perder":
         {
@@ -63,6 +86,8 @@
         "pcal_comida": 0.3,
         "pcal_merienda": 0.1,
         "pcal_cena": 0.3,
-        "pcal_hc/d" : 0.4
+        "pcal_hc/d" : 0.4,
+        "pcal_prot/d" : 0.4,
+        "pcal_lip/d" : 0.2
     }
 }

@@ -1,0 +1,15 @@
+{
+  "email": "P9@gmail.com",
+  "nombre": "P9",
+  "peso": 106,
+  "altura": 195,
+  "edad": 51,
+  "imc": 27.87639710716634,
+  "sexo": "Hombre",
+  "tmb": 2028.75,
+  "GETD": 3144.5625,
+  "actividad_diaria": "Actividad moderada",
+  "preferencias": null,
+  "objetivo": null,
+  "gustos": null
+}

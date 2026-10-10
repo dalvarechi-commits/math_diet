@@ -1,0 +1,5 @@
+perfil,objetivo,alergias,gustos,gustos_promedio,ejecuciones,media_nodos_generados,min_nodos_generados,max_nodos_generados,media_alimentos_unicos,min_alimentos_unicos,max_alimentos_unicos
+Ana balanceada,mantener,ninguna,"{""260000"": 5, ""280000"": 4, ""289000"": 5, ""300000"": 4, ""900000"": 5}",4.6,10,35,35,35,40.7,39,44
+Luis pérdida de peso,perder,LAC;GLU,"{""260000"": 4, ""280000"": 3, ""289000"": 5, ""300000"": 2, ""900000"": 4}",3.6,10,35,35,35,33.8,31,36
+Marta vegana,ganar,VEG,"{""260000"": 5, ""280000"": 5, ""289000"": 4, ""300000"": 3, ""900000"": 5}",4.4,10,35,35,35,29,27,31
+Pablo con intolerancia,mantener,LAC;FRU,"{""260000"": 5, ""280000"": 4, ""289000"": 4, ""300000"": 3, ""900000"": 5}",4.2,10,35,35,35,34.3,31,37
