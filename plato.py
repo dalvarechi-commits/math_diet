@@ -26,9 +26,9 @@ def dibujar_plato():
         # Carbohidratos altos (35%) para glucógeno/fuerza + Proteína alta (30%)
         # Frutas y Verduras reducidas al 35% para no saciar en exceso
         secciones = {
-            "Fuentes de Carbohidratos": 35,
-            "Fuentes de Proteína": 30,
             "Verduras y hortalizas": 25,
+            "Fuentes de Proteína": 30,
+            "Fuentes de Carbohidratos": 35,           
             "Frutas y derivados": 10
         }
         g_prot_kg = 1.8
@@ -37,9 +37,9 @@ def dibujar_plato():
             # Carbohidratos altos (35%) para glucógeno/fuerza + Proteína alta (30%)
             # Frutas y Verduras reducidas al 35% para no saciar en exceso
             secciones = {
-                "Fuentes de Carbohidratos": 35,
-                "Fuentes de Proteína": 30,
                 "Verduras y hortalizas": 25,
+                "Fuentes de Proteína": 30,
+                "Fuentes de Carbohidratos": 35,
                 "Frutas y derivados": 10
             }
             g_prot_kg = 1.8
