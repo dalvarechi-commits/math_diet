@@ -27,7 +27,7 @@ def nalimentos_por_cat(categoria_buscada, alimentos):
 
     return contador
 
-
+"""
 def calcular_peso(alimento, alimentos, objetivos=None, w=1, l=5, b=1):
     # Recuperamos las categorías desde session_state o el fichero JSON
     if "categorias" not in st.session_state:
@@ -83,6 +83,7 @@ def calcular_peso(alimento, alimentos, objetivos=None, w=1, l=5, b=1):
    
     try:
         peso_base = float(distribucion_categoria)
+
     except:
         st.write(f" distribucion_categoria error: ", distribucion_categoria)
         peso_base = 1 
@@ -94,7 +95,7 @@ def calcular_peso(alimento, alimentos, objetivos=None, w=1, l=5, b=1):
    
     st.write(f"Peso calculado para {alimento}: {peso_personalizado} (Total en {categoria}: {num_alimentos})")
     
-    return peso_personalizado
+    return peso_personalizado"""
 
 def calcular_logit_alimento(alimento, alimentos,objetivos=None, distribucion=None, w=1.0, l=5.0, b=0.0):
     #Calcula la puntuación raw (logit) z_i para un alimento.
@@ -117,7 +118,7 @@ def calcular_logit_alimento(alimento, alimentos,objetivos=None, distribucion=Non
     if isinstance(distribucion_categoria, str) and "/" in distribucion_categoria:
             partes = distribucion_categoria.split("/")
             distribucion_categoria = float(partes[0]) / float(partes[1]) if float(partes[1]) != 0 else 0.0
-            #st.write(f"distribucion_categoria logit", distribucion_categoria )
+            #st.write(f"distribucion_categoria logit para {alimento}: {distribucion_categoria}")
     else:
         try:
                 distribucion_categoria = float(distribucion_categoria)
@@ -215,6 +216,7 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
         "Snack": distribucion_usuario.get("pcal_merienda", 0),
         "Cena": distribucion_usuario.get("pcal_cena", 0)
         }
+    st.write(f"Porcentajes de calorías por comida: {porcentajes_comidas}")
     porcentajes_macros_dia = {
         "carbohidrato": distribucion_usuario.get("pcal_hc/d", 0),
         "proteína": distribucion_usuario.get("pcal_prot/d", 0),
@@ -230,7 +232,7 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
 
     # Inicializamos la matriz de comidas (Filas)
     matriz_menu = {comida: {} for comida in orden_comidas}
-
+    cal_acumuladas_dia=0
     #creamos un diccionario para añadir las cantidades de cada alimento en el menú semanal
     # Recorremos el menú semanal y calculamos la cantidad de cada alimento según su macro principal y la distribución del usuario
     for clave, datos in menu_semanal.items():
@@ -245,10 +247,14 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
         # En el JSON, Almuerzo y Merienda tienen categoria_comida='Snack'. 
         # Usaremos esto para buscar el % calórico correcto.
         categoria_comida = datos.get("categoria_comida", comida_nombre)
-
+        st.write(f"Calculando cantidades para {comida_nombre} ({dia_nombre}) con categoría_comida: {categoria_comida}")
         alimentos_formateados = []
         alimentos = datos.get("alimentos", [])
+        st.write(f"Calculando cantidades para {comida_nombre} ({dia_nombre}) con alimentos: {alimentos}")
 
+        cal_acumuladas_comida = 0
+        calorias_comida = calorias_diarias * porcentajes_comidas.get(comida_nombre, 0)
+        st.write(f"Calorías asignadas a {comida_nombre}: {calorias_comida} kcal")
         for alimento in alimentos:
             datos_alim = alimentos_usuario.get(alimento, {}) if isinstance(alimentos_usuario, dict) else {}
             categoria = datos_alim.get("categoria") if isinstance(datos_alim, dict) else None
@@ -259,30 +265,47 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
 
             porcentaje_macro = porcentajes_macros_dia.get(macro_principal, 0)
             # Buscamos el porcentaje basado en la categoría (ej. "Snack")
-            st.write(f"Calculando cantidad para {alimento} en {comida_nombre} ({dia_nombre}) de la categoría {categoria_comida} con macro {macro_principal}:")
-            porcentaje_comida = porcentajes_comidas.get(categoria_comida, 0)
-            st.write(f"Porcentaje macro {macro_principal}: {porcentaje_macro}, Porcentaje de la comida {comida_nombre}: {porcentaje_comida}")
+            #st.write(f"Calculando cantidad para {alimento} en {comida_nombre} ({dia_nombre}) de la categoría {categoria_comida} con macro {macro_principal}:")
+            #porcentaje_comida = porcentajes_comidas.get(categoria_comida, 0)
+            porcentaje_comida = porcentajes_comidas.get(comida_nombre, 0)
+            #st.write(f"Porcentaje macro {macro_principal}: {porcentaje_macro}, Porcentaje de la comida {comida_nombre}: {porcentaje_comida}")
 
             # Cálculo de gramos
             if calorias_100g > 0:
-                calorias_ingrediente = calorias_diarias * (
+                if porcentaje_macro > 0:
+                    calorias_alimento = calorias_diarias * (
+                        (porcentaje_comida) * (porcentaje_macro)
+                    )
+                else:    
+                    calorias_alimento = calorias_comida - cal_acumuladas_comida  # Asignamos lo que queda de la comida si no hay macro principal definido
+                cal_acumuladas_comida += calorias_alimento
+                cal_acumuladas_dia += calorias_alimento
+                cantidad_gramos = round((calorias_alimento / calorias_100g) * 100)
+                #st.write(f"Calorías asignadas al ingrediente {alimento}: {calorias_alimento} kcal, Cantidad calculada: {cantidad_gramos} g")
+            else:
+                cantidad_gramos = 10000  # Valor por defecto si no se encuentra información nutricional, que no debería ocurrir
+
+            '''if calorias_100g > 0:
+                calorias_alimento = calorias_diarias * (
                     (porcentaje_comida) * (porcentaje_macro)
                 )
-                cantidad_gramos = round((calorias_ingrediente / calorias_100g) * 100)
-                st.write(f"Calorías asignadas al ingrediente {alimento}: {calorias_ingrediente} kcal, Cantidad calculada: {cantidad_gramos} g")
+                cal_acumuladas_comida += calorias_alimento
+                cal_acumuladas_dia += calorias_alimento
+                cantidad_gramos = round((calorias_alimento / calorias_100g) * 100)
+                #st.write(f"Calorías asignadas al ingrediente {alimento}: {calorias_alimento} kcal, Cantidad calculada: {cantidad_gramos} g")
             else:
-                cantidad_gramos = 0
+                cantidad_gramos = 10000  # Valor por defecto si no se encuentra información nutricional, que no debería ocurrir
+            '''
 
             # Formato requerido: "Alimento (Xg)"
             alimentos_formateados.append(f"{alimento} ({cantidad_gramos}g)")
-
+            
         # Guardamos la lista unida por saltos de línea (\n)
         if comida_nombre in matriz_menu:
             matriz_menu[comida_nombre][dia_nombre] = "\n".join(alimentos_formateados)
-
+    
     # 3. Convertimos a DataFrame y transponemos (.T) 
     df_menu = pd.DataFrame(matriz_menu).T
-    st.write(f"**Menú Semanal Calculado (DataFrame):**")
     # Ordenamos las columnas explícitamente para que siga el orden Lunes -> Domingo
     df_menu = df_menu.reindex(columns=list(mapa_dias.values()))
 
@@ -290,70 +313,4 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
     st.subheader("Plan Nutricional Semanal")
     #st.dataframe(df_menu, use_container_width=True)
 
-
-    
-    '''  for comida, datos in menu_semanal.items():
-        
-        alimentos = datos.get("alimentos", [])
-        for alimento in alimentos:
-            datos_alim = alimentos_usuario.get(alimento, {})
-            st.write(f"Calculando cantidad para {alimento} en {comida}")
-            # categoria = alimentos_usuario.get(alimento, {}).get("categoria") if isinstance(alimentos_usuario.get(alimento, {}), dict) else None
-            # macro_pincipal = categorias.get(categoria, {}).get("macroprincipal") 
-            categoria = (
-                datos_alim.get("categoria")
-                if isinstance(datos_alim, dict)
-                else None
-            )
-            
-            macro_principal = categorias.get(categoria, {}).get("macroprincipal")
-            st.write(f"Categoría: {categoria}, Macro principal: {macro_principal}")
-
-            nutricion = (
-                datos_alim.get("nutricion_por_100g", {})
-                if isinstance(datos_alim, dict)
-                else {}
-            )
-
-            calorias_100g = (
-                nutricion.get("energia_kcal", 0)
-                if isinstance(nutricion, dict)
-                else 0
-            )
-            # calorías_alimento = alimentos_usuario.get(alimento, {}).get("nutricion_por_100g").get("energia_kcal", 0) if isinstance(alimentos_usuario.get(alimento, {}).get("nutricion_por_100g"), dict) else 0
-
-            porcentaje_macro = porcentajes_macros_dia.get(macro_principal)
-            porcentaje_comida = porcentajes_comidas.get(categoria)
-            st.write(f"Porcentaje macro {macro_principal}: {porcentaje_macro}, Porcentaje de la comida {comida}: {porcentaje_comida}")
-            # Cálculo en gramos según calorías asignadas al ingrediente
-            if calorias_100g > 0:
-                calorias_ingrediente = calorias_diarias * (
-                    (porcentaje_comida / 100) * (porcentaje_macro / 100)
-                )
-                cantidad_gramos = round(
-                    (calorias_ingrediente / calorias_100g) * 100, 1
-                )
-            else:
-                cantidad_gramos = 0
-            # Calculamos la cantidad de alimento en gramos según la distribución y las calorías diarias
-            # cantidad_alimento = porcentaje_macro * porcentaje_comida
-            # menu_calculado[comida,alimento] = cantidad_alimento    
-            # Guardamos cada fila como un diccionario simple
-            menu_calculado.append(
-                {
-                    "Comida": comida,
-                    "Alimento": alimento,
-                    "Categoría": categoria,
-                    "Cantidad (g)": cantidad_gramos,
-                }
-            )
-
-    st.write(f"**Cantidades calculadas para el menú semanal:** {menu_calculado}")
-    # Convertimos la lista a un DataFrame de Pandas
-    df_menu = pd.DataFrame(menu_calculado)
-
-    # Dibujamos la tabla directamente en Streamlit
-    st.subheader("Menú Semanal Calculado")
-    st.dataframe(df_menu, use_container_width=True)
-'''
     return df_menu

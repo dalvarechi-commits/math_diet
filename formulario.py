@@ -141,11 +141,11 @@ def pedirGustos(alimentos, defaults=None):
         except Exception:
             alergenos_user = defaults.get("alergias", [])
         
-        st.write(f"Alérgenos del usuario: {alergenos_user}")
+       # st.write(f"Alérgenos del usuario: {alergenos_user}")
         if alergenos_user is not None:
             alimentos_filtrados = {key: info for key, info in alimentos.items() if not any(alergeno in info.get("alergenos", []) for alergeno in alergenos_user)}
             st.session_state.alimentos_user= alimentos_filtrados
-            st.write(f"Alimentos filtrados: {list(alimentos_filtrados.keys())}")
+            #st.write(f"Alimentos filtrados: {list(alimentos_filtrados.keys())}")
         
         for cat in categorias:
             with st.expander(f"📂 {cat}"):

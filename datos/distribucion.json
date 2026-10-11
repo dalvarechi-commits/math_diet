@@ -37,9 +37,9 @@
         "Frutas y derivados": "21/35",
         "pcal_desayuno": 0.2,
         "pcal_almuerzo": 0.15,
-        "pcal_comida": 0.25,
+        "pcal_comida": 0.3,
         "pcal_merienda": 0.15,
-        "pcal_cena": 0.25,
+        "pcal_cena": 0.2,
         "pcal_hc/d" : 0.6, 
         "pcal_prot/d" : 0.2,
         "pcal_lip/d" : 0.2
