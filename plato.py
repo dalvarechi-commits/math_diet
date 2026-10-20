@@ -112,7 +112,7 @@ def dibujar_plato():
             textinfo='label+percent',
             hoverinfo='label+percent',
             hole=0.0,
-            domain=dict(x=[0.10, 0.90], y=[0.10, 0.90]),
+            domain=dict(x=[0.15, 0.85], y=[0.15, 0.85]),
             sort=False
         ))
 
@@ -120,10 +120,13 @@ def dibujar_plato():
             showlegend=True,
             legend=dict(orientation="h", yanchor="bottom", y=-0.1, xanchor="center", x=0.5),
             margin=dict(t=20, b=20, l=20, r=20),
-            height=620,
-            width=480,
+            height=500,
+            width=500, 
+            dragmode=False,
             paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)'
+            plot_bgcolor='rgba(0,0,0,0)', 
+            xaxis=dict(range=[-1.2, 1.2], visible=False, fixedrange=True),
+            yaxis=dict(range=[-1.2, 1.2], visible=False, fixedrange=True, scaleanchor="x", scaleratio=1)
         )
 
         st.plotly_chart(fig, use_container_width=True)
