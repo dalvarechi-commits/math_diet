@@ -120,6 +120,7 @@ if "grafo_personalizado" not in st.session_state:
 
 def _guardar_datos_usuario():
     datos_usuario = st.session_state.get("datos")
+    
     if not datos_usuario or not datos_usuario.get("email"):
         return
     email = datos_usuario["email"].strip()
@@ -193,18 +194,21 @@ with tab1:
 
 with tab2:
     
-        if not st.session_state.preferencias_completadas:
-            st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
-        st.write("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
-        defaults_obj = st.session_state.get('objetivo', {})
-        objetivo_form = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
-        if objetivo_form:
-            st.session_state.objetivo_completado = True
-            st.session_state.objetivo = objetivo_form
-            st.success("✅ Objetivo nutricional completado")
-            st.write("Objetivo seleccionado:", st.session_state.objetivo)
-            _guardar_datos_usuario()
-            plato.dibujar_plato()
+    if not st.session_state.preferencias_completadas:
+        st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
+    st.write("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
+    defaults_obj = st.session_state.get('objetivo', {})
+    
+    objetivo_form = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
+    st.write("Objetivo seleccionado:", objetivo_form if objetivo_form else "No establecido")
+
+    if objetivo_form:
+        st.session_state.objetivo_completado = True
+        st.session_state.objetivo = objetivo_form
+        st.success("✅ Objetivo nutricional completado")
+        
+        _guardar_datos_usuario()
+        plato.dibujar_plato()
             
 
        

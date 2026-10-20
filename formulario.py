@@ -94,6 +94,7 @@ def pedirPreferenciasAlimentarias(preferencias_labels, defaults=None):
 
 
 def pedirObjetivoNutricional(defaults=None):
+    st.write(f"Defaults recibidos en pedirObjetivoNutricional: {defaults}" )
     defaults = defaults or "mantener"
     objetivo_labels = {
         "perder": "Perder peso",
@@ -103,6 +104,8 @@ def pedirObjetivoNutricional(defaults=None):
 
     opciones = list(objetivo_labels.keys())
     valor_default = defaults
+    if valor_default=="ganar_deportista":
+        valor_default = "ganar"
     index_default = opciones.index(valor_default) if valor_default in opciones else 0
 
     with st.form("formulario_objetivos"):
@@ -112,7 +115,7 @@ def pedirObjetivoNutricional(defaults=None):
             index=index_default,
             format_func=lambda clave: objetivo_labels[clave],
         )
-        if objetivo == "ganar" and st.session_state.datos.get("actividad_diaria") == "Actividad a nivel profesional":
+        if objetivo == "ganar" and st.session_state.datos('actividad_diaria') == "Actividad a nivel profesional":
             objetivo = "ganar_deportista"  
             st.session_state.datos["objetivo"] = "ganar_deportista"
 
