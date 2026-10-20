@@ -115,7 +115,7 @@ def pedirObjetivoNutricional(defaults=None):
             index=index_default,
             format_func=lambda clave: objetivo_labels[clave],
         )
-        if objetivo == "ganar" and st.session_state.datos('actividad_diaria') == "Actividad a nivel profesional":
+        if objetivo == "ganar" and st.session_state.datos.get('actividad_diaria') == "Actividad a nivel profesional":
             objetivo = "ganar_deportista"  
             st.session_state.datos["objetivo"] = "ganar_deportista"
 
