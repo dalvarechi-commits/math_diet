@@ -318,6 +318,7 @@ def recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, distribucion, w=1
 def podarGrafo(G, alimentos_usuario, datos_usuario):
     #Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
     #recalcula los pesos en función de los alimentos y objetivos del usuario.
+
     nodos_a_eliminar = [nodo for nodo in G.nodes() if nodo not in alimentos_usuario]
     G.remove_nodes_from(nodos_a_eliminar)
     objetivo = datos_usuario.get('objetivo', 'mantener')
@@ -440,7 +441,7 @@ def generar_menu_aleatorio(G, nodo_final):
     for nodo in nodos: 
         categoria_tipo_comida = G.nodes[nodo].get("categoria")
 
-        # Comprobar si la categoría del nodo está definida en las reglas (ej: "Desayuno", "Comida", "Snack")
+        # Comprobar si la categoría del nodo está definida en las reglas (ej: "Desayuno", "Comida", "Almuerzo", "Cena", etc.)
         if categoria_tipo_comida in reglas:
             permitidas = reglas[categoria_tipo_comida]
             

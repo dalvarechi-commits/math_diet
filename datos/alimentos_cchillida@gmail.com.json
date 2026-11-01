@@ -3,13 +3,15 @@
     "categoria": "Desayuno"
   },
   "L_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "L_Comida": {
     "categoria": "Comida"
   },
   "L_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "L_Cena": {
     "categoria": "Comida"
@@ -18,13 +20,15 @@
     "categoria": "Desayuno"
   },
   "M_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "M_Comida": {
     "categoria": "Comida"
   },
   "M_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "M_Cena": {
     "categoria": "Comida"
@@ -33,13 +37,15 @@
     "categoria": "Desayuno"
   },
   "X_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "X_Comida": {
     "categoria": "Comida"
   },
   "X_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "X_Cena": {
     "categoria": "Comida"
@@ -48,13 +54,15 @@
     "categoria": "Desayuno"
   },
   "J_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "J_Comida": {
     "categoria": "Comida"
   },
   "J_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "J_Cena": {
     "categoria": "Comida"
@@ -63,13 +71,15 @@
     "categoria": "Desayuno"
   },
   "V_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "V_Comida": {
     "categoria": "Comida"
   },
   "V_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "V_Cena": {
     "categoria": "Comida"
@@ -78,13 +88,15 @@
     "categoria": "Desayuno"
   },
   "S_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "S_Comida": {
     "categoria": "Comida"
   },
   "S_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "S_Cena": {
     "categoria": "Comida"
@@ -93,13 +105,15 @@
     "categoria": "Desayuno"
   },
   "D_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "D_Comida": {
     "categoria": "Comida"
   },
   "D_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Snack",
+    "valoracion_usuario": 3
   },
   "D_Cena": {
     "categoria": "Comida"
@@ -159,6 +173,21 @@
       "lipidos_totales_g": 1.5
     }
   },
+  "Pan": {
+    "id_bedca": "2170",
+    "nombre_bedca": "Pan blanco de barra",
+    "categoria": "Fuente de carbohidratos desayuno",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "GLU"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 261.0,
+      "proteinas_g": 8.5,
+      "hidratos_carbono_g": 51.5,
+      "lipidos_totales_g": 1.6
+    }
+  },
   "Arroz": {
     "id_bedca": "2110",
     "nombre_bedca": "Arroz",
@@ -170,6 +199,21 @@
       "proteinas_g": 6.8,
       "hidratos_carbono_g": 79.2,
       "lipidos_totales_g": 0.9
+    }
+  },
+  "Pasta": {
+    "id_bedca": "2150",
+    "nombre_bedca": "Pasta alimenticia",
+    "categoria": "Fuente de carbohidratos",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "GLU"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 359.0,
+      "proteinas_g": 12.0,
+      "hidratos_carbono_g": 74.0,
+      "lipidos_totales_g": 1.6
     }
   },
   "Patatas": {
@@ -209,6 +253,49 @@
       "proteinas_g": 1.2,
       "hidratos_carbono_g": 21.5,
       "lipidos_totales_g": 0.6
+    }
+  },
+  "Avena": {
+    "id_bedca": "2120",
+    "nombre_bedca": "Avena en copos",
+    "categoria": "Fuente de carbohidratos desayuno",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "GLU"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 367.0,
+      "proteinas_g": 12.1,
+      "hidratos_carbono_g": 56.1,
+      "lipidos_totales_g": 7.1
+    }
+  },
+  "Cereales": {
+    "id_bedca": "2130",
+    "nombre_bedca": "Cereales",
+    "categoria": "Fuente de carbohidratos desayuno",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "GLU"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 378.0,
+      "proteinas_g": 8.0,
+      "hidratos_carbono_g": 81.0,
+      "lipidos_totales_g": 1.5
+    }
+  },
+  "Leche": {
+    "id_bedca": "2493",
+    "nombre_bedca": "Leche de vaca entera",
+    "categoria": "Lácteos y derivados",
+    "valoracion_usuario": 3,
+    "alergenos": [],
+    "nutricion_por_100g": {
+      "energia_kcal": 65.0,
+      "proteinas_g": 3.1,
+      "hidratos_carbono_g": 4.7,
+      "lipidos_totales_g": 3.8
     }
   },
   "Tomate": {

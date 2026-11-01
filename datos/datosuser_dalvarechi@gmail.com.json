@@ -9,7 +9,9 @@
   "tmb": 1552.5,
   "GETD": 3105.0,
   "actividad_diaria": "Actividad a nivel profesional",
-  "objetivo": "ganar_deportista",
+  "objetivo": "perder",
+  "calorias": 2484.0,
+  "gramos_proteina": 79.8,
   "preferencias": {
     "alergias": [
       "CAC"

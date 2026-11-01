@@ -24,11 +24,10 @@
       "SES",
       "ALT",
       "SUL",
-      "VEG",
-      "GLU"
+      "VEG"
     ]
   },
-  "objetivo": null,
+  "objetivo": "perder",
   "gustos": {
     "Naranja": 5,
     "Platano": 1,
@@ -58,6 +57,27 @@
     "Berenjena": 3,
     "Puerro": 3,
     "Esparragos": 3,
-    "Aguacate": 3
-  }
+    "Aguacate": 3,
+    "Leche": 3,
+    "Pasta": 3,
+    "Pan": 3,
+    "Avena": 3,
+    "Cereales": 3,
+    "L_Almuerzo": 3,
+    "L_Merienda": 3,
+    "M_Almuerzo": 3,
+    "M_Merienda": 3,
+    "X_Almuerzo": 3,
+    "X_Merienda": 3,
+    "J_Almuerzo": 3,
+    "J_Merienda": 3,
+    "V_Almuerzo": 3,
+    "V_Merienda": 3,
+    "S_Almuerzo": 3,
+    "S_Merienda": 3,
+    "D_Almuerzo": 3,
+    "D_Merienda": 3
+  },
+  "calorias": 1682.0600000000004,
+  "gramos_proteina": 98.0
 }
