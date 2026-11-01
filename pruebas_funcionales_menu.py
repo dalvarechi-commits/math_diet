@@ -109,10 +109,10 @@ def asignar_categorias_nodos(G, alimentos, categorias):
             prefijo, sufijo = nodo.split("_", 1)
             mapeo = {
                 "Desayuno": "Desayuno",
-                "Almuerzo": "Snack",
+                "Almuerzo": "Almuerzo",
                 "Comida": "Comida",
-                "Merienda": "Snack",
-                "Cena": "Comida",
+                "Merienda": "Merienda",
+                "Cena": "Cena",
             }
             G.nodes[nodo]["categoria"] = mapeo.get(sufijo, sufijo)
             continue

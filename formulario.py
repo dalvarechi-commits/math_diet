@@ -138,7 +138,7 @@ def pedirGustos(alimentos, defaults=None):
         default_gustos = defaults if isinstance(defaults, dict) else {}
 
         # Organizar por categorías para que la interfaz quede limpia 
-        categorias = sorted({info.get("categoria", "Sin categoría") for info in alimentos.values() if info.get("categoria") != "Comida" and info.get("categoria") != "Desayuno" and info.get("categoria") != "Snack" and info.get("categoria") != "USUARIO"})
+        categorias = sorted({info.get("categoria", "Sin categoría") for info in alimentos.values() if info.get("categoria") != "Comida" and info.get("categoria") != "Desayuno" and info.get("categoria") != "Merienda" and info.get("categoria") != "Cena" and info.get("categoria") != "Almuerzo" and info.get("categoria") != "USUARIO"})
         try:
          alergenos_user = st.session_state.get("preferencias").get("alergias", [])
         except Exception:

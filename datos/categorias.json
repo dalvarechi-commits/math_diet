@@ -7,6 +7,14 @@
             "capa": 0,
             "ncomidas" : 7
         },
+    "Almuerzo":
+        {
+            "color": "lilac",
+            "macroprincipal": "0",
+            "cat_alimentos": ["Lácteos y derivados", "Fuente de carbohidratos desayuno", "Frutos secos", "Frutas y derivados"],
+            "capa": 0,
+            "ncomidas" : 14
+        },
     "Comida":
         {
             "color": "peach",
@@ -20,6 +28,14 @@
             "color": "lilac",
             "macroprincipal": "0",
             "cat_alimentos": ["Lácteos y derivados", "Fuente de carbohidratos desayuno", "Frutos secos", "Frutas y derivados"],
+            "capa": 0,
+            "ncomidas" : 14
+        },
+    "Cena":
+        {
+            "color": "peach",
+            "macroprincipal": "0",
+            "cat_alimentos": ["Carne roja", "Carne blanca", "Huevos", "Pescado y marisco", "Legumbres", "Fuente de carbohidratos", "Verduras y hortalizas", "Frutas y derivados"],
             "capa": 0,
             "ncomidas" : 14
         },

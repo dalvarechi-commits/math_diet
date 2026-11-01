@@ -213,7 +213,7 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
         "Desayuno": distribucion_usuario.get("pcal_desayuno", 0),
         "Almuerzo": distribucion_usuario.get("pcal_almuerzo", 0),
         "Comida": distribucion_usuario.get("pcal_comida", 0),
-        "Snack": distribucion_usuario.get("pcal_merienda", 0),
+        "Merienda": distribucion_usuario.get("pcal_merienda", 0),
         "Cena": distribucion_usuario.get("pcal_cena", 0)
         }
     st.write(f"Porcentajes de calorías por comida: {porcentajes_comidas}")
@@ -244,18 +244,20 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
         dia_letra, comida_nombre = partes[0], partes[1]
         dia_nombre = mapa_dias.get(dia_letra, dia_letra)
         
-        # En el JSON, Almuerzo y Merienda tienen categoria_comida='Snack'. 
+
         # Usaremos esto para buscar el % calórico correcto.
         categoria_comida = datos.get("categoria_comida", comida_nombre)
         st.write(f"Calculando cantidades para {comida_nombre} ({dia_nombre}) con categoría_comida: {categoria_comida}")
         alimentos_formateados = []
         alimentos = datos.get("alimentos", [])
         st.write(f"Calculando cantidades para {comida_nombre} ({dia_nombre}) con alimentos: {alimentos}")
-
+        n_alimentos_comida = len(alimentos)
+        nalimento=0
         cal_acumuladas_comida = 0
         calorias_comida = calorias_diarias * porcentajes_comidas.get(comida_nombre, 0)
         st.write(f"Calorías asignadas a {comida_nombre}: {calorias_comida} kcal")
         for alimento in alimentos:
+            nalimento=nalimento+1
             datos_alim = alimentos_usuario.get(alimento, {}) if isinstance(alimentos_usuario, dict) else {}
             categoria = datos_alim.get("categoria") if isinstance(datos_alim, dict) else None
             macro_principal = categorias.get(categoria, {}).get("macroprincipal") if isinstance(categorias, dict) else None
@@ -264,7 +266,7 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
             calorias_100g = nutricion.get("energia_kcal", 0) if isinstance(nutricion, dict) else 0
 
             porcentaje_macro = porcentajes_macros_dia.get(macro_principal, 0)
-            # Buscamos el porcentaje basado en la categoría (ej. "Snack")
+            # Buscamos el porcentaje basado en la categoría (ej. "Merienda")
             #st.write(f"Calculando cantidad para {alimento} en {comida_nombre} ({dia_nombre}) de la categoría {categoria_comida} con macro {macro_principal}:")
             #porcentaje_comida = porcentajes_comidas.get(categoria_comida, 0)
             porcentaje_comida = porcentajes_comidas.get(comida_nombre, 0)
@@ -276,8 +278,13 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
                     calorias_alimento = calorias_diarias * (
                         (porcentaje_comida) * (porcentaje_macro)
                     )
+                    st.write(f"Calorías asignadas al ingrediente {alimento} con macro principal {macro_principal}: {calorias_alimento} kcal y porcentaje_macro: {porcentaje_macro}")
                 else:    
-                    calorias_alimento = calorias_comida - cal_acumuladas_comida  # Asignamos lo que queda de la comida si no hay macro principal definido
+                    if nalimento == n_alimentos_comida-1:
+                        calorias_alimento = (calorias_comida - cal_acumuladas_comida)/2  
+                    else:    
+                        calorias_alimento = calorias_comida - cal_acumuladas_comida  # Asignamos lo que queda de la comida si no hay macro principal definido
+                    st.write(f"Calorías asignadas al ingrediente 2 {alimento} con macro principal {macro_principal}: {calorias_alimento} kcal")
                 cal_acumuladas_comida += calorias_alimento
                 cal_acumuladas_dia += calorias_alimento
                 cantidad_gramos = round((calorias_alimento / calorias_100g) * 100)
@@ -311,6 +318,8 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
 
     # Dibujamos la tabla en Streamlit
     st.subheader("Plan Nutricional Semanal")
-    #st.dataframe(df_menu, use_container_width=True)
+    if "LAC" or "VEG" in st.session_state.datos['preferencias']['alergias']:
+        st.write("⚠️ En este caso la leche es leche vegetal, de tu elección, porque las propiedades son similares y no contiene alérgenos")
+
 
     return df_menu

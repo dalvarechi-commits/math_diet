@@ -411,7 +411,7 @@
     "nombre_bedca": "Leche de vaca entera",
     "categoria": "Lácteos y derivados",
     "valoracion_usuario": 3.0,
-    "alergenos": ["LAC", "VEG"],
+    "alergenos": [],
     "nutricion_por_100g": {
       "energia_kcal": 65.0,
       "proteinas_g": 3.1,
