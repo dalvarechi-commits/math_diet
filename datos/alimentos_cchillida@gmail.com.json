@@ -121,6 +121,146 @@
   "USUARIO": {
     "categoria": "USUARIO"
   },
+  "Pollo": {
+    "id_bedca": "2700",
+    "nombre_bedca": "Carne de pollo magra",
+    "categoria": "Carne blanca",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 165.0,
+      "proteinas_g": 31.0,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 3.6
+    }
+  },
+  "Merluza": {
+    "id_bedca": "2950",
+    "nombre_bedca": "Merluza fresca",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 89.0,
+      "proteinas_g": 15.9,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 2.8
+    }
+  },
+  "Salmón": {
+    "id_bedca": "2956",
+    "nombre_bedca": "Salmón fresco",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 182.0,
+      "proteinas_g": 18.4,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 12.0
+    }
+  },
+  "Ternera": {
+    "id_bedca": "2715",
+    "nombre_bedca": "Carne de ternera magra",
+    "categoria": "Carne roja",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 131.0,
+      "proteinas_g": 20.7,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 5.4
+    }
+  },
+  "Sardinas": {
+    "id_bedca": "2958",
+    "nombre_bedca": "Sardina",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 153.0,
+      "proteinas_g": 17.1,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 9.4
+    }
+  },
+  "Boquerones": {
+    "id_bedca": "2920",
+    "nombre_bedca": "Boquerón",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 142.0,
+      "proteinas_g": 17.6,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 8.0
+    }
+  },
+  "Bacalao": {
+    "id_bedca": "2916",
+    "nombre_bedca": "Bacalao fresco",
+    "categoria": "Pescado y marisco",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "PES",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 74.0,
+      "proteinas_g": 17.7,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 0.4
+    }
+  },
+  "Pavo": {
+    "id_bedca": "2755",
+    "nombre_bedca": "Pavo, pechuga",
+    "categoria": "Carne blanca",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 105.0,
+      "proteinas_g": 24.1,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 1.0
+    }
+  },
+  "Cerdo": {
+    "id_bedca": "2650",
+    "nombre_bedca": "Carne de cerdo magra",
+    "categoria": "Carne roja",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 156.0,
+      "proteinas_g": 22.0,
+      "hidratos_carbono_g": 0.0,
+      "lipidos_totales_g": 7.6
+    }
+  },
   "Guisantes": {
     "id_bedca": "2362",
     "nombre_bedca": "Guisante",
@@ -270,6 +410,22 @@
       "lipidos_totales_g": 7.1
     }
   },
+  "Galletas": {
+    "id_bedca": "2140",
+    "nombre_bedca": "Galletas de tipo maría",
+    "categoria": "Fuente de carbohidratos desayuno",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "GLU",
+      "LAC"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 440.0,
+      "proteinas_g": 7.0,
+      "hidratos_carbono_g": 74.0,
+      "lipidos_totales_g": 12.0
+    }
+  },
   "Cereales": {
     "id_bedca": "2130",
     "nombre_bedca": "Cereales",
@@ -296,6 +452,38 @@
       "proteinas_g": 3.1,
       "hidratos_carbono_g": 4.7,
       "lipidos_totales_g": 3.8
+    }
+  },
+  "Yogur": {
+    "id_bedca": "2501",
+    "nombre_bedca": "Yogur entero natural",
+    "categoria": "Lácteos y derivados",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "LAC",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 61.0,
+      "proteinas_g": 3.3,
+      "hidratos_carbono_g": 4.0,
+      "lipidos_totales_g": 3.4
+    }
+  },
+  "Queso": {
+    "id_bedca": "2460",
+    "nombre_bedca": "Queso semicurado",
+    "categoria": "Lácteos y derivados",
+    "valoracion_usuario": 3,
+    "alergenos": [
+      "LAC",
+      "VEG"
+    ],
+    "nutricion_por_100g": {
+      "energia_kcal": 381.0,
+      "proteinas_g": 25.0,
+      "hidratos_carbono_g": 1.0,
+      "lipidos_totales_g": 31.0
     }
   },
   "Tomate": {

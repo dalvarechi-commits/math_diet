@@ -27,75 +27,7 @@ def nalimentos_por_cat(categoria_buscada, alimentos):
 
     return contador
 
-"""
-def calcular_peso(alimento, alimentos, objetivos=None, w=1, l=5, b=1):
-    # Recuperamos las categorías desde session_state o el fichero JSON
-    if "categorias" not in st.session_state:
-        categorias_path = Path(__file__).resolve().parent / "datos" / "categorias.json"
-        with open(categorias_path, 'r', encoding='utf-8') as f:
-            categorias = json.load(f)
-            st.session_state.categorias = categorias
-    else:        
-        categorias = st.session_state.get("categorias", {})    
 
-    # Recuperamos la distribución según objetivos
-    if "distribucion" not in st.session_state:
-        distribucion_path = Path(__file__).resolve().parent / "datos" / "distribucion.json"
-        with open(distribucion_path, 'r', encoding='utf-8') as f:
-            distribucion = json.load(f)
-            st.session_state.distribucion = distribucion.get(objetivos, {})
-    else:        
-        distribucion = st.session_state.get("distribucion", {})        
-    
-    # Extraemos el objeto del alimento y su categoría
-    datos_alimento = alimentos.get(alimento, {})
-    
-    if isinstance(datos_alimento, dict):
-        categoria = datos_alimento.get('categoria')
-    else:
-        categoria = datos_alimento  # Por si no se encuentra la categoría en alimentos
-
-    # Llamamos a la función para contar los alimentos de esa categoría
-    num_alimentos = nalimentos_por_cat(categoria, alimentos)
-
-    #Validamos que hemos encontrado alimientos porque vamos a dividir por ese número
-    if num_alimentos == 0:
-        st.write(f"No se encontraron alimentos en la categoría: {categoria}.")
-        return 0
-
-    #Cálculo del peso personalizado
-    valoracion = datos_alimento.get('valoracion_usuario', 1) if isinstance(datos_alimento, dict) else 1
-    distribucion_categoria =  distribucion.get(categoria)
-   
-    # Conversión segura según el tipo de dato
-    st.write(f"distribucion_categoria", distribucion_categoria )
-    if isinstance(distribucion_categoria, str) and "/" in distribucion_categoria:
-        partes = distribucion_categoria.split("/")
-        distribucion_categoria = float(partes[0]) / float(partes[1]) if float(partes[1]) != 0 else 0.0
-        st.write(f"distribucion_categoria", distribucion_categoria )
-    else:
-        try:
-            distribucion_categoria = float(distribucion_categoria)
-        except (ValueError, TypeError):
-            distribucion_categoria = 1.0  # Valor de respaldo si el dato no es convertible
-    st.write(f" distribucion_categoria: ", distribucion_categoria)
-   
-   
-    try:
-        peso_base = float(distribucion_categoria)
-
-    except:
-        st.write(f" distribucion_categoria error: ", distribucion_categoria)
-        peso_base = 1 
-    
-    st.write(f"peso base", peso_base)
-    peso_personalizado = w * valoracion + l * math.log(peso_base)
-    
-   
-   
-    st.write(f"Peso calculado para {alimento}: {peso_personalizado} (Total en {categoria}: {num_alimentos})")
-    
-    return peso_personalizado"""
 
 def calcular_logit_alimento(alimento, alimentos,objetivos=None, distribucion=None, w=1.0, l=5.0, b=0.0):
     #Calcula la puntuación raw (logit) z_i para un alimento.
@@ -200,15 +132,16 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
             distribucion = json.load(f)
             st.session_state.distribucion = distribucion.get(datos_usuario.get("objetivo"))
             distribucion = st.session_state.get("distribucion", {})
-            st.write(f"Distribución cargada desde JSON: {distribucion}") 
     else:        
         distribucion = st.session_state.get("distribucion", {})         
-        st.write(f"Distribución cargada desde session_state: {distribucion}")
-
+    objetivo = st.session_state.datos.get("objetivo", "Mantener Peso")
+    GETD = st.session_state.datos.get("GETD", 2000)  # Valor por defecto si no se encuentra
     distribucion_usuario = distribucion#.get(datos_usuario.get("objetivo", "mantener"), {})
-    st.write(f"Distribución del usuario según objetivo {datos_usuario.get('objetivo')}: {distribucion_usuario}")
-    calorias_diarias = datos_usuario.get("GETD", 2000)  # Valor por defecto si no se encuentra
-
+    calorias_diarias: float = datos_usuario.get("GETD", 2000)  # Valor por defecto si no se encuentra
+    if objetivo == "ganar" or objetivo == "ganar_deportista":
+        calorias_diarias = GETD * 1.10
+    elif objetivo == "perder":
+        calorias_diarias = GETD * 0.80
     porcentajes_comidas = {
         "Desayuno": distribucion_usuario.get("pcal_desayuno", 0),
         "Almuerzo": distribucion_usuario.get("pcal_almuerzo", 0),
@@ -216,7 +149,6 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
         "Merienda": distribucion_usuario.get("pcal_merienda", 0),
         "Cena": distribucion_usuario.get("pcal_cena", 0)
         }
-    st.write(f"Porcentajes de calorías por comida: {porcentajes_comidas}")
     porcentajes_macros_dia = {
         "carbohidrato": distribucion_usuario.get("pcal_hc/d", 0),
         "proteína": distribucion_usuario.get("pcal_prot/d", 0),
@@ -247,15 +179,12 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
 
         # Usaremos esto para buscar el % calórico correcto.
         categoria_comida = datos.get("categoria_comida", comida_nombre)
-        st.write(f"Calculando cantidades para {comida_nombre} ({dia_nombre}) con categoría_comida: {categoria_comida}")
         alimentos_formateados = []
         alimentos = datos.get("alimentos", [])
-        st.write(f"Calculando cantidades para {comida_nombre} ({dia_nombre}) con alimentos: {alimentos}")
         n_alimentos_comida = len(alimentos)
         nalimento=0
         cal_acumuladas_comida = 0
         calorias_comida = calorias_diarias * porcentajes_comidas.get(comida_nombre, 0)
-        st.write(f"Calorías asignadas a {comida_nombre}: {calorias_comida} kcal")
         for alimento in alimentos:
             nalimento=nalimento+1
             datos_alim = alimentos_usuario.get(alimento, {}) if isinstance(alimentos_usuario, dict) else {}
@@ -278,13 +207,11 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
                     calorias_alimento = calorias_diarias * (
                         (porcentaje_comida) * (porcentaje_macro)
                     )
-                    st.write(f"Calorías asignadas al ingrediente {alimento} con macro principal {macro_principal}: {calorias_alimento} kcal y porcentaje_macro: {porcentaje_macro}")
                 else:    
                     if nalimento == n_alimentos_comida-1:
                         calorias_alimento = (calorias_comida - cal_acumuladas_comida)/2  
                     else:    
                         calorias_alimento = calorias_comida - cal_acumuladas_comida  # Asignamos lo que queda de la comida si no hay macro principal definido
-                    st.write(f"Calorías asignadas al ingrediente 2 {alimento} con macro principal {macro_principal}: {calorias_alimento} kcal")
                 cal_acumuladas_comida += calorias_alimento
                 cal_acumuladas_dia += calorias_alimento
                 cantidad_gramos = round((calorias_alimento / calorias_100g) * 100)
@@ -292,17 +219,7 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
             else:
                 cantidad_gramos = 10000  # Valor por defecto si no se encuentra información nutricional, que no debería ocurrir
 
-            '''if calorias_100g > 0:
-                calorias_alimento = calorias_diarias * (
-                    (porcentaje_comida) * (porcentaje_macro)
-                )
-                cal_acumuladas_comida += calorias_alimento
-                cal_acumuladas_dia += calorias_alimento
-                cantidad_gramos = round((calorias_alimento / calorias_100g) * 100)
-                #st.write(f"Calorías asignadas al ingrediente {alimento}: {calorias_alimento} kcal, Cantidad calculada: {cantidad_gramos} g")
-            else:
-                cantidad_gramos = 10000  # Valor por defecto si no se encuentra información nutricional, que no debería ocurrir
-            '''
+            
 
             # Formato requerido: "Alimento (Xg)"
             alimentos_formateados.append(f"{alimento} ({cantidad_gramos}g)")
@@ -318,8 +235,9 @@ def calcular_cantidades_alimentos(menu_semanal, alimentos_usuario, datos_usuario
 
     # Dibujamos la tabla en Streamlit
     st.subheader("Plan Nutricional Semanal")
-    if "LAC" or "VEG" in st.session_state.datos['preferencias']['alergias']:
-        st.write("⚠️ En este caso la leche es leche vegetal, de tu elección, porque las propiedades son similares y no contiene alérgenos")
-
+    if "LAC" in st.session_state.datos['preferencias']['alergias'] or "VEG" in st.session_state.datos['preferencias']['alergias']:
+        st.write("⚠️ En este caso la leche es leche vegetal, de tu elección, porque las propiedades son similares y no contiene alérgenos.")
+    else:
+        None
 
     return df_menu

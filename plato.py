@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 
-def dibujar_plato():
+def dibujar_plato(objetivo):
     
 
     st.caption("Ajustado según los principios de la International Society of Sports Nutrition (ISSN) y Harvard.")
@@ -14,11 +14,11 @@ def dibujar_plato():
 
     actividad = st.session_state.datos.get("actividad_diaria", "Sedentario (Poco o nada de ejercicio)")
 
-    objetivo = st.session_state.datos.get("objetivo", "Mantener Peso")
+   # objetivo = st.session_state.datos.get("objetivo", "Mantener Peso")
 
  
     GETD = st.session_state.datos.get("GETD", 2400)  # Valor por defecto si no se encuentra
-    st.write(f"Objetivo Nutricional: {objetivo} y actividad diaria: {actividad}")
+    st.write(f"Objetivo Nutricional en plato: {objetivo} y actividad diaria: {actividad}")
 
     # Lógica de Distribución Corregida
     if objetivo == "ganar":
