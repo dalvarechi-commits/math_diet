@@ -175,75 +175,68 @@ with tab1:
         st.session_state.datos_completados = True
         st.session_state.datos = datos
         st.success("✅ Datos biométricos completados")
-        st.write("email:", datos["email"])
-        st.write("Nombre:", datos["nombre"])
-        st.write("Peso:", datos["peso"], "kg")
-        st.write("Altura:", datos["altura"], "cm")
-        st.write("Sexo:", datos["sexo"])
-        st.write("Edad:", datos["edad"], "años")
-        st.write("IMC:", datos["imc"])
-        st.write("TMB:", datos["tmb"], "calorías/día")
-        st.write("Energía Total:", datos["GETD"], "calorías/día")
-        st.write("¡Gracias por proporcionar tus datos! Ahora puedes pasar a la siguiente sección para ingresar tus preferencias alimentarias.")
+        st.markdown(f"IMC: {datos['imc']}")
+        st.markdown(f"TMB: {datos['tmb']} calorías/día")
+        st.markdown(f"Energía Total: {datos['GETD']} calorías/día")
+        st.markdown("¡Gracias por proporcionar tus datos! Ahora puedes pasar a la siguiente sección para ingresar tus preferencias alimentarias.")
 
         # guardar datos por email para recuperarlos después
         st.session_state.datos = datos
         _guardar_datos_usuario()
     else:
-        st.write("Por favor, completa el formulario para continuar.")
+        st.markdown("Por favor, completa el formulario para continuar.")
 
 with tab2:
-    
-    if not st.session_state.preferencias_completadas:
-        st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
-    st.write("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
+    if not st.session_state.datos_completados:
+        st.error("❌ Debes completar los datos biométricos primero")
+    st.markdown("Aquí podrás establecer tu objetivo nutricional y recibir un menú personalizado basado en tus datos biométricos y preferencias alimentarias. ¡Próximamente!")
     defaults_obj = st.session_state.get('objetivo', {})
     
     objetivo_form = formulario.pedirObjetivoNutricional(defaults=defaults_obj)
-    st.write("Objetivo seleccionado:", objetivo_form if objetivo_form else "No establecido")
+    st.markdown(f"Objetivo seleccionado: {objetivo_form if objetivo_form else 'No establecido'}")
 
     if objetivo_form:
         st.session_state.objetivo_completado = True
         st.session_state.objetivo = objetivo_form
         st.success("✅ Objetivo nutricional completado")
-        
+        plato.dibujar_plato(objetivo_form)
         _guardar_datos_usuario()
-        plato.dibujar_plato()
             
 
        
 
 with tab3:
-    if not st.session_state.datos_completados:
-        st.error("❌ Debes completar los datos biométricos primero")
+    if not st.session_state.objetivo_completado:
+        st.error("❌ Debes completar el objetivo antes de continuar")
     preferencias = formulario.pedirPreferenciasAlimentarias(preferencias_labels, defaults=st.session_state.get('preferencias', {}))
     if preferencias:
         st.session_state.preferencias_completadas = True
         st.session_state.preferencias = preferencias
         st.success("✅ Preferencias alimentarias completadas")
-        st.write("Alergias alimentarias seleccionadas:")
+        st.markdown("Alergias alimentarias seleccionadas:")
         for alergia in preferencias["alergias"]:
-            st.write("- ", preferencias_labels[alergia])
+            st.markdown(f"- {preferencias_labels[alergia]}")
         _guardar_datos_usuario()
     elif st.session_state.preferencias:
-        st.write("Alergias alimentarias seleccionadas:")
+        st.markdown("Alergias alimentarias seleccionadas:")
         for alergia in st.session_state.preferencias["alergias"]:
-            st.write("- ", alergia)
+            st.markdown(f"- {preferencias_labels[alergia]}")
     else:
-        st.write("Completa el formulario de alergias y restricciones alimentarias para ver los resultados.")
+        st.markdown("Completa el formulario de alergias y restricciones alimentarias para ver los resultados.")
     
 
 with tab4:
-    if not st.session_state.objetivo_completado:
-        st.error("❌ Debes completar el objetivo antes de continuar")
-    st.write("Aquí podrás calificar tus gustos alimentarios para mejorar las recomendaciones de tu menú personalizado. ¡Próximamente!")
+    if not st.session_state.preferencias_completadas:
+        st.error("❌ Debes completar las alergias y restricciones alimentarias primero")
+            
+    st.markdown("Aquí podrás calificar tus gustos alimentarios para mejorar las recomendaciones de tu menú personalizado. ¡Próximamente!")
     defaults_gustos = st.session_state.get('gustos', {})
     gustos = formulario.pedirGustos(st.session_state.alimentos_user, defaults=defaults_gustos)
     if gustos:
         st.session_state.gustos = gustos
         st.success("✅ Gustos alimentarios completados")
         #Quitar el print para la versión final, lo dejo para que se vea cómo queda el objeto en el Backend
-        st.write("Gustos alimentarios registrados:", gustos)
+        #st.write("Gustos alimentarios registrados:", gustos)
         _guardar_datos_usuario()
     # Botón para procesar o guardar los datos en el archivo
     st.divider()
@@ -251,7 +244,7 @@ with tab4:
         with open(Path(__file__).resolve().parent / "datos" / f"alimentos_{st.session_state.datos['email']}.json", "w", encoding="utf-8") as f:
             json.dump(st.session_state.alimentos_user, f, ensure_ascii=False, indent=2)
             #st.session_state.alimentos = json.load(f)
-            st.write(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['email']}.json")
+            st.markdown(f"✅ Guardado el fichero de alimentos: alimentos_{st.session_state.datos['email']}.json")
 
         st.success("¡Objeto 'alimentos' actualizado y guardado con éxito!")
 
@@ -271,7 +264,7 @@ with tab4:
         if fig2 is not None:
             st.pyplot(fig2, use_container_width=True)
             menu_aleatorio=grafo.generar_menu_aleatorio(grafo_personalizado, nodo_final="USARIO")
-            st.write("Cantidades de alimentos:")
+            #st.write("Cantidades de alimentos:")
             st.write(menu.calcular_cantidades_alimentos(menu_aleatorio, st.session_state.alimentos_user, st.session_state.datos, st.session_state.categorias))
         else:
             st.warning('No se pudo generar el grafo. Revisa el archivo de adyacencia.')

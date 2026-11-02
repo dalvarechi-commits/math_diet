@@ -113,7 +113,6 @@ def crear_grafo(adyacencia, alimentos=None, datos_usuario=None):
                        st.write("nodos con alimentos personalizados")
                        #calcular_peso(alimento, alimentos, objetivos
                        peso_personalizado = menu.calcular_peso(vecino, alimentos, datos_usuario.get('objetivos'))
-                       st.write(f"Peso personalizado2:",{peso_personalizado})
                        G.add_edge(nodo, vecino, weight=peso_personalizado)
     
     return G
@@ -287,34 +286,6 @@ def recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, distribucion, w=1
 
     return G
 
-
-"""def recalcular_pesos_grafo_softmax(G, alimentos_usuario, distribucion, w=1, l=5, b=0):
-    #Recalcula los pesos de las aristas del grafo usando Softmax.
-    logits = {}
-
-    # Obtenemos el logit de cada nodo presente en el grafo
-    for nodo in G.nodes():
-        logits[nodo] = menu.calcular_logit_alimento(
-            alimento=nodo, 
-            alimentos=alimentos_usuario, 
-            distribucion=distribucion, 
-            w=1, 
-            l=5, 
-            b=0 
-        )
-
-
-    # Convertimos los logits en distribución de probabilidad Softmax
-    pesos_softmax = menu.aplicar_softmax(logits, G)
-    st.write(f"Pesos Softmax recalculados: {pesos_softmax}" )
-
-    # Asignamos el peso normalizado a las aristas
-    for u, v in G.edges():
-        # El peso de la arista usa la probabilidad Softmax del nodo destino v
-        G.edges[u, v]['weight'] = pesos_softmax.get(v, 0.0)
-        st.write(f"Peso actualizado arista [{u} - {v}]: {pesos_softmax.get(v, 0.0)}")
-    return G"""
-
 def podarGrafo(G, alimentos_usuario, datos_usuario):
     #Elimina del grafo G los nodos que no están en la lista de alimentos del usuario y 
     #recalcula los pesos en función de los alimentos y objetivos del usuario.
@@ -325,19 +296,7 @@ def podarGrafo(G, alimentos_usuario, datos_usuario):
 
     # Recorremos todas las aristas que han sobrevivido a la poda
     # u = nodo inicial, v = nodo final
-    '''  for u, v in G.edges():
-            
-        #  peso_personalizado = menu.calcular_peso(v, alimentos_usuario, objetivo)
-            peso_softmax = menu.aplicar_softmax()
-        #   st.write(f"Peso personalizado de", v,":", peso_personalizado)
-            st.write(f"Peso Softmax de", v,":", peso_softmax.get(v, 0.0))
-            
-            # Actualizamos directamente el atributo 'weight' de esa arista
-            G.edges[u, v]['weight'] = peso_softmax.get(v, 0.0) 
-            
-            # Descomenta esto solo cuando necesites depurar, si no llenará la pantalla de texto:
-            # st.write(f"Peso actualizado arista [{u} - {v}]: {peso_personalizado}")
-    '''
+
     recalcular_pesos_grafo_softmax_local(G, alimentos_usuario, datos_usuario.get('distribucion', {}), w=1, l=5, b=0)
     
     return G
@@ -461,5 +420,4 @@ def generar_menu_aleatorio(G, nodo_final):
                 "alimentos": [n for n in menu_aleatorio if n != nodo],
             }
 
-    st.write(f"**Menu generado:** {menu_completo}")
     return menu_completo

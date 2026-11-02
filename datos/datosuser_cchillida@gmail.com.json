@@ -13,18 +13,15 @@
     "alergias": [
       "FRU",
       "CAC",
-      "LAC",
       "HUE",
       "API",
       "MOL",
-      "PES",
       "CRU",
       "SOJ",
       "MOS",
       "SES",
       "ALT",
-      "SUL",
-      "VEG"
+      "SUL"
     ]
   },
   "objetivo": "perder",
@@ -76,7 +73,19 @@
     "S_Almuerzo": 3,
     "S_Merienda": 3,
     "D_Almuerzo": 3,
-    "D_Merienda": 3
+    "D_Merienda": 3,
+    "Pollo": 3,
+    "Pavo": 3,
+    "Ternera": 3,
+    "Cerdo": 3,
+    "Merluza": 3,
+    "Salmón": 3,
+    "Sardinas": 3,
+    "Boquerones": 3,
+    "Bacalao": 3,
+    "Galletas": 3,
+    "Yogur": 3,
+    "Queso": 3
   },
   "calorias": 1682.0600000000004,
   "gramos_proteina": 98.0
