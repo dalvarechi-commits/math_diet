@@ -112,7 +112,9 @@ def pedirObjetivoNutricional(defaults=None):
             objetivo = "ganar_deportista"  
             st.session_state.datos["objetivo"] = "ganar_deportista"
         else:
-            st.session_state.datos["objetivo"] = objetivo
+            objetivo = objetivo
+            st.session_state.objetivo = objetivo
+
         enviado = st.form_submit_button("Enviar")
         if enviado:
             st.write(f"Objetivo seleccionado enviado: {objetivo}")
