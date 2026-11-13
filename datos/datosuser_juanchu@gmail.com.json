@@ -1,0 +1,19 @@
+{
+  "email": "juanchu@gmail.com",
+  "nombre": "juan",
+  "peso": 70,
+  "altura": 170,
+  "edad": 30,
+  "imc": 24.221453287197235,
+  "sexo": "Hombre",
+  "tmb": 1617.5,
+  "GETD": 1941.0,
+  "actividad_diaria": "Sedentario",
+  "calorias": 2135.1000000000004,
+  "gramos_proteina": 126.0,
+  "preferencias": {
+    "alergias": []
+  },
+  "objetivo": "ganar",
+  "gustos": null
+}

@@ -3,7 +3,7 @@
     "categoria": "Desayuno"
   },
   "L_Almuerzo": {
-    "categoria": "Lamuerzo",
+    "categoria": "Almuerzo",
     "valoracion_usuario": 3
   },
   "L_Comida": {
@@ -20,7 +20,7 @@
     "categoria": "Desayuno"
   },
   "M_Almuerzo": {
-    "categoria": "Lamuerzo",
+    "categoria": "Almuerzo",
     "valoracion_usuario": 3
   },
   "M_Comida": {
@@ -37,7 +37,7 @@
     "categoria": "Desayuno"
   },
   "X_Almuerzo": {
-    "categoria": "Lamuerzo",
+    "categoria": "Almuerzo",
     "valoracion_usuario": 3
   },
   "X_Comida": {
@@ -54,7 +54,7 @@
     "categoria": "Desayuno"
   },
   "J_Almuerzo": {
-    "categoria": "Lamuerzo",
+    "categoria": "Almuerzo",
     "valoracion_usuario": 3
   },
   "J_Comida": {
@@ -71,7 +71,7 @@
     "categoria": "Desayuno"
   },
   "V_Almuerzo": {
-    "categoria": "Lamuerzo",
+    "categoria": "Almuerzo",
     "valoracion_usuario": 3
   },
   "V_Comida": {
@@ -88,7 +88,7 @@
     "categoria": "Desayuno"
   },
   "S_Almuerzo": {
-    "categoria": "Lamuerzo",
+    "categoria": "Almuerzo",
     "valoracion_usuario": 3
   },
   "S_Comida": {
@@ -105,7 +105,7 @@
     "categoria": "Desayuno"
   },
   "D_Almuerzo": {
-    "categoria": "Lamuerzo",
+    "categoria": "Almuerzo",
     "valoracion_usuario": 3
   },
   "D_Comida": {
