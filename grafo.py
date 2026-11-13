@@ -3,11 +3,20 @@ import csv
 import json
 from pathlib import Path
 import streamlit as st
-import matplotlib.pyplot as plt
-import networkx as nx
+#import matplotlib.pyplot as plt
+#import networkx as nx
 import random
 import menu
 
+
+import matplotlib
+
+matplotlib.use(
+    "Agg"
+)  # <-- Esto debe ir antes de importar pyplot o networkx para evitar errores en servidores
+import matplotlib.pyplot as plt
+import networkx as nx
+import streamlit as st
 
 categorias=None
 
