@@ -3,14 +3,14 @@
     "categoria": "Desayuno"
   },
   "L_Almuerzo": {
-    "categoria": "Snack",
+    "categoria": "Lamuerzo",
     "valoracion_usuario": 3
   },
   "L_Comida": {
     "categoria": "Comida"
   },
   "L_Merienda": {
-    "categoria": "Snack",
+    "categoria": "Merienda",
     "valoracion_usuario": 3
   },
   "L_Cena": {
@@ -20,14 +20,14 @@
     "categoria": "Desayuno"
   },
   "M_Almuerzo": {
-    "categoria": "Snack",
+    "categoria": "Lamuerzo",
     "valoracion_usuario": 3
   },
   "M_Comida": {
     "categoria": "Comida"
   },
   "M_Merienda": {
-    "categoria": "Snack",
+    "categoria": "Merienda",
     "valoracion_usuario": 3
   },
   "M_Cena": {
@@ -37,14 +37,14 @@
     "categoria": "Desayuno"
   },
   "X_Almuerzo": {
-    "categoria": "Snack",
+    "categoria": "Lamuerzo",
     "valoracion_usuario": 3
   },
   "X_Comida": {
     "categoria": "Comida"
   },
   "X_Merienda": {
-    "categoria": "Snack",
+    "categoria": "Merienda",
     "valoracion_usuario": 3
   },
   "X_Cena": {
@@ -54,14 +54,14 @@
     "categoria": "Desayuno"
   },
   "J_Almuerzo": {
-    "categoria": "Snack",
+    "categoria": "Lamuerzo",
     "valoracion_usuario": 3
   },
   "J_Comida": {
     "categoria": "Comida"
   },
   "J_Merienda": {
-    "categoria": "Snack",
+    "categoria": "Merienda",
     "valoracion_usuario": 3
   },
   "J_Cena": {
@@ -71,14 +71,14 @@
     "categoria": "Desayuno"
   },
   "V_Almuerzo": {
-    "categoria": "Snack",
+    "categoria": "Lamuerzo",
     "valoracion_usuario": 3
   },
   "V_Comida": {
     "categoria": "Comida"
   },
   "V_Merienda": {
-    "categoria": "Snack",
+    "categoria": "Merienda",
     "valoracion_usuario": 3
   },
   "V_Cena": {
@@ -88,14 +88,14 @@
     "categoria": "Desayuno"
   },
   "S_Almuerzo": {
-    "categoria": "Snack",
+    "categoria": "Lamuerzo",
     "valoracion_usuario": 3
   },
   "S_Comida": {
     "categoria": "Comida"
   },
   "S_Merienda": {
-    "categoria": "Snack",
+    "categoria": "Merienda",
     "valoracion_usuario": 3
   },
   "S_Cena": {
@@ -105,14 +105,14 @@
     "categoria": "Desayuno"
   },
   "D_Almuerzo": {
-    "categoria": "Snack",
+    "categoria": "Lamuerzo",
     "valoracion_usuario": 3
   },
   "D_Comida": {
     "categoria": "Comida"
   },
   "D_Merienda": {
-    "categoria": "Snack",
+    "categoria": "Merienda",
     "valoracion_usuario": 3
   },
   "D_Cena": {
