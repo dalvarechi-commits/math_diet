@@ -3,13 +3,13 @@
     "categoria": "Desayuno"
   },
   "L_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Lamuerzo"
   },
   "L_Comida": {
     "categoria": "Comida"
   },
   "L_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Merienda"
   },
   "L_Cena": {
     "categoria": "Comida"
@@ -18,13 +18,13 @@
     "categoria": "Desayuno"
   },
   "M_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Lamuerzo"
   },
   "M_Comida": {
     "categoria": "Comida"
   },
   "M_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Merienda"
   },
   "M_Cena": {
     "categoria": "Comida"
@@ -33,13 +33,13 @@
     "categoria": "Desayuno"
   },
   "X_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Lamuerzo"
   },
   "X_Comida": {
     "categoria": "Comida"
   },
   "X_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Merienda"
   },
   "X_Cena": {
     "categoria": "Comida"
@@ -48,13 +48,13 @@
     "categoria": "Desayuno"
   },
   "J_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Lamuerzo"
   },
   "J_Comida": {
     "categoria": "Comida"
   },
   "J_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Merienda"
   },
   "J_Cena": {
     "categoria": "Comida"
@@ -63,13 +63,13 @@
     "categoria": "Desayuno"
   },
   "V_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Lamuerzo"
   },
   "V_Comida": {
     "categoria": "Comida"
   },
   "V_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Merienda"
   },
   "V_Cena": {
     "categoria": "Comida"
@@ -78,13 +78,13 @@
     "categoria": "Desayuno"
   },
   "S_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Lamuerzo"
   },
   "S_Comida": {
     "categoria": "Comida"
   },
   "S_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Merienda"
   },
   "S_Cena": {
     "categoria": "Comida"
@@ -93,13 +93,13 @@
     "categoria": "Desayuno"
   },
   "D_Almuerzo": {
-    "categoria": "Snack"
+    "categoria": "Lamuerzo"
   },
   "D_Comida": {
     "categoria": "Comida"
   },
   "D_Merienda": {
-    "categoria": "Snack"
+    "categoria": "Merienda"
   },
   "D_Cena": {
     "categoria": "Comida"
